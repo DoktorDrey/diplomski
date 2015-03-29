@@ -1,0 +1,34 @@
+<html t:type="adminLayout" title="katedra Index"
+xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <t:form t:id="loginForm" class="form_signin">
+        <h3>Please Login</h3>
+        <table>
+            <tr>
+                <td>
+                    <t:label t:for="userName">Korisnicko ime</t:label>:
+                </td>
+                <td>
+                    <input type="text" t:id="userName" t:type="TextField" t:value="userName"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <t:label t:for="password">Sifra</t:label>:
+                </td>
+                <td>
+                    <input type="text" t:id="password" t:type="PasswordField" t:value="password"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Log In"/>
+                </td>
+            </tr>
+        </table>
+    </t:form>
+</body>
+</html>
