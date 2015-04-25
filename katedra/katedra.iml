@@ -144,11 +144,15 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.tapestry:tapestry-javadoc:5.3.7" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tapestry:tapestry-upload:5.3.7" level="project" />
     <orderEntry type="library" name="Maven: commons-fileupload:commons-fileupload:1.2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.got5:tapestry5-jquery:3.3.7" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi:3.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml:3.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml-schemas:3.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.xmlbeans:xmlbeans:2.3.0" level="project" />
     <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.tapestry:tapestry-kaptcha:5.3.7" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.kaptcha:kaptcha:2.3" level="project" />
   </component>
 </module>
 

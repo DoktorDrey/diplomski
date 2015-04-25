@@ -1,0 +1,58 @@
+<html t:type="commonLayout" title="predmet Index" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+<head>
+    <title>Registration Page</title>
+</head>
+<body>
+    <h1>Registration Page</h1>
+    <t:form t:id="registrationForm">
+    <t:errors/>
+        <table>
+             <tr>
+                <td>
+                    <t:label t:for="ime">Ime: </t:label>
+                </td>
+                <td>
+                    <input type="text" t:type="TextField" t:id="ime" t:label="Ime" t:validate="required"/>
+                </td>
+            </tr>    
+            <tr>
+                <td>
+                    <t:label t:for="email">email: </t:label>
+                </td>    
+                <td>
+                    <input type="text" t:type="TextField" t:id="email" t:validate="regexp, required"/>
+                </td>
+            </tr>
+        <tr>
+            <td>
+                <t:label t:for="prezime">Prezime: </t:label>
+            </td>
+            <td>
+                <input type="text" t:type="TextField" t:id="prezime" t:label="Prezime" t:validate="required"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <t:label t:for="brIndeksa">BrojIndeksa: </t:label>
+            </td>
+            <td>
+                <input type="text" t:type="TextField" t:id="brIndeksa" t:label="BrojIndeksa" t:validate="required"/>
+            </td>
+        </tr>
+        </table>
+        <!--<p>
+            Type the code shown below 
+            <br/>
+            <t:kaptchaimage t:id="kaptcha"/>
+            <br/>
+             <t:kaptchafield t:image="kaptcha" visible="true" label="characters"/>
+	    </p>    -->
+        <input type="submit" t:type="submit" t:event="submitButton" t:id="submitButton" value="Submit"/>
+    </t:form>
+     <p>
+            <t:pagelink page="Index">Back to the Index page</t:pagelink>
+     </p>
+</body>
+</html>

@@ -2,6 +2,12 @@ package com.diplomski.katedra.services;
 
 import java.io.IOException;
 
+import com.diplomski.katedra.services.admin.AdminService;
+import com.diplomski.katedra.services.admin.AdminServiceImpl;
+import com.diplomski.katedra.services.app.MainService;
+import com.diplomski.katedra.services.app.MainServiceImpl;
+import com.diplomski.katedra.services.mail.MailService;
+import com.diplomski.katedra.services.mail.MailServiceImpl;
 import org.apache.tapestry5.*;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
@@ -22,8 +28,9 @@ public class AppModule
     public static void bind(ServiceBinder binder)
     {
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
-        binder.bind(TestService.class, TestServiceImpl.class).scope("singleton");
         binder.bind(AdminService.class, AdminServiceImpl.class).scope("singleton");
+        binder.bind(MailService.class, MailServiceImpl.class).scope("singleton");
+        binder.bind(MainService.class, MainServiceImpl.class).scope("singleton");
         // Make bind() calls on the binder object to define most IoC services.
         // Use service builder methods (example below) when the implementation
         // is provided inline, or requires more initialization than simply
@@ -62,7 +69,7 @@ public class AppModule
      * this filter will only be invoked for Tapestry related requests.
      * <p/>
      * <p/>
-     * Service builder methods are useful when the implementation is inline as an inner class
+     * MainService builder methods are useful when the implementation is inline as an inner class
      * (as here) or require some other kind of special initialization. In most cases,
      * use the static bind() method instead.
      * <p/>

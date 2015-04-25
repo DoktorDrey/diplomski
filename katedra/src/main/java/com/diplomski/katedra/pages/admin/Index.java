@@ -1,7 +1,7 @@
 package com.diplomski.katedra.pages.admin;
 
 import com.diplomski.katedra.db.model.Predavac;
-import com.diplomski.katedra.services.AdminService;
+import com.diplomski.katedra.services.admin.AdminService;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;

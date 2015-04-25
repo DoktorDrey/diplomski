@@ -1,42 +1,54 @@
 <html t:type="commonLayout" title="katedra Index"
       t:sidebarTitle="Framework Version"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-      xmlns:p="tapestry:parameter">
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
         <!-- Most of the pages content, including <head>, <body>, etc. tags, comes from CommonLayout.tml -->
 
-    <p>${message:greeting}</p>
-
-    <p>The current time is: <strong>${currentTime}</strong></p>
-
-    <!-- A Zone is a component that can be updated in place, triggered by other components. -->
-    <t:zone t:id="zone">
+        <body>
+        <p>The current time is: <strong>${currentTime}</strong></p>
+        <t:form t:id="loginForm">
+            <t:errors/>
+            <table>
+                <tr>
+                    <td>
+                        <t:label t:for="userName">Korisnicko ime</t:label>:
+                    </td>
+                    <td>
+                        <input type="text" t:id="userName" t:type="TextField" t:value="student.username"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <t:label t:for="password">Sifra</t:label>:
+                    </td>
+                    <td>
+                        <input type="text" t:id="password" t:type="PasswordField" t:value="student.password"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="${message:submit-value}"/>
+                    </td>
+                </tr>
+            </table>
+        </t:form>
         <p>
-            You have clicked the link <strong>${clickCount}</strong> times.
+            <a href="#" t:type="PageLink" t:page="Registration">
+                Or register</a>
         </p>
-
-        <p>
-            [
-            <t:actionlink t:id="increment">increment</t:actionlink>
-            ]
-            &nbsp;
-            [
-            <t:actionlink t:id="incrementAjax" zone="^">increment (via Ajax)</t:actionlink>
-            ]
-        </p>
-
-    </t:zone>
-
-    <p:sidebar>
-        <p>
-            You are running Tapestry version <strong>${tapestryVersion}</strong>.
-        </p>
+        </body>
+        <p:sidebar>
+            <p>
+                You are running Tapestry version <strong>${tapestryVersion}</strong>.
+            </p>
 
 
-        <p>
-            [
-            <t:pagelink page="Index">refresh page</t:pagelink>
-            ]
-        </p>
-    </p:sidebar>
+            <p>
+                [
+                <t:pagelink page="Index">refresh page</t:pagelink>
+                ]
+            </p>
+        </p:sidebar>
 
 </html>

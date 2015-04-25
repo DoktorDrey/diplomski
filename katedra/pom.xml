@@ -133,6 +133,13 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
         </dependency>
 
         <dependency>
+            <groupId>org.got5</groupId>
+            <artifactId>tapestry5-jquery</artifactId>
+            <version>3.3.7</version>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>3.9</version>
@@ -142,6 +149,22 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>3.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.14</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry-kaptcha</artifactId>
+            <version>5.3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.kaptcha</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>2.3</version>
         </dependency>
     </dependencies>
     <build>
@@ -202,6 +225,29 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <id>apache-staging</id>
             <url>https://repository.apache.org/content/groups/staging/</url>
         </repository>
+        <repository>
+            <id>devlab722-repo</id>
+            <url>
+                http://nexus.devlab722.net/nexus/content/repositories/releases
+            </url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>devlab722-snapshot-repo</id>
+            <url>
+                http://nexus.devlab722.net/nexus/content/repositories/snapshots
+            </url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <!--<repository>
+            <id>sonatype-forge</id>
+            <url>https://repository.sonatype.org/content/groups/forge/</url>
+        </repository>-->
     </repositories>
 
     <properties>

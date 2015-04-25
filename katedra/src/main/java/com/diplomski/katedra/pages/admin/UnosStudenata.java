@@ -2,7 +2,7 @@
 package com.diplomski.katedra.pages.admin;
 
 import com.diplomski.katedra.db.model.Student;
-import com.diplomski.katedra.services.AdminService;
+import com.diplomski.katedra.services.admin.AdminService;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;

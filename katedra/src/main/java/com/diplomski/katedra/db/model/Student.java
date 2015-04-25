@@ -13,6 +13,8 @@ public class Student {
     private String brojIndeksa;
     private String ime;
     private String prezime;
+    private String username;
+    private String password;
 
     @Id
     @Column(name = "broj_indeksa")
@@ -42,6 +44,26 @@ public class Student {
 
     public void setPrezime(String prezime) {
         this.prezime = prezime;
+    }
+
+    @Basic
+    @Column(name = "username")
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Basic
+    @Column(name = "password")
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
