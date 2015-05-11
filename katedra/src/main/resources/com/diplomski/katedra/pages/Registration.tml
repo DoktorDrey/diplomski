@@ -22,7 +22,7 @@
                     <t:label t:for="email">email: </t:label>
                 </td>    
                 <td>
-                    <input type="text" t:type="TextField" t:id="email" t:validate="regexp, required"/>
+                    <input type="text" t:type="TextField" t:id="email" t:validate="required,regexp=^[a-zA-Z]+$"/>
                 </td>
             </tr>
         <tr>
@@ -42,13 +42,13 @@
             </td>
         </tr>
         </table>
-        <!--<p>
+        <p>
             Type the code shown below 
             <br/>
             <t:kaptchaimage t:id="kaptcha"/>
             <br/>
              <t:kaptchafield t:image="kaptcha" visible="true" label="characters"/>
-	    </p>    -->
+	    </p>
         <input type="submit" t:type="submit" t:event="submitButton" t:id="submitButton" value="Submit"/>
     </t:form>
      <p>
