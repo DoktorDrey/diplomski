@@ -166,6 +166,11 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <artifactId>kaptcha</artifactId>
             <version>2.3</version>
         </dependency>
+        <dependency>
+            <groupId>org.codemonkey.simplejavamail</groupId>
+            <artifactId>simple-java-mail</artifactId>
+            <version>2.2</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>katedra</finalName>

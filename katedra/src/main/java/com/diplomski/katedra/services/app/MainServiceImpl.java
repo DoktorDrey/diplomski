@@ -28,26 +28,28 @@ public class MainServiceImpl implements MainService {
         return students;
     }
 
-    public Student authenticate(String userName, String password) throws Exception {
-        logger.debug(userName);
+    public Student authenticate(String email, String password) throws Exception {
+        logger.debug(email);
         logger.debug(Crypto.hash(password));
-        Student student = studentDao.getByUserPass(userName, Crypto.hash(password));
+        Student student = studentDao.getByUserPass(email, Crypto.hash(password));
         if(student == null) {
-            throw new Exception("Invalid username or password!");
+            throw new Exception("Invalid email or password!");
         }
         return student;
     }
 
-   
-    public boolean postojiStudent(String brIndeksa, String ime, String prezime) {
-        /*try {
-            return  DatabaseBroker.vratiDB().postojiStudent(brIndeksa, ime, prezime);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MainServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch(SQLException ex1){
-            ex1.printStackTrace();
-        }*/
-        return false;
+
+    public boolean registerStudent(Student student) throws Exception {
+        Student s = studentDao.getByBrIndeks(student.getBrojIndeksa());
+        logger.debug(s);
+        logger.debug(s.getBrojIndeksa());
+        student.setId(s.getId());
+        if(s == null) {
+            throw new Exception("Student doesn't exist!");
+        } else {
+            studentDao.update(student);
+        }
+        return true;
     }
 
     public void updateStudent(String email) {

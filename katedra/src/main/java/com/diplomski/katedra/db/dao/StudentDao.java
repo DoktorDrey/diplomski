@@ -7,4 +7,5 @@ import com.diplomski.katedra.db.model.Student;
  */
 public interface StudentDao extends GenericDao<Student, String>{
     public Student getByUserPass(String username, String password);
+    public Student getByBrIndeks(String brIndeks);
 }

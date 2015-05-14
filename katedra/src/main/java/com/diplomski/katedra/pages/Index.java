@@ -10,6 +10,7 @@ import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.*;
 import org.apache.tapestry5.corelib.components.*;
 import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.services.Request;
 
 /**
  * Start pages of application katedra.
@@ -19,26 +20,13 @@ public class Index
     private static final Logger logger = Logger.getLogger(Index.class);
 
     @Property
-    @Inject
-    @Symbol(SymbolConstants.TAPESTRY_VERSION)
-    private String tapestryVersion;
-
-
-    @Property
     private Student student;
-    /*@Property
-    private String userName;
-    @Property
-    private String password;*/
 
     @InjectComponent
     private Form loginForm;
 
     @Inject
     private MainService mainService;
-
-    /*@SessionState
-    private Student authenticatedUser;*/
 
     @Inject
     private Messages messages;
@@ -52,17 +40,13 @@ public class Index
     }
 
     void onValidateFromLoginForm() {
-        logger.debug("validate");
         if (loginForm.isValid()) {
-            Student authenticated = null;
             try {
-                authenticated = mainService.authenticate(
-                        student.getUsername(), student.getPassword());
+                loggedIn = mainService.authenticate(
+                        student.getEmail(), student.getPassword());
             } catch (Exception e) {
                 loginForm.recordError(messages.get("invalid-usernameor-password"));
             }
-
-            loggedIn = authenticated;
         }
     }
 

@@ -12,15 +12,15 @@
             <table>
                 <tr>
                     <td>
-                        <t:label t:for="userName">Korisnicko ime</t:label>:
+                        <t:label t:for="email">${message:email-label}</t:label>
                     </td>
                     <td>
-                        <input type="text" t:id="userName" t:type="TextField" t:value="student.username"/>
+                        <input type="text" t:id="email" t:type="TextField" t:value="student.email" t:validate="email"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <t:label t:for="password">Sifra</t:label>:
+                        <t:label t:for="password">${message:password-label}</t:label>
                     </td>
                     <td>
                         <input type="text" t:id="password" t:type="PasswordField" t:value="student.password"/>
@@ -35,14 +35,14 @@
         </t:form>
         <p>
             <a href="#" t:type="PageLink" t:page="Registration">
-                Or register</a>
+                ${message:register-message}</a>
         </p>
         </body>
         <p:sidebar>
-            <p>
+            <!--<p>
                 You are running Tapestry version <strong>${tapestryVersion}</strong>.
             </p>
-
+-->
 
             <p>
                 [

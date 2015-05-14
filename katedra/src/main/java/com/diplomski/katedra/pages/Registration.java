@@ -4,11 +4,18 @@
  */
 package com.diplomski.katedra.pages;
 
+import com.diplomski.katedra.db.model.Student;
 import com.diplomski.katedra.services.app.MainService;
+import com.diplomski.katedra.services.mail.MailService;
+import org.apache.log4j.Logger;
+import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.beaneditor.Validate;
+import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.Request;
 
 /**
  *
@@ -16,39 +23,44 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 public class Registration {
 
-    @Persist
+    private static final Logger logger = Logger.getLogger(Registration.class);
+
+    @InjectComponent
+    private Form registrationForm;
+
     @Property
-    @Validate("required")
-    private String email;
-    @Persist
-    @Property
-    @Validate("required")
-    private String ime;
-    @Persist
-    @Property
-    @Validate("required")
-    private String prezime;
-    @Persist
-    @Property
-    @Validate("required")
-    private String brIndeksa;
-    
+    private Student student;
+
     @Inject
     private MainService mainService;
 
+    @Inject
+    private MailService mailService;
+
+    @Inject
+    private Messages messages;
+
+    void onPrepare() {
+        logger.debug("on prepare");
+        student = new Student();
+    }
+
     Object onSuccess() {
-        System.out.println("onSuccess");
+        logger.debug("onSuccess");
+        mailService.sendMail();
         return About.class;
     }
 
-    Object onSubmitFromRegistrationForm(){
-        System.out.println("onSubmitFromRegistrationForm");
-        /*Class nextPage = null;
-        if(mainService.postojiStudent(brIndeksa, ime, prezime)){
-            mainService.sendMail(email);
-            
-        }*/
-        return null;
+    void onValidateFromRegistrationForm(){
+        logger.debug("onSubmitFromRegistrationForm");
+        logger.debug(student.getBrojIndeksa());
+        Class nextPage = null;
+        try {
+            mainService.registerStudent(student);
+        } catch (Exception e) {
+            registrationForm.recordError(messages.get("student-not-exist"));
+        }
+//        return null;
     }
     
 }

@@ -1,22 +1,56 @@
 package com.diplomski.katedra.db.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 /**
- * Created by Andrija Ilic on 8/2/2014.
+ * Created by andrija on 5/14/15.
  */
 @Entity
+@Table(name = "student", schema = "", catalog = "katedra")
 public class Student {
+    private Long id;
+    private String email;
+    private String password;
     private String brojIndeksa;
     private String ime;
     private String prezime;
-    private String username;
-    private String password;
+    private boolean activated;
 
     @Id
+    @GenericGenerator(name="gen",strategy="increment")
+    @GeneratedValue(generator="gen")
+    @Column(name = "id")
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Basic
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Basic
+    @Column(name = "password")
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Basic
     @Column(name = "broj_indeksa")
     public String getBrojIndeksa() {
         return brojIndeksa;
@@ -47,23 +81,13 @@ public class Student {
     }
 
     @Basic
-    @Column(name = "username")
-    public String getUsername() {
-        return username;
+    @Column(name = "activated")
+    public boolean getActivated() {
+        return activated;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Basic
-    @Column(name = "password")
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 
     @Override
@@ -71,25 +95,15 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Student student = (Student) o;
+        Student that = (Student) o;
 
-        if (brojIndeksa != null ? !brojIndeksa.equals(student.brojIndeksa) : student.brojIndeksa != null) return false;
-        if (ime != null ? !ime.equals(student.ime) : student.ime != null) return false;
-        if (prezime != null ? !prezime.equals(student.prezime) : student.prezime != null) return false;
+        if (id != that.id) return false;
+        if (brojIndeksa != null ? !brojIndeksa.equals(that.brojIndeksa) : that.brojIndeksa != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (ime != null ? !ime.equals(that.ime) : that.ime != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (prezime != null ? !prezime.equals(that.prezime) : that.prezime != null) return false;
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = brojIndeksa != null ? brojIndeksa.hashCode() : 0;
-        result = 31 * result + (ime != null ? ime.hashCode() : 0);
-        result = 31 * result + (prezime != null ? prezime.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Student: " + brojIndeksa;
     }
 }

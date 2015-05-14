@@ -14,11 +14,11 @@ import java.util.List;
  */
 public interface MainService {
 
-    public Student authenticate(String userName, String password) throws Exception;
+    public Student authenticate(String email, String password) throws Exception;
 
     public void updateStudent(String email);
 
-    public boolean postojiStudent(String brIndeksa, String ime, String prezime);
+    public boolean registerStudent(Student student) throws Exception;
 
     public List<Student> getAllStudents();
 }
