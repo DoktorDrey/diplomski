@@ -8,6 +8,7 @@ import com.diplomski.katedra.db.dao.StudentDao;
 import com.diplomski.katedra.db.model.Student;
 import com.diplomski.katedra.security.Crypto;
 import org.apache.log4j.Logger;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public class MainServiceImpl implements MainService {
     @Inject
     private StudentDao studentDao;
 
+    @Inject
+    private Messages messages;
+
     @Override
     public List<Student> getAllStudents() {
         List<Student> students = studentDao.list();
@@ -33,7 +37,7 @@ public class MainServiceImpl implements MainService {
         logger.debug(Crypto.hash(password));
         Student student = studentDao.getByUserPass(email, Crypto.hash(password));
         if(student == null) {
-            throw new Exception("Invalid email or password!");
+            throw new Exception("err_invalid_credentials");
         }
         return student;
     }
@@ -45,9 +49,12 @@ public class MainServiceImpl implements MainService {
         logger.debug(s.getBrojIndeksa());
         student.setId(s.getId());
         if(s == null) {
-            throw new Exception("Student doesn't exist!");
+            throw new Exception("err_student_not_exist");
         } else {
-            studentDao.update(student);
+            if(s.getEmail() != null)
+                studentDao.update(student);
+            else
+                throw new Exception(messages.get("err_student_reg"));
         }
         return true;
     }

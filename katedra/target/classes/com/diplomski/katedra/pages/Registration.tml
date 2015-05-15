@@ -9,50 +9,58 @@
     <t:form t:id="registrationForm">
     <t:errors/>
         <table>
-             <tr>
-                <td>
-                    <t:label t:for="ime">Ime: </t:label>
-                </td>
-                <td>
-                    <input type="text" t:type="TextField" t:id="ime" t:label="Ime" t:validate="required"/>
-                </td>
-            </tr>    
             <tr>
                 <td>
-                    <t:label t:for="email">email: </t:label>
+                    <t:label t:for="email">${message:email-label}</t:label>
                 </td>    
                 <td>
-                    <input type="text" t:type="TextField" t:id="email" t:validate="regexp, required"/>
+                    <input type="text" t:type="TextField" t:id="email" t:value="student.email" t:validate="required,email"/>
                 </td>
             </tr>
-        <tr>
-            <td>
-                <t:label t:for="prezime">Prezime: </t:label>
-            </td>
-            <td>
-                <input type="text" t:type="TextField" t:id="prezime" t:label="Prezime" t:validate="required"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <t:label t:for="brIndeksa">BrojIndeksa: </t:label>
-            </td>
-            <td>
-                <input type="text" t:type="TextField" t:id="brIndeksa" t:label="BrojIndeksa" t:validate="required"/>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    <t:label t:for="password">${message:password-label}</t:label>
+                </td>
+                <td>
+                    <input type="text" t:type="PasswordField" t:id="password" t:value="student.password" t:validate="required,minlength=8,maxlength=20"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <t:label t:for="ime">${message:name-label}</t:label>
+                </td>
+                <td>
+                    <input type="text" t:type="TextField" t:id="ime" t:value="student.ime" t:validate="required"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <t:label t:for="prezime">${message:surname-label}</t:label>
+                </td>
+                <td>
+                    <input type="text" t:type="TextField" t:id="prezime" t:value="student.prezime" t:validate="required"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <t:label t:for="brIndeksa">${message:index-number-label}</t:label>
+                </td>
+                <td>
+                    <input type="text" t:type="TextField" t:id="brIndeksa" t:value="student.brojIndeksa" t:validate="required"/>
+                </td>
+            </tr>
         </table>
-        <!--<p>
-            Type the code shown below 
+        <p>
+            ${message:kaptcha-label}
             <br/>
             <t:kaptchaimage t:id="kaptcha"/>
             <br/>
              <t:kaptchafield t:image="kaptcha" visible="true" label="characters"/>
-	    </p>    -->
-        <input type="submit" t:type="submit" t:event="submitButton" t:id="submitButton" value="Submit"/>
+	    </p>
+        <input type="submit" t:type="submit" t:event="submitButton" t:id="submitButton" value="${message:register-label}"/>
     </t:form>
      <p>
-            <t:pagelink page="Index">Back to the Index page</t:pagelink>
+        <t:pagelink page="Index">${message:back-to-index-label}</t:pagelink>
      </p>
 </body>
 </html>
