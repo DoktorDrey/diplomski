@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="diplomski">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/kaptcha-2.3-jdk15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/tapestry-kaptcha-5.3.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

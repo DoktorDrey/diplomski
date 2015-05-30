@@ -5,5 +5,5 @@ package com.diplomski.katedra.services.mail;
  */
 public interface MailService {
 
-    public  void sendMail();
+    public void sendMail(String to);
 }

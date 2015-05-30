@@ -51,8 +51,11 @@ public class MainServiceImpl implements MainService {
         if(s == null) {
             throw new Exception("err_student_not_exist");
         } else {
-            if(s.getEmail() != null)
+            if(s.getEmail() == null){
+                student.setPassword(Crypto.hash(student.getPassword()));
                 studentDao.update(student);
+            }
+
             else
                 throw new Exception(messages.get("err_student_reg"));
         }

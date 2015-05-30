@@ -4,6 +4,7 @@ package com.diplomski.katedra.pages.admin;
 import com.diplomski.katedra.db.model.Student;
 import com.diplomski.katedra.services.admin.AdminService;
 import org.apache.commons.fileupload.FileUploadException;
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -27,16 +28,16 @@ public class UnosStudenata {
 
     @Inject
     private AdminService adminService;
-
+    private static final Logger logger = Logger.getLogger(UnosStudenata.class);
     public void ucitajExcel() {
         try
         {
-            System.out.println(file.toString());
-            System.out.println(file.getFileName());
-            System.out.println(file.getFilePath());
-            File copied = new File("C:/Idea Projects/" + file.getFileName());
+            logger.debug(file.toString());
+            logger.debug(file.getFileName());
+            logger.debug(file.getFilePath());
+            File copied = new File("C:/Users/Andrija Ilic/diplomski/" + file.getFileName());
             file.write(copied);
-            FileInputStream fileInputStream = new FileInputStream("C:/Idea Projects/" +file.getFileName());
+            FileInputStream fileInputStream = new FileInputStream("C:/Users/Andrija Ilic/diplomski/" +file.getFileName());
 
             //Create Workbook instance holding reference to .xlsx file
             XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);

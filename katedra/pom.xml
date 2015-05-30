@@ -180,8 +180,8 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <optimize>true</optimize>
                 </configuration>
             </plugin>
@@ -256,7 +256,7 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
     </repositories>
 
     <properties>
-        <tapestry-release-version>5.3.7</tapestry-release-version>
+        <tapestry-release-version>5.3.8</tapestry-release-version>
         <hibernate.version>4.3.5.Final</hibernate.version>
         <tomcat-dbcp.version>7.0.42</tomcat-dbcp.version>
         <org.springframework.version>4.0.5.RELEASE</org.springframework.version>

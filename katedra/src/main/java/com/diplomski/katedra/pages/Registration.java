@@ -47,7 +47,7 @@ public class Registration {
 
     Object onSuccess() {
         logger.debug("onSuccess");
-        mailService.sendMail();
+        mailService.sendMail(student.getEmail());
         return About.class;
     }
 
@@ -58,6 +58,7 @@ public class Registration {
         try {
             mainService.registerStudent(student);
         } catch (Exception e) {
+            e.printStackTrace();
             registrationForm.recordError(messages.get("student-not-exist"));
         }
 //        return null;
