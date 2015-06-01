@@ -1,10 +1,12 @@
 package com.diplomski.katedra.components;
 
+import com.diplomski.katedra.db.model.Student;
 import org.apache.tapestry5.*;
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.ioc.annotations.*;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.SymbolConstants;
+
 
 /**
  * Layout component for pages of application katedra.
@@ -12,6 +14,9 @@ import org.apache.tapestry5.SymbolConstants;
 @Import(stylesheet = "context:layout/layout.css")
 public class CommonLayout
 {
+    @SessionState(create = false)
+    private Student student;
+
     /**
      * The pages title, for the <title> element and the <h1> element.
      */
@@ -48,6 +53,10 @@ public class CommonLayout
 
     public String[] getPageNames()
     {
-        return new String[]{"Index", "About", "Contact","Test"};
+        if(student == null) {
+            return new String[]{"Index","Contact"};
+        } else {
+            return new String[]{"Index", "About", "Contact","Test"};
+        }
     }
 }

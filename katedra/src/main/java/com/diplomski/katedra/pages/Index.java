@@ -31,7 +31,7 @@ public class Index
     @Inject
     private Messages messages;
 
-    @SessionState(create = false)
+    @SessionState
     private Student loggedIn;
 
     void onPrepare() {
@@ -55,22 +55,6 @@ public class Index
         return About.class;
     }
 
-   /* Object onSubmitFromLoginForm() {
-        logger.debug("onSubmitFromLoginForm");
-        logger.debug(student.getUsername());
-        logger.debug(student.getPassword());
-        Class nextPage = null;
-        try {
-            authenticatedUser = mainService.authenticate(student.getUsername(), student.getPassword());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        logger.debug(authenticatedUser);
-        if (authenticatedUser == null) {
-            return this;
-        }
-        return About.class;
-    }*/
     public Date getCurrentTime()
     {
         return new Date();

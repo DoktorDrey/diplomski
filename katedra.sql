@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
-Source Server Version : 50508
-Source Host           : 127.0.0.1:3306
+Source Server         : LokalMysql
+Source Server Version : 50624
+Source Host           : localhost:3306
 Source Database       : katedra
 
 Target Server Type    : MYSQL
-Target Server Version : 50508
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-03-29 16:00:00
+Date: 2015-06-02 00:44:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -89,17 +89,21 @@ INSERT INTO `program` VALUES ('1', '2015', '1', '100', '100', '100');
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
-  `broj_indeksa` varchar(20) NOT NULL,
-  `ime` varchar(30) NOT NULL,
-  `prezime` varchar(30) NOT NULL,
-  PRIMARY KEY (`broj_indeksa`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `email` varchar(30) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  `broj_indeksa` varchar(30) DEFAULT NULL,
+  `ime` varchar(30) DEFAULT NULL,
+  `prezime` varchar(30) DEFAULT NULL,
+  `activated` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('123/07', 'Student', 'Student');
-INSERT INTO `student` VALUES ('157/06', 'Andrija', 'Ilic');
+INSERT INTO `student` VALUES ('1', null, null, '123/07', 'Student', 'Student', '0');
+INSERT INTO `student` VALUES ('2', 'andrija_ilic1987@yahoo.com', '937e8d5fbb48bd4949536cd65b8d35c426b80d2f830c5c308e2cdec422ae2244', '157/06', 'andrija', 'ilic', '0');
 
 -- ----------------------------
 -- Table structure for tip_aktivnosti
