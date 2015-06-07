@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-06-02 00:44:01
+Date: 2015-06-07 22:51:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,12 +23,32 @@ CREATE TABLE `aktivnost` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tip_aktivnosti` int(11) NOT NULL,
   `program` int(11) NOT NULL,
+  `datum` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of aktivnost
 -- ----------------------------
+INSERT INTO `aktivnost` VALUES ('1', '1', '1', '2015-06-17 12:50:46');
+INSERT INTO `aktivnost` VALUES ('2', '2', '1', '2015-06-19 12:51:02');
+
+-- ----------------------------
+-- Table structure for aktivnost_student
+-- ----------------------------
+DROP TABLE IF EXISTS `aktivnost_student`;
+CREATE TABLE `aktivnost_student` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `aktivnost` int(255) DEFAULT NULL,
+  `student` int(255) DEFAULT NULL,
+  `broj_bodova` double(255,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of aktivnost_student
+-- ----------------------------
+INSERT INTO `aktivnost_student` VALUES ('1', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for predavac
@@ -66,6 +86,22 @@ INSERT INTO `predmet` VALUES ('1', 'Projektovanje softvera');
 INSERT INTO `predmet` VALUES ('2', 'Softverski paterni');
 
 -- ----------------------------
+-- Table structure for predmet_predavac
+-- ----------------------------
+DROP TABLE IF EXISTS `predmet_predavac`;
+CREATE TABLE `predmet_predavac` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `predmet` int(255) DEFAULT NULL,
+  `predavac` int(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of predmet_predavac
+-- ----------------------------
+INSERT INTO `predmet_predavac` VALUES ('1', '1', '1');
+
+-- ----------------------------
 -- Table structure for program
 -- ----------------------------
 DROP TABLE IF EXISTS `program`;
@@ -76,13 +112,29 @@ CREATE TABLE `program` (
   `max_broj_poena` int(11) DEFAULT NULL,
   `bp_predavanja` int(11) DEFAULT NULL,
   `bp_vezbe` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`,`godina`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of program
 -- ----------------------------
 INSERT INTO `program` VALUES ('1', '2015', '1', '100', '100', '100');
+
+-- ----------------------------
+-- Table structure for program_student
+-- ----------------------------
+DROP TABLE IF EXISTS `program_student`;
+CREATE TABLE `program_student` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student` int(255) DEFAULT NULL,
+  `program` int(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of program_student
+-- ----------------------------
+INSERT INTO `program_student` VALUES ('1', '1', '1');
 
 -- ----------------------------
 -- Table structure for student
