@@ -56,7 +56,7 @@ public class CommonLayout
         if(student == null) {
             return new String[]{"Index","Contact"};
         } else {
-            return new String[]{"Index", "About", "Contact","Test"};
+            return new String[]{"About", "Contact","Logout"};
         }
     }
 }

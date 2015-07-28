@@ -1,20 +1,22 @@
 package com.diplomski.katedra.components;
 
+import com.diplomski.katedra.db.model.Predavac;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.annotations.Symbol;
 
 /**
  * Created by Andrija Ilic on 8/3/2014.
  */
 @Import(stylesheet = {"context:resources/css/admin_layout.css"})
 public class AdminLayout {
+    @SessionState(create = false)
+    private Predavac predavac;
     /**
      * The pages title, for the <title> element and the <h1> element.
      */
@@ -47,7 +49,10 @@ public class AdminLayout {
 
     public String[] getPageNames()
     {
-        return new String[]{"UnosStudenata"};
+        if(predavac == null)
+            return new String[]{};
+        else
+            return new String[]{"UnosStudenata","PrikazStudenata","Logout"};
     }
 
 }

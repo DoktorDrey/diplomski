@@ -1,14 +1,12 @@
 package com.diplomski.katedra.db.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Andrija Ilic on 8/2/2014.
  */
 @Entity
+@Table(name = "predavac", schema = "", catalog = "katedra")
 public class Predavac {
     private int id;
     private String ime;

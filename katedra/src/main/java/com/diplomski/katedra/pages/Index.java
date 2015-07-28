@@ -31,11 +31,13 @@ public class Index
     @Inject
     private Messages messages;
 
-    @SessionState
+    @SessionState(create = false)
     private Student loggedIn;
 
     void onPrepare() {
         logger.debug("on prepare");
+        logger.debug(loggedIn);
+        logger.debug(student);
         student = new Student();
     }
 
@@ -58,5 +60,11 @@ public class Index
     public Date getCurrentTime()
     {
         return new Date();
+    }
+
+    Object onActivate() {
+        if(loggedIn != null)
+            return About.class;
+        return null;
     }
 }

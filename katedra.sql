@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : LokalMysql
-Source Server Version : 50624
+Source Server         : mysqlLokal
+Source Server Version : 50532
 Source Host           : localhost:3306
 Source Database       : katedra
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50532
 File Encoding         : 65001
 
-Date: 2015-06-02 00:44:01
+Date: 2015-07-28 15:27:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,7 +47,7 @@ CREATE TABLE `predavac` (
 -- ----------------------------
 -- Records of predavac
 -- ----------------------------
-INSERT INTO `predavac` VALUES ('1', 'John', 'Smit', '1', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
+INSERT INTO `predavac` VALUES ('1', 'John', 'Smit', '1', 'admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
 
 -- ----------------------------
 -- Table structure for predmet
@@ -103,7 +103,7 @@ CREATE TABLE `student` (
 -- Records of student
 -- ----------------------------
 INSERT INTO `student` VALUES ('1', null, null, '123/07', 'Student', 'Student', '0');
-INSERT INTO `student` VALUES ('2', 'andrija_ilic1987@yahoo.com', '937e8d5fbb48bd4949536cd65b8d35c426b80d2f830c5c308e2cdec422ae2244', '157/06', 'andrija', 'ilic', '0');
+INSERT INTO `student` VALUES ('2', 'andrija_ilic1987@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '157/06', 'andrija', 'ilic', '0');
 
 -- ----------------------------
 -- Table structure for tip_aktivnosti

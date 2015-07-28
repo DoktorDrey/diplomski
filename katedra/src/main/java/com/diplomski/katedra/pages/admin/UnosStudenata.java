@@ -1,6 +1,7 @@
 
 package com.diplomski.katedra.pages.admin;
 
+import com.diplomski.katedra.db.model.Predavac;
 import com.diplomski.katedra.db.model.Student;
 import com.diplomski.katedra.services.admin.AdminService;
 import org.apache.commons.fileupload.FileUploadException;
@@ -12,6 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.upload.services.UploadedFile;
 
@@ -23,6 +25,9 @@ import java.util.Iterator;
  * Created by Andrija Ilic on 8/3/2014.
  */
 public class UnosStudenata {
+    @SessionState(create=false)
+    private Predavac predavac;
+
     @Property
     private UploadedFile file;
 
@@ -85,5 +90,11 @@ public class UnosStudenata {
     Object onUploadException(FileUploadException ex) {
         message = "Upload exception: " + ex.getMessage();
         return this;
+    }
+
+    Object onActivate() {
+        if(predavac != null)
+            return null;
+        return Index.class;
     }
 }

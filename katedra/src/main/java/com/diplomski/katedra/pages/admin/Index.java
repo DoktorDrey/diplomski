@@ -1,6 +1,7 @@
 package com.diplomski.katedra.pages.admin;
 
 import com.diplomski.katedra.db.model.Predavac;
+import com.diplomski.katedra.pages.About;
 import com.diplomski.katedra.services.admin.AdminService;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Persist;
@@ -23,7 +24,7 @@ public class Index {
     @Inject
     private AdminService adminService;
 
-    @SessionState
+    @SessionState(create = false)
     private Predavac predavac;
 
     Object onSubmitFromLoginForm() {
@@ -34,5 +35,11 @@ public class Index {
             e.printStackTrace();
         }
         return this;
+    }
+
+    Object onActivate() {
+        if(predavac != null)
+            return Home.class;
+        return null;
     }
 }
