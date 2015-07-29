@@ -1,0 +1,24 @@
+<html t:type="adminLayout" title="About katedra"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+<head>
+    <h1>unos studenata</h1>
+</head>
+<body>
+<t:form>
+    <t:errors/>
+    <select t:type="select" value="selectedPredmet"
+            validate="required"
+            model="predmetSelectModel" encoder="predmetEncoder"/>
+    <select t:type="select" value="year"
+            validate="required"
+            model="years"/>
+    <!--<t:select t:id="predmets" blankOption="never" value="selectedPredmet" model="PredmetSelectModel"/>-->
+    <!--<t:select t:id="years" blankOption="never" value="selectedYear" model="YearSelectModel"/>-->
+    <input t:type="upload" t:id="file" t:value="file" validate="required"/>
+    <br/>
+    <input type="submit" value="Submit"/>
+</t:form>
+</body>
+</html>

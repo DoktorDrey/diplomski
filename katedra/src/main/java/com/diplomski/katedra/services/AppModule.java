@@ -2,6 +2,8 @@ package com.diplomski.katedra.services;
 
 import java.io.IOException;
 
+import com.diplomski.katedra.db.model.Predmet;
+import com.diplomski.katedra.encoders.PredmetEncoder;
 import com.diplomski.katedra.services.admin.AdminService;
 import com.diplomski.katedra.services.admin.AdminServiceImpl;
 import com.diplomski.katedra.services.app.MainService;
@@ -13,10 +15,7 @@ import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Local;
-import org.apache.tapestry5.services.Request;
-import org.apache.tapestry5.services.RequestFilter;
-import org.apache.tapestry5.services.RequestHandler;
-import org.apache.tapestry5.services.Response;
+import org.apache.tapestry5.services.*;
 import org.slf4j.Logger;
 
 /**
@@ -121,5 +120,10 @@ public class AppModule
         // within the pipeline.
 
         configuration.add("Timing", filter);
+    }
+
+    public static void contributeValueEncoderSource(MappedConfiguration<Class<Predmet>,
+            ValueEncoderFactory<Predmet>> configuration) {
+        configuration.addInstance(Predmet.class, PredmetEncoder.class);
     }
 }

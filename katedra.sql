@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50532
 File Encoding         : 65001
 
-Date: 2015-07-28 15:27:38
+Date: 2015-07-29 15:28:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,7 +54,7 @@ INSERT INTO `predavac` VALUES ('1', 'John', 'Smit', '1', 'admin', 'a665a45920422
 -- ----------------------------
 DROP TABLE IF EXISTS `predmet`;
 CREATE TABLE `predmet` (
-  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `id` int(9) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -97,13 +97,31 @@ CREATE TABLE `student` (
   `prezime` varchar(30) DEFAULT NULL,
   `activated` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('1', null, null, '123/07', 'Student', 'Student', '0');
+INSERT INTO `student` VALUES ('1', 'andrija_ilic1987+1@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '123/07', 'Student', 'Student', '0');
 INSERT INTO `student` VALUES ('2', 'andrija_ilic1987@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '157/06', 'andrija', 'ilic', '0');
+INSERT INTO `student` VALUES ('3', null, null, '123/07', 'Student', 'Student', '0');
+INSERT INTO `student` VALUES ('4', null, null, '157/06', 'Andrija', 'Ilic', '0');
+
+-- ----------------------------
+-- Table structure for student_predmet_ass
+-- ----------------------------
+DROP TABLE IF EXISTS `student_predmet_ass`;
+CREATE TABLE `student_predmet_ass` (
+  `student_id` int(11) NOT NULL,
+  `program_id` int(11) NOT NULL,
+  `konacna_ocena` int(11) DEFAULT NULL,
+  `broj_bodova` float(4,2) DEFAULT NULL,
+  PRIMARY KEY (`student_id`,`program_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of student_predmet_ass
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tip_aktivnosti
@@ -130,12 +148,12 @@ INSERT INTO `tip_aktivnosti` VALUES ('5', 'aktivnost');
 DROP TABLE IF EXISTS `tip_predavaca`;
 CREATE TABLE `tip_predavaca` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `naziv_titule` varchar(30) NOT NULL,
+  `pozicija` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tip_predavaca
 -- ----------------------------
-INSERT INTO `tip_predavaca` VALUES ('1', 'mr');
-INSERT INTO `tip_predavaca` VALUES ('2', 'dr');
+INSERT INTO `tip_predavaca` VALUES ('1', 'profesor');
+INSERT INTO `tip_predavaca` VALUES ('2', 'asistent');

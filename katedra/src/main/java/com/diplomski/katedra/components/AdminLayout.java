@@ -52,7 +52,7 @@ public class AdminLayout {
         if(predavac == null)
             return new String[]{};
         else
-            return new String[]{"UnosStudenata","PrikazStudenata","Logout"};
+            return new String[]{"PrijavaStudentaPredmet","PrikazStudenata","Logout"};
     }
 
 }

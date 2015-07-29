@@ -1880,15 +1880,21 @@
       <primary-key name="PRIMARY" columns="id,godina"/>
     </table>
     <table name="student" schema="" catalog="katedra" type="TABLE">
-      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="email" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
-      <column name="password" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
-      <column name="broj_indeksa" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
-      <column name="ime" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
-      <column name="prezime" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
-      <column name="activated" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="id" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="email" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="broj_indeksa" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ime" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="prezime" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="activated" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <index name="br_indeks" unique="false" columns="broj_indeksa"/>
+    </table>
+    <table name="student_predmet_ass" schema="" catalog="katedra" type="TABLE">
+      <column name="student_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="program_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="konacna_ocena" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="broj_bodova" sqlType="FLOAT" precision="4" scale="2" nullable="true" jdbcType="7"/>
+      <primary-key name="PRIMARY" columns="student_id,program_id"/>
     </table>
     <table name="tip_aktivnosti" schema="" catalog="katedra" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -1897,7 +1903,7 @@
     </table>
     <table name="tip_predavaca" schema="" catalog="katedra" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="naziv_titule" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="pozicija" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="banners" schema="" catalog="masons" type="TABLE">
@@ -2466,11 +2472,60 @@
       <exported-key name="FK3580769128426C" table="role" schema="" catalog="spring_jasper_tutorial" columns="user_id"/>
       <index name="username" unique="true" columns="username"/>
     </table>
+    <table name="aktivnost" schema="" catalog="test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="tip_aktivnosti" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="program" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
     <table name="customers" schema="" catalog="test" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="first_name" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
       <column name="last_name" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
       <column name="date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="predavac" schema="" catalog="test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ime" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="prezime" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="titula" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="username" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="predmet" schema="" catalog="test" type="TABLE">
+      <column name="id" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="program" schema="" catalog="test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="godina" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="id_predmeta" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="max_broj_poena" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="bp_predavanja" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="bp_vezbe" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id,godina"/>
+    </table>
+    <table name="student" schema="" catalog="test" type="TABLE">
+      <column name="id" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="email" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="broj_indeksa" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ime" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="prezime" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="activated" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="tip_aktivnosti" schema="" catalog="test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="naziv_aktivnosti" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="tip_predavaca" schema="" catalog="test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="naziv_titule" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="webid_accesseshistoric" schema="" catalog="webid_db" type="TABLE">

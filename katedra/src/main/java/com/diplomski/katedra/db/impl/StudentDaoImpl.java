@@ -37,4 +37,9 @@ public class StudentDaoImpl extends HibernateDao<Student, String> implements Stu
             return null;
         return (Student) result.get(0);
     }
+
+    @Override
+    public void prijaviStudenta(Student student, int predmet, int year) {
+        String query = "INSERT into ";
+    }
 }

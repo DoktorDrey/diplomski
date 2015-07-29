@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "tip_predavaca", schema = "", catalog = "katedra")
 public class TipPredavaca {
     private int id;
-    private String nazivTitule;
+    private String pozicija;
 
     @Id
     @Column(name = "id")
@@ -22,13 +22,13 @@ public class TipPredavaca {
     }
 
     @Basic
-    @Column(name = "naziv_titule")
-    public String getNazivTitule() {
-        return nazivTitule;
+    @Column(name = "pozicija")
+    public String getPozicija() {
+        return pozicija;
     }
 
-    public void setNazivTitule(String nazivTitule) {
-        this.nazivTitule = nazivTitule;
+    public void setPozicija(String pozicija) {
+        this.pozicija = pozicija;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class TipPredavaca {
         TipPredavaca that = (TipPredavaca) o;
 
         if (id != that.id) return false;
-        if (nazivTitule != null ? !nazivTitule.equals(that.nazivTitule) : that.nazivTitule != null) return false;
+        if (pozicija != null ? !pozicija.equals(that.pozicija) : that.pozicija != null) return false;
 
         return true;
     }
@@ -47,7 +47,7 @@ public class TipPredavaca {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (nazivTitule != null ? nazivTitule.hashCode() : 0);
+        result = 31 * result + (pozicija != null ? pozicija.hashCode() : 0);
         return result;
     }
 }

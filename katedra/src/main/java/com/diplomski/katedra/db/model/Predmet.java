@@ -1,19 +1,21 @@
 package com.diplomski.katedra.db.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 /**
  * Created by Andrija Ilic on 8/2/2014.
  */
 @Entity
+@Table(name = "predmet", schema = "", catalog = "katedra")
 public class Predmet {
     private int id;
     private String name;
 
     @Id
+    @GenericGenerator(name="gen",strategy="increment")
+    @GeneratedValue(generator="gen")
     @Column(name = "id")
     public int getId() {
         return id;
@@ -51,5 +53,10 @@ public class Predmet {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.getId());
     }
 }
