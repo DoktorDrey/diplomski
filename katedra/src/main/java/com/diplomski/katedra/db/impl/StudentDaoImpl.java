@@ -1,6 +1,7 @@
 package com.diplomski.katedra.db.impl;
 
 import com.diplomski.katedra.db.dao.StudentDao;
+import com.diplomski.katedra.db.model.Program;
 import com.diplomski.katedra.db.model.Student;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -39,7 +40,10 @@ public class StudentDaoImpl extends HibernateDao<Student, String> implements Stu
     }
 
     @Override
-    public void prijaviStudenta(Student student, int predmet, int year) {
-        String query = "INSERT into ";
+    public void prijaviStudenta(Student student, Program program) {
+        String query = "INSERT into student_predmet_ass (student_id,program_id) values ("+student.getId()+","+program.getId()+")";
+        logger.debug(query);
+        int result = currentSession().createSQLQuery(query).executeUpdate();
+        logger.debug(result);
     }
 }

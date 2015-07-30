@@ -2,9 +2,11 @@ package com.diplomski.katedra.services.admin;
 
 import com.diplomski.katedra.db.dao.PredavacDao;
 import com.diplomski.katedra.db.dao.PredmetDao;
+import com.diplomski.katedra.db.dao.ProgramDao;
 import com.diplomski.katedra.db.dao.StudentDao;
 import com.diplomski.katedra.db.model.Predavac;
 import com.diplomski.katedra.db.model.Predmet;
+import com.diplomski.katedra.db.model.Program;
 import com.diplomski.katedra.db.model.Student;
 import com.diplomski.katedra.security.Crypto;
 import org.apache.log4j.Logger;
@@ -28,6 +30,9 @@ public class AdminServiceImpl implements AdminService {
     @Inject
     private PredmetDao predmetDao;
 
+    @Inject
+    private ProgramDao programDao;
+
     private static final int numOfLastYears = 10;
 
     @Override
@@ -49,7 +54,8 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void prijaviStudenta(String brojIndeksa, int predmet, int year) {
         Student student = studentDao.getByBrIndeks(brojIndeksa);
-        studentDao.prijaviStudenta(student, predmet, year);
+        Program program = programDao.findProgram(predmet, year);
+        studentDao.prijaviStudenta(student, program);
     }
 
     @Override

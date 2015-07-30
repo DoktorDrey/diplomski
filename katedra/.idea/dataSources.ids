@@ -1866,7 +1866,7 @@
       <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="predmet" schema="" catalog="katedra" type="TABLE">
-      <column name="id" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
@@ -1877,7 +1877,7 @@
       <column name="max_broj_poena" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="bp_predavanja" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="bp_vezbe" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <primary-key name="PRIMARY" columns="id,godina"/>
+      <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="student" schema="" catalog="katedra" type="TABLE">
       <column name="id" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>

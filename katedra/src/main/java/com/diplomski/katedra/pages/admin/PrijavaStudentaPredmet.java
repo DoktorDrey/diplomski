@@ -29,7 +29,7 @@ import java.util.List;
  * Created by andrija on 7/29/15.
  */
 public class PrijavaStudentaPredmet {
-    private static final Logger logger = Logger.getLogger(UnosStudenata.class);
+    private static final Logger logger = Logger.getLogger(PrijavaStudentaPredmet.class);
 
     @SessionState(create=false)
     private Predavac predavac;
@@ -80,8 +80,11 @@ public class PrijavaStudentaPredmet {
                 Iterator<Cell> cellIterator = row.cellIterator();
 
                 Cell cell = cellIterator.next();
-
-                adminService.prijaviStudenta(cell.getStringCellValue(), selectedPredmet.getId(), year);
+                try {
+                    adminService.prijaviStudenta(cell.getStringCellValue(), selectedPredmet.getId(), year);
+                } catch (Exception e) {
+                    logger.debug(cell.getStringCellValue());
+                }
                 /*Student s = new Student();
                 s.setBrojIndeksa(cell.getStringCellValue());
                 cell = cellIterator.next();
