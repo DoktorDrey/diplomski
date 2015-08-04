@@ -1,22 +1,38 @@
 <html t:type="adminLayout" title="About katedra"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter"
-      xmlns:j="tapestry-library:jquery">>
-<
+      xmlns:j="tapestry-library:jquery">
 <head>
     <h1>prikaz studenata</h1>
 </head>
 <body>
-    <t:grid source="users" t:row="currentUser" t:model="myModel" t:inplace="true"
+<t:form>
+<t:errors/>
+<select t:type="select" value="selectedPredmet"
+        validate="required"
+        model="predmetSelectModel" encoder="predmetEncoder"/>
+<select t:type="select" value="year"
+        validate="required"
+        model="years"/>
+    <t:grid source="students" t:row="currentStudent" t:model="myModel" t:inplace="true"
+            t:rowIndex="currentIndex" t:rowsPerPage="10">
+        <!--<p:actionCell>
+            <t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="detailZone"
+                                     t:context="${currentUser.lastName}" >Detail</t:jquery.dialogajaxlink>
+        </p:actionCell>-->
+    </t:grid>
+    <input type="submit" value="Submit"/>
+</t:form>
+   <!-- <t:grid source="users" t:row="currentUser" t:model="myModel" t:inplace="true"
             t:rowIndex="currentIndex" t:rowsPerPage="10">
 
         <p:actionCell>
             <t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="detailZone"
                                      t:context="${currentUser.lastName}" >Detail</t:jquery.dialogajaxlink>
         </p:actionCell>
-    </t:grid>
+    </t:grid>-->
 
-    <t:jquery.dialog t:clientId="myDialog" t:params="dialogParam">
+    <!--<t:jquery.dialog t:clientId="myDialog" t:params="dialogParam">
         Detail Dialog
         <t:zone t:id="detailZone">
             <div>
@@ -25,6 +41,6 @@
                 </t:if>
             </div>
             <br/></t:zone>
-    </t:jquery.dialog>
+    </t:jquery.dialog>-->
 </body>
 </html>
