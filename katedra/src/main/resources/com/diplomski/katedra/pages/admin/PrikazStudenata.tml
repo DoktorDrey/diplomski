@@ -14,8 +14,7 @@
 <select t:type="select" value="year"
         validate="required"
         model="years"/>
-    <t:grid source="students" t:row="currentStudent" t:model="myModel" t:inplace="true"
-            t:rowIndex="currentIndex" t:rowsPerPage="10">
+    <t:grid source="students" t:row="currentStudent" t:inplace="true" t:rowsPerPage="10">
         <!--<p:actionCell>
             <t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="detailZone"
                                      t:context="${currentUser.lastName}" >Detail</t:jquery.dialogajaxlink>
