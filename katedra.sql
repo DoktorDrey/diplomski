@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50532
 File Encoding         : 65001
 
-Date: 2015-07-29 15:28:49
+Date: 2015-08-06 14:52:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,12 +23,16 @@ CREATE TABLE `aktivnost` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tip_aktivnosti` int(11) NOT NULL,
   `program` int(11) NOT NULL,
+  `datum` datetime DEFAULT NULL,
+  `vrednost` float(5,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of aktivnost
 -- ----------------------------
+INSERT INTO `aktivnost` VALUES ('1', '1', '1', '2015-08-06 13:20:33', '0.50');
+INSERT INTO `aktivnost` VALUES ('2', '2', '1', '2015-08-13 13:20:48', '0.50');
 
 -- ----------------------------
 -- Table structure for predavac
@@ -76,7 +80,7 @@ CREATE TABLE `program` (
   `max_broj_poena` int(11) DEFAULT NULL,
   `bp_predavanja` int(11) DEFAULT NULL,
   `bp_vezbe` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`,`godina`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -96,7 +100,8 @@ CREATE TABLE `student` (
   `ime` varchar(30) DEFAULT NULL,
   `prezime` varchar(30) DEFAULT NULL,
   `activated` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `broj_indeksa` (`broj_indeksa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -104,8 +109,21 @@ CREATE TABLE `student` (
 -- ----------------------------
 INSERT INTO `student` VALUES ('1', 'andrija_ilic1987+1@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '123/07', 'Student', 'Student', '0');
 INSERT INTO `student` VALUES ('2', 'andrija_ilic1987@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '157/06', 'andrija', 'ilic', '0');
-INSERT INTO `student` VALUES ('3', null, null, '123/07', 'Student', 'Student', '0');
-INSERT INTO `student` VALUES ('4', null, null, '157/06', 'Andrija', 'Ilic', '0');
+
+-- ----------------------------
+-- Table structure for student_aktivnost_ass
+-- ----------------------------
+DROP TABLE IF EXISTS `student_aktivnost_ass`;
+CREATE TABLE `student_aktivnost_ass` (
+  `student` int(11) NOT NULL,
+  `aktivnost` int(11) NOT NULL,
+  `broj_poena` float(5,2) DEFAULT NULL,
+  PRIMARY KEY (`student`,`aktivnost`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of student_aktivnost_ass
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for student_predmet_ass
@@ -122,6 +140,8 @@ CREATE TABLE `student_predmet_ass` (
 -- ----------------------------
 -- Records of student_predmet_ass
 -- ----------------------------
+INSERT INTO `student_predmet_ass` VALUES ('1', '1', null, null);
+INSERT INTO `student_predmet_ass` VALUES ('2', '1', null, null);
 
 -- ----------------------------
 -- Table structure for tip_aktivnosti
