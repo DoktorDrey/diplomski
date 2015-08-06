@@ -1854,6 +1854,8 @@
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="tip_aktivnosti" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="program" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="datum" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="vrednost" sqlType="FLOAT" precision="5" scale="2" nullable="true" jdbcType="7"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="predavac" schema="" catalog="katedra" type="TABLE">
@@ -1889,6 +1891,12 @@
       <column name="activated" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
       <primary-key name="PRIMARY" columns="id"/>
       <index name="broj_indeksa" unique="true" columns="broj_indeksa"/>
+    </table>
+    <table name="student_aktivnost_ass" schema="" catalog="katedra" type="TABLE">
+      <column name="student" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="aktivnost" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="broj_poena" sqlType="FLOAT" precision="5" scale="2" nullable="true" jdbcType="7"/>
+      <primary-key name="PRIMARY" columns="student,aktivnost"/>
     </table>
     <table name="student_predmet_ass" schema="" catalog="katedra" type="TABLE">
       <column name="student_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
