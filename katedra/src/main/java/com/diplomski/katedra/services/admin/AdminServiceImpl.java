@@ -1,13 +1,7 @@
 package com.diplomski.katedra.services.admin;
 
-import com.diplomski.katedra.db.dao.PredavacDao;
-import com.diplomski.katedra.db.dao.PredmetDao;
-import com.diplomski.katedra.db.dao.ProgramDao;
-import com.diplomski.katedra.db.dao.StudentDao;
-import com.diplomski.katedra.db.model.Predavac;
-import com.diplomski.katedra.db.model.Predmet;
-import com.diplomski.katedra.db.model.Program;
-import com.diplomski.katedra.db.model.Student;
+import com.diplomski.katedra.db.dao.*;
+import com.diplomski.katedra.db.model.*;
 import com.diplomski.katedra.security.Crypto;
 import org.apache.log4j.Logger;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -32,6 +26,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Inject
     private ProgramDao programDao;
+
+    @Inject
+    private StudentPredmetAssDao studentPredmetAssDao;
 
     private static final int numOfLastYears = 10;
 
@@ -72,5 +69,13 @@ public class AdminServiceImpl implements AdminService {
             years.add(year-i);
         }
         return years;
+    }
+
+    @Override
+    public List<StudentPredmetAss> findAllStudentsInfo(int predmet, int year) {
+        Program program = programDao.findProgram(predmet, year);
+        List<StudentPredmetAss> students = studentPredmetAssDao.getStudentsByProgram(program);
+        logger.debug(students.toString());
+        return students;
     }
 }

@@ -44,5 +44,6 @@
     <bean id="predavacDao" class="com.diplomski.katedra.db.impl.PredavacDaoImpl" p:sessionFactory-ref="sessionFactory"/>
     <bean id="predmetDao" class="com.diplomski.katedra.db.impl.PredmetDaoImpl" p:sessionFactory-ref="sessionFactory"/>
     <bean id="programDao" class="com.diplomski.katedra.db.impl.ProgramDaoImpl" p:sessionFactory-ref="sessionFactory"/>
+    <bean id="studentPredmetAssDao" class="com.diplomski.katedra.db.impl.StudentPredmetAssDaoImpl" p:sessionFactory-ref="sessionFactory"/>
     <bean id="predmetEncoder" class="com.diplomski.katedra.encoders.PredmetEncoder"/>
 </beans>

@@ -3,6 +3,7 @@ package com.diplomski.katedra.db.impl;
 import com.diplomski.katedra.db.dao.StudentDao;
 import com.diplomski.katedra.db.model.Program;
 import com.diplomski.katedra.db.model.Student;
+import com.diplomski.katedra.db.model.StudentPredmetAss;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
@@ -18,11 +19,7 @@ public class StudentDaoImpl extends HibernateDao<Student, String> implements Stu
 
     @Override
     public Student getByUserPass(String email, String password) {
-        logger.debug("test");
         Query query = currentSession().createQuery("from Student S where S.email = '"+email+"' and S.password = '"+password+"'");
-        logger.debug("test prosao");
-        logger.debug(query.getQueryString());
-        logger.debug("test prosao");
         List result = query.list();
         if(result.isEmpty())
             return null;

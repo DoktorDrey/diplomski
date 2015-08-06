@@ -3,24 +3,28 @@ package com.diplomski.katedra.pages.admin;
 import com.diplomski.katedra.db.model.Predavac;
 import com.diplomski.katedra.db.model.Predmet;
 import com.diplomski.katedra.db.model.Student;
+import com.diplomski.katedra.db.model.StudentPredmetAss;
 import com.diplomski.katedra.encoders.PredmetEncoder;
 import com.diplomski.katedra.services.admin.AdminService;
-import org.apache.tapestry5.ComponentResources;
+import org.apache.log4j.Logger;
+import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.SelectModel;
+import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
-import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.services.BeanModelSource;
 import org.apache.tapestry5.services.SelectModelFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by andrija on 7/28/15.
  */
 public class PrikazStudenata {
+    private static final Logger logger = Logger.getLogger(PrikazStudenata.class);
+
+
     @SessionState(create=false)
     private Predavac predavac;
 
@@ -38,57 +42,35 @@ public class PrikazStudenata {
     private Predmet selectedPredmet;
 
     @Property
-    private Student currentStudent;
-
-    @Property
-    private int currentIndex;
+    private StudentPredmetAss currentStudent;
 
     @Inject
     SelectModelFactory selectModelFactory;
 
     @Property
-    private ArrayList<Student> students;
+    @Persist(PersistenceConstants.FLASH)
+    private List<StudentPredmetAss> students;
 
     @Inject
     private AdminService adminService;
-
-    @Inject
-    private BeanModelSource _beanModelSource;
-
-    @Inject
-    private ComponentResources _componentResources;
-
-    void setupRender() {
-        // invoke my service to find all colors, e.g. in the database
-        List<Predmet> predmets = adminService.findAllPredmets();
-
-        // create a SelectModel from my list of colors
-        predmetSelectModel = selectModelFactory.create(predmets, "name");
-    }
 
     public List<Integer> getYears() {
         return adminService.getYears();
     }
 
-    public BeanModel getMyModel(){
-        BeanModel myModel = _beanModelSource.createDisplayModel(Student.class,
-                _componentResources.getMessages());
-        /*myModel.add("action", null);
-        myModel.include("firstName", "lastName", "action");
-        myModel.get("firstName").sortable(false);
-        myModel.get("lastName").label("Surname");*/
-        return myModel;
+    void setupRender() {
+        List<Predmet> predmets = adminService.findAllPredmets();
+        predmetSelectModel = selectModelFactory.create(predmets, "name");
     }
 
-   /* void onSuccess()
-    {
-        BeanModel myModel = _beanModelSource.createDisplayModel(Student.class,
-                _componentResources.getMessages());
-        myModel.add("action", null);
-        myModel.include("firstName", "lastName", "action");
-        myModel.get("firstName").sortable(false);
-        myModel.get("lastName").label("Surname");
-    }*/
+    @SuppressWarnings("unchecked")
+    @OnEvent(value="submit", component="filterForm")
+    void onSearchSubmit() throws Exception{
+        logger.debug("tests");
+        logger.debug(selectedPredmet.getId());
+        logger.debug(year);
+        students = adminService.findAllStudentsInfo(selectedPredmet.getId(), year);
+    }
 
     Object onActivate() {
         if(predavac != null)

@@ -6,22 +6,18 @@
     <h1>prikaz studenata</h1>
 </head>
 <body>
-<t:form>
-<t:errors/>
-<select t:type="select" value="selectedPredmet"
-        validate="required"
-        model="predmetSelectModel" encoder="predmetEncoder"/>
-<select t:type="select" value="year"
-        validate="required"
-        model="years"/>
-    <t:grid source="students" t:row="currentStudent" t:inplace="true" t:rowsPerPage="10">
-        <!--<p:actionCell>
-            <t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="detailZone"
-                                     t:context="${currentUser.lastName}" >Detail</t:jquery.dialogajaxlink>
-        </p:actionCell>-->
-    </t:grid>
-    <input type="submit" value="Submit"/>
+<t:form t:id="filterForm">
+    <t:errors/>
+    <select t:type="select" value="selectedPredmet" validate="required" model="predmetSelectModel" encoder="predmetEncoder"/>
+    <select t:type="select" value="year" validate="required" model="years"/>
+    <input type="submit" value="Prikazi"/>
 </t:form>
+<t:grid source="students" t:row="currentStudent" t:inplace="true" t:rowsPerPage="10">
+    <!--<p:actionCell>
+        <t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="detailZone"
+                                 t:context="${currentUser.lastName}" >Detail</t:jquery.dialogajaxlink>
+    </p:actionCell>-->
+</t:grid>
    <!-- <t:grid source="users" t:row="currentUser" t:model="myModel" t:inplace="true"
             t:rowIndex="currentIndex" t:rowsPerPage="10">
 

@@ -2,6 +2,9 @@ package com.diplomski.katedra.db.dao;
 
 import com.diplomski.katedra.db.model.Program;
 import com.diplomski.katedra.db.model.Student;
+import com.diplomski.katedra.db.model.StudentPredmetAss;
+
+import java.util.List;
 
 /**
  * Created by Andrija Ilic on 8/2/2014.

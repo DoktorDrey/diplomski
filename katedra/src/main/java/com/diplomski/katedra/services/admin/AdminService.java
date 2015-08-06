@@ -3,6 +3,7 @@ package com.diplomski.katedra.services.admin;
 import com.diplomski.katedra.db.model.Predavac;
 import com.diplomski.katedra.db.model.Predmet;
 import com.diplomski.katedra.db.model.Student;
+import com.diplomski.katedra.db.model.StudentPredmetAss;
 
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface AdminService {
 
     public List<Predmet> findAllPredmets();
     public List<Integer> getYears();
+    public List<StudentPredmetAss> findAllStudentsInfo(int predmet, int year);
 }
