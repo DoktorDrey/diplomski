@@ -18,7 +18,7 @@
     <!--<t:select t:id="years" blankOption="never" value="selectedYear" model="YearSelectModel"/>-->
     <input t:type="upload" t:id="file" t:value="file" validate="required"/>
     <br/>
-    <input type="submit" value="Submit"/>
+    <input type="submit" value="Ucitaj"/>
 </t:form>
 </body>
 </html>

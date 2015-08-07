@@ -8,8 +8,8 @@
 <body>
 <t:form t:id="filterForm">
     <t:errors/>
-    <select t:type="select" value="selectedPredmet" validate="required" model="predmetSelectModel" encoder="predmetEncoder"/>
     <select t:type="select" value="year" validate="required" model="years"/>
+    <select t:type="select" value="selectedPredmet" validate="required" model="predmetSelectModel" encoder="predmetEncoder"/>
     <input type="submit" value="Prikazi"/>
 </t:form>
 <t:grid source="students" t:row="currentStudent" t:inplace="true" t:rowsPerPage="10">
