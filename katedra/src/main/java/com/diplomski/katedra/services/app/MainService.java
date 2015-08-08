@@ -18,7 +18,9 @@ public interface MainService {
 
     public void updateStudent(String email);
 
-    public boolean registerStudent(Student student) throws Exception;
+    public void registerStudent(Student student) throws Exception;
 
     public List<Student> getAllStudents();
+
+    boolean activation(String token);
 }

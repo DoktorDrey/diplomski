@@ -19,7 +19,7 @@ public class StudentDaoImpl extends HibernateDao<Student, String> implements Stu
 
     @Override
     public Student getByUserPass(String email, String password) {
-        Query query = currentSession().createQuery("from Student S where S.email = '"+email+"' and S.password = '"+password+"'");
+        Query query = currentSession().createQuery("from Student S where S.email = '"+email+"' and S.password = '"+password+"' and S.activated = true");
         List result = query.list();
         if(result.isEmpty())
             return null;
@@ -42,5 +42,14 @@ public class StudentDaoImpl extends HibernateDao<Student, String> implements Stu
         logger.debug(query);
         int result = currentSession().createSQLQuery(query).executeUpdate();
         logger.debug(result);
+    }
+
+    @Override
+    public Student getByToken(String token) {
+        Query query = currentSession().createQuery("from Student S where S.token = '"+token+"' and S.activated = false");
+        List result = query.list();
+        if(result.isEmpty())
+            return null;
+        return (Student) result.get(0);
     }
 }

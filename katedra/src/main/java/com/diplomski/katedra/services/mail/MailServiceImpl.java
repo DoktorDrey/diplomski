@@ -13,10 +13,10 @@ public class MailServiceImpl implements MailService {
     private static final Logger logger = Logger.getLogger(MailServiceImpl.class);
 
     @Override
-    public void sendMail(String to) {
+    public void sendMail(String to, String body) {
         logger.debug("sendMail");
 
-        String from = "andrija.ilic87@gmail.com";
+        String from = "localhost@localhost.com";
 
         String host = "localhost";
 
@@ -38,10 +38,10 @@ public class MailServiceImpl implements MailService {
                     new InternetAddress(to));
 
             // Set Subject: header field
-            message.setSubject("This is the Subject Line!");
+            message.setSubject("Activation mail");
 
             // Now set the actual message
-            message.setText("This is actual message");
+            message.setText(body);
 
             // Send message
             Transport.send(message);

@@ -8,6 +8,7 @@ import com.diplomski.katedra.db.model.Student;
 import com.diplomski.katedra.services.app.MainService;
 import com.diplomski.katedra.services.mail.MailService;
 import org.apache.log4j.Logger;
+import org.apache.tapestry5.annotations.ActivationRequestParameter;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -47,7 +48,11 @@ public class Registration {
 
     Object onSuccess() {
         logger.debug("onSuccess");
-        mailService.sendMail(student.getEmail());
+        String body = messages.get("activation-message");
+        body += "<br/> http://localhost:8081/activation/?token=";
+        body += student.getToken();
+        logger.debug(body);
+        mailService.sendMail(student.getEmail(), body);
         return About.class;
     }
 
@@ -63,5 +68,5 @@ public class Registration {
         }
 //        return null;
     }
-    
+
 }

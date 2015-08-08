@@ -17,6 +17,7 @@ public class Student {
     private String ime;
     private String prezime;
     private boolean activated;
+    private String token;
 
     @Id
     @GenericGenerator(name="gen",strategy="increment")
@@ -88,6 +89,17 @@ public class Student {
 
     public void setActivated(boolean activated) {
         this.activated = activated;
+    }
+
+
+    @Basic
+    @Column(name = "token")
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

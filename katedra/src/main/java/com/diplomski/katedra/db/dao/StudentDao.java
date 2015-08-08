@@ -13,4 +13,6 @@ public interface StudentDao extends GenericDao<Student, String>{
     public Student getByUserPass(String email, String password);
     public Student getByBrIndeks(String brIndeks);
     public void prijaviStudenta(Student student, Program program);
+
+    Student getByToken(String token);
 }

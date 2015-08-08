@@ -32,6 +32,17 @@ public class MainServiceImpl implements MainService {
         return students;
     }
 
+    @Override
+    public boolean activation(String token) {
+        Student student = studentDao.getByToken(token);
+        if(student == null) {
+            return false;
+        }
+        student.setActivated(true);
+        studentDao.update(student);
+        return true;
+    }
+
     public Student authenticate(String email, String password) throws Exception {
         logger.debug(email);
         logger.debug(Crypto.hash(password));
@@ -43,11 +54,14 @@ public class MainServiceImpl implements MainService {
     }
 
 
+    /*@Deprecated
     public boolean registerStudent(Student student) throws Exception {
         Student s = studentDao.getByBrIndeks(student.getBrojIndeksa());
         logger.debug(s);
         logger.debug(s.getBrojIndeksa());
         student.setId(s.getId());
+
+
         if(s == null) {
             throw new Exception("err_student_not_exist");
         } else {
@@ -60,7 +74,14 @@ public class MainServiceImpl implements MainService {
                 throw new Exception(messages.get("err_student_reg"));
         }
         return true;
+    }*/
+
+    public void registerStudent(Student student) throws Exception {
+        student.setPassword(Crypto.hash(student.getPassword()));
+        student.setToken(Crypto.generateToken());
+        studentDao.add(student);
     }
+
 
     public void updateStudent(String email) {
         

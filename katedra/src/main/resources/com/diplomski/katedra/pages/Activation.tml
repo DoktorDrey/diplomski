@@ -1,0 +1,12 @@
+<html t:type="commonLayout" title="predmet Index"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+<head>
+    <title>Activation Page</title>
+</head>
+<body>
+<h1>Activation Page</h1>
+<p>${poruka}</p>
+</body>
+</html>

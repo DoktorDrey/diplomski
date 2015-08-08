@@ -1,11 +1,18 @@
 package com.diplomski.katedra.security;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.security.SecureRandom;
 
 /**
  * Created by Andrija Ilic on 8/2/2014.
  */
 public class Crypto {
+    public static String generateToken(){
+        SecureRandom random = new SecureRandom();
+        return new BigInteger(130,random).toString(32);
+    }
+
     public static String sha256(String base) {
         try{
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
