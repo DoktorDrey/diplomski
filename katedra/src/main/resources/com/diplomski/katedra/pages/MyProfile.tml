@@ -1,0 +1,11 @@
+<html t:type="commonLayout" title="Contact com.diplomski"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+<head>
+    <title>My Profile</title>
+</head>
+<body>
+<h1>My Profile</h1>
+</body>
+</html>

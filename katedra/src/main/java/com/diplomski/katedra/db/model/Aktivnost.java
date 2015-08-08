@@ -1,9 +1,9 @@
 package com.diplomski.katedra.db.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by Andrija Ilic on 8/2/2014.
@@ -13,9 +13,13 @@ public class Aktivnost {
     private int id;
     private int tipAktivnosti;
     private int program;
+    private Timestamp datum;
+    private Float vrednost;
 
     @Id
-    @Column(name = "id")
+    @GenericGenerator(name="gen",strategy="increment")
+    @GeneratedValue(generator="gen")
+    @Column(name = "id", nullable = false, insertable = true, updatable = true)
     public int getId() {
         return id;
     }
@@ -25,7 +29,7 @@ public class Aktivnost {
     }
 
     @Basic
-    @Column(name = "tip_aktivnosti")
+    @Column(name = "tip_aktivnosti", nullable = false, insertable = true, updatable = true)
     public int getTipAktivnosti() {
         return tipAktivnosti;
     }
@@ -35,7 +39,7 @@ public class Aktivnost {
     }
 
     @Basic
-    @Column(name = "program")
+    @Column(name = "program", nullable = false, insertable = true, updatable = true)
     public int getProgram() {
         return program;
     }
@@ -64,5 +68,25 @@ public class Aktivnost {
         result = 31 * result + tipAktivnosti;
         result = 31 * result + program;
         return result;
+    }
+
+    @Basic
+    @Column(name = "datum", nullable = true, insertable = true, updatable = true)
+    public Timestamp getDatum() {
+        return datum;
+    }
+
+    public void setDatum(Timestamp datum) {
+        this.datum = datum;
+    }
+
+    @Basic
+    @Column(name = "vrednost", nullable = true, insertable = true, updatable = true, precision = 2)
+    public Float getVrednost() {
+        return vrednost;
+    }
+
+    public void setVrednost(Float vrednost) {
+        this.vrednost = vrednost;
     }
 }

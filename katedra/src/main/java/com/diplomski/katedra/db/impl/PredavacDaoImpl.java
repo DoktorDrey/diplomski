@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Andrija Ilic on 8/2/2014.
  */
 @Repository("PredavacDao")
-public class PredavacDaoImpl extends HibernateDao<Predavac, Integer> implements PredavacDao{
+public class PredavacDaoImpl extends HibernateDao<Predavac, Integer> implements PredavacDao {
     private static final Logger logger = Logger.getLogger(PredavacDaoImpl.class);
 
     @Override

@@ -2,7 +2,6 @@ package com.diplomski.katedra.pages.admin;
 
 import com.diplomski.katedra.db.model.Predavac;
 import com.diplomski.katedra.db.model.Predmet;
-import com.diplomski.katedra.db.model.Student;
 import com.diplomski.katedra.encoders.PredmetEncoder;
 import com.diplomski.katedra.services.admin.AdminService;
 import org.apache.commons.fileupload.FileUploadException;
@@ -13,7 +12,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.SelectModel;
-import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;

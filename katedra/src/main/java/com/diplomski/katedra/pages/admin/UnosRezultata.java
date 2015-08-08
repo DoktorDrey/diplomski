@@ -23,6 +23,7 @@ import org.apache.tapestry5.services.SelectModelFactory;
 import org.apache.tapestry5.upload.services.UploadedFile;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -41,6 +42,9 @@ public class UnosRezultata {
     @Property
     private SelectModel predmetSelectModel;
 
+/*    @Property
+    private SelectModel activitySelectModel;*/
+
     @Property
     private int year;
 
@@ -48,15 +52,21 @@ public class UnosRezultata {
     @Property
     private PredmetEncoder predmetEncoder;
 
+ /*   @Inject
+    @Property
+    private ActivityEncoder activityEncoder;*/
+
+    @Persist(PersistenceConstants.FLASH)
     @Property
     private Predmet selectedPredmet;
 
+/*    @Persist(PersistenceConstants.FLASH)
     @Property
-    private Aktivnost activity;
+    private Aktivnost selectedActivity;*/
 
     @Property
     @Persist
-    private List<Aktivnost> activities;
+    private List<Integer> years;
 
     @Inject
     SelectModelFactory selectModelFactory;
@@ -69,7 +79,13 @@ public class UnosRezultata {
     private String message;
 
     @InjectComponent
-    private Zone modelZone;
+    private Zone yearZone;
+
+    @InjectComponent
+    private Zone predmetZone;
+
+   /* @InjectComponent
+    private Zone activityZone;*/
 
     public void ucitajExcel() {
         try {
@@ -106,25 +122,53 @@ public class UnosRezultata {
     void setupRender() {
         // invoke my service to find all colors, e.g. in the database
         List<Predmet> predmets = adminService.findAllPredmets();
-
         // create a SelectModel from my list of colors
         predmetSelectModel = selectModelFactory.create(predmets, "name");
+        years = adminService.getYears();
+//        List<Aktivnost> activities = adminService.getActivities(1, 2015);
+        List<Aktivnost> activities = new ArrayList<Aktivnost>();
     }
 
-    public Object onValueChanged(Predmet predmet)
+    void onValueChangedFromPredmet(Predmet predmet) {
+
+        logger.debug(predmet);
+        logger.debug(selectedPredmet);
+        // Record the source in the activation parameters (AKA query parameters) so it is available in requests from the other zones.
+//        logger.debug(predmet.getName());
+//        choosenPredmet = predmet;
+//        logger.debug(choosenPredmet);
+//        logger.debug(selectedPredmet);
+//        logger.debug(selectedPredmet.getName());
+//        selectedPredmet = predmet;
+
+        // Refresh the makes and models.
+
+//        logger.debug(selectedPredmet.getName());
+
+    }
+
+    /*void onValueChangedFromActivity(Aktivnost activity) {
+
+    }*/
+
+    void onValidateFromSearchCriteria() {
+        logger.debug(selectedPredmet);
+    }
+    /*public Object onValueChanged(Predmet predmet)
     {
         logger.debug(year);
         logger.debug(predmet.getName());
 //        activities = adminService.getActivities();
 
         return modelZone.getBody();
-    }
+    }*/
 
-    public List<Integer> getYears() {
+    /*public List<Integer> getYears() {
         return adminService.getYears();
-    }
+    }*/
 
     public void onSuccess() {
+        logger.debug("ttt");
         ucitajExcel();
     }
 

@@ -78,4 +78,12 @@ public class AdminServiceImpl implements AdminService {
         logger.debug(students.toString());
         return students;
     }
+
+    @Override
+    public List<Aktivnost> getActivities(int predmet, int year) {
+        Program program = programDao.findProgram(predmet, year);
+        logger.debug(program.getId());
+        List<Aktivnost> aktivnosts = null;
+        return aktivnosts;
+    }
 }

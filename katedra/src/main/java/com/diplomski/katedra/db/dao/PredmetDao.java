@@ -5,5 +5,5 @@ import com.diplomski.katedra.db.model.Predmet;
 /**
  * Created by Andrija Ilic on 8/2/2014.
  */
-public interface PredmetDao extends GenericDao<Predmet, Integer>{
+public interface PredmetDao extends GenericDao<Predmet, Integer> {
 }

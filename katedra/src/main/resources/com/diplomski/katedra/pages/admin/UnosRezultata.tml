@@ -6,6 +6,29 @@
     <h1>unos studenata</h1>
 </head>
 <body>
+<form t:type="form" t:id="searchCriteria">
+
+    <t:zone t:id="yearZone" id="yearZone" style="display: inline;">
+        <t:label for="year"/>:
+        <select t:type="select" t:id="year" t:model="years" t:zone="yearZone"
+                t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+    </t:zone>
+
+    <t:zone t:id="predmetZone" id="predmetZone" style="display: inline;">
+        <t:label for="predmet"/>:
+        <select t:type="select" t:id="predmet" value="selectedPredmet" model="predmetSelectModel" encoder="predmetEncoder" t:zone="predmetZone"
+                t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+    </t:zone>
+
+    <!--<t:zone t:id="activityZone" id="activityZone" style="display: inline;">
+        <t:label for="activity"/>:
+        <select t:type="select" t:id="activity" value="selectedActivity" t:model="activitySelectModel" encoder="activityEncoder" t:zone="activityZone"
+                t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+    </t:zone>-->
+    <input id="filterSubmit" type="submit" value="Ucitaj"/>
+    <t:errors/>
+</form>
+<!--
 <t:form>
     <t:errors/>
     <select t:type="select" value="year" validate="required" model="years" onchange="document.getElementById('filterSubmit').click()"/>
@@ -15,11 +38,12 @@
             <select t:type="select" value="activity" validate="required" model="activities" />
         </t:if>
     </t:zone>
-    <!--<t:select t:id="predmets" blankOption="never" value="selectedPredmet" model="PredmetSelectModel"/>-->
-    <!--<t:select t:id="years" blankOption="never" value="selectedYear" model="YearSelectModel"/>-->
+    &lt;!&ndash;<t:select t:id="predmets" blankOption="never" value="selectedPredmet" model="PredmetSelectModel"/>&ndash;&gt;
+    &lt;!&ndash;<t:select t:id="years" blankOption="never" value="selectedYear" model="YearSelectModel"/>&ndash;&gt;
     <input t:type="upload" t:id="file" t:value="file" validate="required"/>
     <br/>
-    <input id="filterSubmit" type="submit" value="Ucitaj"/>
-</t:form>
+    <input id="filterSubmit" type="submit" style="display:none"/>
+    <input type="submit" value="Ucitaj"/>
+</t:form>-->
 </body>
 </html>

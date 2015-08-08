@@ -1,7 +1,6 @@
 package com.diplomski.katedra.db.impl;
 
 import com.diplomski.katedra.db.dao.PredmetDao;
-import com.diplomski.katedra.db.model.Predavac;
 import com.diplomski.katedra.db.model.Predmet;
 import org.springframework.stereotype.Repository;
 

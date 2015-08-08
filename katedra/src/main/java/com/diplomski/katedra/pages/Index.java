@@ -1,16 +1,16 @@
 package com.diplomski.katedra.pages;
 
-import java.util.Date;
-
 import com.diplomski.katedra.db.model.Student;
 import com.diplomski.katedra.services.app.MainService;
 import org.apache.log4j.Logger;
-import org.apache.tapestry5.annotations.*;
+import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SessionState;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.Messages;
-import org.apache.tapestry5.ioc.annotations.*;
-import org.apache.tapestry5.corelib.components.*;
-import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.ioc.annotations.Inject;
+
+import java.util.Date;
 
 /**
  * Start pages of application katedra.

@@ -1,7 +1,6 @@
 package com.diplomski.katedra.db.impl;
 
 import com.diplomski.katedra.db.dao.GenericDao;
-import com.diplomski.katedra.db.model.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

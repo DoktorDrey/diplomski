@@ -2,9 +2,12 @@
 <project version="4">
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/src/main/java/com/diplomski/katedra/pages/Registration.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/diplomski/katedra/pages/Registration.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/diplomski/katedra/services/app/MainService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/diplomski/katedra/services/app/MainService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/diplomski/katedra/services/app/MainServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/diplomski/katedra/services/app/MainServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/com/diplomski/katedra/pages/Registration.tml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/com/diplomski/katedra/pages/Registration.tml" charset="UTF-8" />
   </component>
 </project>
-

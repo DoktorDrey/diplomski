@@ -2,7 +2,6 @@ package com.diplomski.katedra.pages.admin;
 
 import com.diplomski.katedra.db.model.Predavac;
 import com.diplomski.katedra.db.model.Predmet;
-import com.diplomski.katedra.db.model.Student;
 import com.diplomski.katedra.db.model.StudentPredmetAss;
 import com.diplomski.katedra.encoders.PredmetEncoder;
 import com.diplomski.katedra.services.admin.AdminService;
