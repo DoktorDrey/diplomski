@@ -3,13 +3,14 @@ package com.diplomski.katedra.db.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by andrija on 5/14/15.
  */
 @Entity
 @Table(name = "student", schema = "", catalog = "katedra")
-public class Student {
+public class Student implements Serializable{
     private Long id;
     private String email;
     private String password;
@@ -117,5 +118,10 @@ public class Student {
         if (prezime != null ? !prezime.equals(that.prezime) : that.prezime != null) return false;
 
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return ime;
     }
 }

@@ -12,7 +12,8 @@
     <select t:type="select" value="selectedPredmet" validate="required" model="predmetSelectModel" encoder="predmetEncoder"/>
     <input type="submit" value="Prikazi"/>
 </t:form>
-<t:grid source="students" t:row="currentStudent" t:inplace="true" t:rowsPerPage="10">
+<t:grid t:source="students" exclude="programId" row="currentStudent" t:add="student" rowsPerPage="10" reorder="student,brojBodova,konacnaOcena">
+    <p:studentCell>${currentStudent.studentId.brojIndeksa}</p:studentCell>
     <!--<p:actionCell>
         <t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="detailZone"
                                  t:context="${currentUser.lastName}" >Detail</t:jquery.dialogajaxlink>

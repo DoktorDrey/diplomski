@@ -83,8 +83,9 @@ public class MainServiceImpl implements MainService {
     }
 
 
-    public void updateStudent(String email) {
-        
+    public void updateStudent(Student student) {
+        logger.debug(student.getBrojIndeksa());
+        studentDao.update(student);
     }
   
 

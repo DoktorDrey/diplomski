@@ -16,7 +16,7 @@ public interface MainService {
 
     public Student authenticate(String email, String password) throws Exception;
 
-    public void updateStudent(String email);
+    public void updateStudent(Student student);
 
     public void registerStudent(Student student) throws Exception;
 
