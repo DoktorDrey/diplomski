@@ -3,6 +3,7 @@ package com.diplomski.katedra.pages.admin;
 import com.diplomski.katedra.db.model.Aktivnost;
 import com.diplomski.katedra.db.model.Predavac;
 import com.diplomski.katedra.db.model.Predmet;
+import com.diplomski.katedra.encoders.ActivityEncoder;
 import com.diplomski.katedra.encoders.PredmetEncoder;
 import com.diplomski.katedra.services.admin.AdminService;
 import org.apache.commons.fileupload.FileUploadException;
@@ -23,7 +24,6 @@ import org.apache.tapestry5.services.SelectModelFactory;
 import org.apache.tapestry5.upload.services.UploadedFile;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -42,26 +42,28 @@ public class UnosRezultata {
     @Property
     private SelectModel predmetSelectModel;
 
-/*    @Property
-    private SelectModel activitySelectModel;*/
+    @Property
+    private SelectModel activitySelectModel;
 
     @Property
+    @Persist
     private int year;
 
+    @Inject
     @Property
     private PredmetEncoder predmetEncoder;
 
- /*   @Inject
+    @Inject
     @Property
-    private ActivityEncoder activityEncoder;*/
+    private ActivityEncoder activityEncoder;
 
     @Persist(PersistenceConstants.FLASH)
     @Property
     private Predmet selectedPredmet;
 
-/*    @Persist(PersistenceConstants.FLASH)
+    @Persist(PersistenceConstants.FLASH)
     @Property
-    private Aktivnost selectedActivity;*/
+    private Aktivnost selectedActivity;
 
     @Property
     @Persist
@@ -78,13 +80,7 @@ public class UnosRezultata {
     private String message;
 
     @InjectComponent
-    private Zone yearZone;
-
-    @InjectComponent
-    private Zone predmetZone;
-
-   /* @InjectComponent
-    private Zone activityZone;*/
+    private Zone activityZone;
 
     public void ucitajExcel() {
         try {
@@ -125,13 +121,22 @@ public class UnosRezultata {
         predmetSelectModel = selectModelFactory.create(predmets, "name");
         years = adminService.getYears();
 //        List<Aktivnost> activities = adminService.getActivities(1, 2015);
-        List<Aktivnost> activities = new ArrayList<Aktivnost>();
     }
 
-    void onValueChangedFromPredmet(Predmet predmet) {
+    void onValueChangedFromYear(int year) {
+        logger.debug(year);
+        logger.debug(this.year);
+        this.year = year;
+    }
 
+    Object onValueChangedFromPredmet(Predmet predmet) {
         logger.debug(predmet);
+        logger.debug(year);
         logger.debug(selectedPredmet);
+        selectedPredmet = predmet;
+        List<Aktivnost> activities = adminService.getActivities(predmet.getId(), year);
+        activitySelectModel = selectModelFactory.create(activities, "TipAktivnosti");
+        return activityZone.getBody();
         // Record the source in the activation parameters (AKA query parameters) so it is available in requests from the other zones.
 //        logger.debug(predmet.getName());
 //        choosenPredmet = predmet;

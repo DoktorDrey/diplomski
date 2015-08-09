@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Entity
 public class Aktivnost {
     private int id;
-    private int tipAktivnosti;
+    private TipAktivnosti tipAktivnosti;
     private int program;
     private Timestamp datum;
     private Float vrednost;
@@ -28,13 +28,13 @@ public class Aktivnost {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "tip_aktivnosti", nullable = false, insertable = true, updatable = true)
-    public int getTipAktivnosti() {
+    @ManyToOne
+    @JoinColumn(name = "tip_aktivnosti")
+    public TipAktivnosti getTipAktivnosti() {
         return tipAktivnosti;
     }
 
-    public void setTipAktivnosti(int tipAktivnosti) {
+    public void setTipAktivnosti(TipAktivnosti tipAktivnosti) {
         this.tipAktivnosti = tipAktivnosti;
     }
 
@@ -65,7 +65,6 @@ public class Aktivnost {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + tipAktivnosti;
         result = 31 * result + program;
         return result;
     }

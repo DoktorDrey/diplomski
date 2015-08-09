@@ -28,6 +28,9 @@ public class AdminServiceImpl implements AdminService {
     private ProgramDao programDao;
 
     @Inject
+    private AktivnostDao aktivnostDao;
+
+    @Inject
     private StudentPredmetAssDao studentPredmetAssDao;
 
     private static final int numOfLastYears = 10;
@@ -83,7 +86,18 @@ public class AdminServiceImpl implements AdminService {
     public List<Aktivnost> getActivities(int predmet, int year) {
         Program program = programDao.findProgram(predmet, year);
         logger.debug(program.getId());
-        List<Aktivnost> aktivnosts = null;
+        /*Aktivnost a = new Aktivnost();
+        Aktivnost b = new Aktivnost();
+        a.setId(1);
+        b.setId(2);
+        TipAktivnosti tipAktivnosti = new TipAktivnosti();
+        tipAktivnosti.setId(1);
+        tipAktivnosti.setNazivAktivnosti("test");
+        a.setTipAktivnosti(tipAktivnosti);
+        b.setTipAktivnosti(tipAktivnosti);*/
+        List<Aktivnost> aktivnosts = aktivnostDao.findForProgram(program);
+//        aktivnosts.add(a);
+//        aktivnosts.add(b);
         return aktivnosts;
     }
 }

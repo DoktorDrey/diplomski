@@ -51,4 +51,9 @@ public class TipAktivnosti {
         result = 31 * result + (nazivAktivnosti != null ? nazivAktivnosti.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return nazivAktivnosti;
+    }
 }

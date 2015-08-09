@@ -8,17 +8,24 @@
 <body>
 <form t:type="form" t:id="searchCriteria">
 
+    <t:zone t:id="yearZone" id="yearZone" style="display: inline;">
         <t:label for="year"/>:
-        <select t:type="select" t:id="year" t:model="years"/>
+        <select t:type="select" t:id="year" t:model="years" t:zone="yearZone"
+                t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+    </t:zone>
 
+    <t:zone t:id="predmetZone" id="predmetZone" style="display: inline;">
         <t:label for="predmet"/>:
         <select t:type="select" t:id="predmet" value="selectedPredmet" model="predmetSelectModel" encoder="predmetEncoder" t:zone="activityZone"
                 t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+    </t:zone>
 
     <t:zone t:id="activityZone" id="activityZone" style="display: inline;">
+        <t:if test="selectedPredmet">
         <t:label for="activity"/>:
-        <select t:type="select" t:id="activity" value="selectedActivity" t:model="activitySelectModel" encoder="activityEncoder"
+        <select t:type="select" t:id="activity" value="selectedActivity" t:model="activitySelectModel" encoder="activityEncoder" t:zone="activityZone"
                 t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+        </t:if>
     </t:zone>
     <input id="filterSubmit" type="submit" value="Ucitaj"/>
     <t:errors/>
