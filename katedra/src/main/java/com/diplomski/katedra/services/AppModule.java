@@ -1,6 +1,8 @@
 package com.diplomski.katedra.services;
 
+import com.diplomski.katedra.db.model.Aktivnost;
 import com.diplomski.katedra.db.model.Predmet;
+import com.diplomski.katedra.encoders.ActivityEncoder;
 import com.diplomski.katedra.encoders.PredmetEncoder;
 import com.diplomski.katedra.services.admin.AdminService;
 import com.diplomski.katedra.services.admin.AdminServiceImpl;
@@ -122,8 +124,12 @@ public class AppModule
         configuration.add("Timing", filter);
     }
 
-    public static void contributeValueEncoderSource(MappedConfiguration<Class<Predmet>,
+   /* public static void contributeValueEncoderSource(MappedConfiguration<Class<Predmet>,
             ValueEncoderFactory<Predmet>> configuration) {
         configuration.addInstance(Predmet.class, PredmetEncoder.class);
+    }*/
+    public static void contributeValueEncoderSource(MappedConfiguration<Class,  ValueEncoderFactory> configuration) {
+        configuration.addInstance(Predmet.class, PredmetEncoder.class);
+        configuration.addInstance(Aktivnost.class, ActivityEncoder.class);
     }
 }

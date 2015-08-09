@@ -48,7 +48,6 @@ public class UnosRezultata {
     @Property
     private int year;
 
-    @Inject
     @Property
     private PredmetEncoder predmetEncoder;
 
