@@ -31,6 +31,9 @@ public class AdminServiceImpl implements AdminService {
     private AktivnostDao aktivnostDao;
 
     @Inject
+    private StudentAktivnostDao studentAktivnostDao;
+
+    @Inject
     private StudentPredmetAssDao studentPredmetAssDao;
 
     private static final int numOfLastYears = 10;
@@ -91,11 +94,19 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public List<StudentAktivnostAss> getStudentActivities(int predmet, int year) {
+        Program program = programDao.findProgram(predmet, year);
+        logger.debug(program.getId());
+        List<StudentAktivnostAss> activities = studentAktivnostDao.list();
+        return activities;
+    }
+
+    @Override
     public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity) {
         Student student = studentDao.getByBrIndeks(brojIndeksa);
         StudentAktivnostAss saa = new StudentAktivnostAss();
         saa.setAktivnost(selectedActivity.getId());
         saa.setBrojPoena(brojPoena);
-        saa.setStudent(student.getId());
+        saa.setStudent(student);
     }
 }

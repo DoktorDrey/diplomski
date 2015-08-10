@@ -9,17 +9,18 @@ import javax.persistence.*;
 @Table(name = "student_aktivnost_ass", schema = "", catalog = "katedra")
 @IdClass(StudentAktivnostAssPK.class)
 public class StudentAktivnostAss {
-    private Long student;
+    private Student student;
     private Integer aktivnost;
     private Double brojPoena;
 
     @Id
-    @Column(name = "student", nullable = false, insertable = true, updatable = true)
-    public Long getStudent() {
+    @ManyToOne
+    @JoinColumn(name = "student")
+    public Student getStudent() {
         return student;
     }
 
-    public void setStudent(Long student) {
+    public void setStudent(Student student) {
         this.student = student;
     }
 

@@ -16,7 +16,6 @@ import java.util.List;
 public class StudentPredmetAssDaoImpl extends HibernateDao<StudentPredmetAss,StudentPredmetAssPK> implements StudentPredmetAssDao {
     @Override
     public List<StudentPredmetAss> getStudentsByProgram(Program program) {
-//        String query = "SELECT * from student_predmet_ass where program_id="+program.getId();
         Query query = currentSession().createQuery("from StudentPredmetAss S where S.programId = "+program.getId());
         List result = query.list();
         return result;

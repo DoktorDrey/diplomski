@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50532
 File Encoding         : 65001
 
-Date: 2015-08-06 14:52:52
+Date: 2015-08-10 15:41:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -100,15 +100,20 @@ CREATE TABLE `student` (
   `ime` varchar(30) DEFAULT NULL,
   `prezime` varchar(30) DEFAULT NULL,
   `activated` tinyint(1) DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `broj_indeksa` (`broj_indeksa`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('1', 'andrija_ilic1987+1@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '123/07', 'Student', 'Student', '0');
-INSERT INTO `student` VALUES ('2', 'andrija_ilic1987@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '157/06', 'andrija', 'ilic', '0');
+INSERT INTO `student` VALUES ('1', 'andrija_ilic1987+1@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '123/07', 'Student', 'Student', '0', null);
+INSERT INTO `student` VALUES ('2', 'andrija_ilic1987@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '157/06', 'andrija', 'ilic', '1', null);
+INSERT INTO `student` VALUES ('3', 'andrija_ilic1987+2@yahoo.com', '937e8d5fbb48bd4949536cd65b8d35c426b80d2f830c5c308e2cdec422ae2244', '133/23', 'Test', 'Testic', '0', null);
+INSERT INTO `student` VALUES ('4', 'andrija_ilic1987+3@yahoo.com', '937e8d5fbb48bd4949536cd65b8d35c426b80d2f830c5c308e2cdec422ae2244', '122/04', 'test', 'test', '0', 'pdal3ao41mop41t089morkj8f6');
+INSERT INTO `student` VALUES ('5', 'andrija_ilic1987+4@yahoo.com', '6fec2a9601d5b3581c94f2150fc07fa3d6e45808079428354b868e412b76e6bb', '144/07', 'andrija', 'test', '1', 's8ot0e7q4jm0cdmv1qfd1ac5ok');
+INSERT INTO `student` VALUES ('6', 'andrija.ilic87@gmail.com', 'd5caf17539ee62962606429f421d196349b75e492af00d0f6d4ce0fd878c2841', '155/09', 'Andrija', 'Ilic', '0', 'bh4bdgefqekeunsjrn6suoqctt');
 
 -- ----------------------------
 -- Table structure for student_aktivnost_ass
@@ -124,6 +129,7 @@ CREATE TABLE `student_aktivnost_ass` (
 -- ----------------------------
 -- Records of student_aktivnost_ass
 -- ----------------------------
+INSERT INTO `student_aktivnost_ass` VALUES ('1', '1', '100.00');
 
 -- ----------------------------
 -- Table structure for student_predmet_ass

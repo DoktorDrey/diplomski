@@ -1,0 +1,22 @@
+<html t:type="adminLayout" title="About katedra"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+<head>
+    <h1>prikaz aktivnost</h1>
+</head>
+<body>
+<table t:type="jquery/datatable" t:id="activitiesdt" t:source="activities" t:row="activity"
+       t:rowsPerPage="5" t:options="options">
+
+    <!--<p:firstNameHeader>Prenom Header</p:firstNameHeader>-->
+
+    <!--<p:firstNameFooter>Prenom Footer</p:firstNameFooter>-->
+
+    <!--<p:firstNameCell>${current?.firstName}</p:firstNameCell>-->
+
+    <!--<p:linkCell><t:ActionLink t:zone="zone" t:mixins="jquery/tooltip" title="tooltup">${current?.lastName}</t:ActionLink></p:linkCell>-->
+
+</table>
+</body>
+</html>

@@ -2,22 +2,25 @@ package com.diplomski.katedra.db.model;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 /**
  * Created by andrija on 8/6/15.
  */
 public class StudentAktivnostAssPK implements Serializable {
-    private Integer student;
+    private Student student;
     private Integer aktivnost;
 
-    @Column(name = "student", nullable = false, insertable = true, updatable = true)
     @Id
-    public Integer getStudent() {
+    @ManyToOne
+    @JoinColumn(name = "student")
+    public Student getStudent() {
         return student;
     }
 
-    public void setStudent(Integer student) {
+    public void setStudent(Student student) {
         this.student = student;
     }
 
