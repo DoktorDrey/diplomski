@@ -9,17 +9,17 @@ import javax.persistence.*;
 @Table(name = "student_aktivnost_ass", schema = "", catalog = "katedra")
 @IdClass(StudentAktivnostAssPK.class)
 public class StudentAktivnostAss {
-    private Integer student;
+    private Long student;
     private Integer aktivnost;
-    private Float brojPoena;
+    private Double brojPoena;
 
     @Id
     @Column(name = "student", nullable = false, insertable = true, updatable = true)
-    public Integer getStudent() {
+    public Long getStudent() {
         return student;
     }
 
-    public void setStudent(Integer student) {
+    public void setStudent(Long student) {
         this.student = student;
     }
 
@@ -35,11 +35,11 @@ public class StudentAktivnostAss {
 
     @Basic
     @Column(name = "broj_poena", nullable = true, insertable = true, updatable = true, precision = 2)
-    public Float getBrojPoena() {
+    public Double getBrojPoena() {
         return brojPoena;
     }
 
-    public void setBrojPoena(Float brojPoena) {
+    public void setBrojPoena(Double brojPoena) {
         this.brojPoena = brojPoena;
     }
 

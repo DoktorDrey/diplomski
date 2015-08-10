@@ -19,4 +19,6 @@ public interface AdminService {
     public List<StudentPredmetAss> findAllStudentsInfo(int predmet, int year);
 
     List<Aktivnost> getActivities(int predmet, int year);
+
+    public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity);
 }

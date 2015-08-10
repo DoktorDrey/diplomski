@@ -86,18 +86,16 @@ public class AdminServiceImpl implements AdminService {
     public List<Aktivnost> getActivities(int predmet, int year) {
         Program program = programDao.findProgram(predmet, year);
         logger.debug(program.getId());
-        /*Aktivnost a = new Aktivnost();
-        Aktivnost b = new Aktivnost();
-        a.setId(1);
-        b.setId(2);
-        TipAktivnosti tipAktivnosti = new TipAktivnosti();
-        tipAktivnosti.setId(1);
-        tipAktivnosti.setNazivAktivnosti("test");
-        a.setTipAktivnosti(tipAktivnosti);
-        b.setTipAktivnosti(tipAktivnosti);*/
         List<Aktivnost> aktivnosts = aktivnostDao.findForProgram(program);
-//        aktivnosts.add(a);
-//        aktivnosts.add(b);
         return aktivnosts;
+    }
+
+    @Override
+    public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity) {
+        Student student = studentDao.getByBrIndeks(brojIndeksa);
+        StudentAktivnostAss saa = new StudentAktivnostAss();
+        saa.setAktivnost(selectedActivity.getId());
+        saa.setBrojPoena(brojPoena);
+        saa.setStudent(student.getId());
     }
 }

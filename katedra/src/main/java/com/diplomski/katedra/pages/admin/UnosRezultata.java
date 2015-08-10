@@ -43,6 +43,7 @@ public class UnosRezultata {
     private SelectModel predmetSelectModel;
 
     @Property
+    @Persist
     private SelectModel activitySelectModel;
 
     @Property
@@ -57,12 +58,12 @@ public class UnosRezultata {
     @Property
     private ActivityEncoder activityEncoder;
 
-    @Persist(PersistenceConstants.FLASH)
     @Property
+    @Persist
     private Predmet selectedPredmet;
 
-    @Persist(PersistenceConstants.FLASH)
     @Property
+    @Persist
     private Aktivnost selectedActivity;
 
     @Property
@@ -96,14 +97,21 @@ public class UnosRezultata {
             if(rowIterator.hasNext()) {
                 row = rowIterator.next();
             }
+            String brojIndeksa;
+            double brojPoena;
             while (rowIterator.hasNext()) {
                 row = rowIterator.next();
                 //For each row, iterate through all the columns
                 Iterator<Cell> cellIterator = row.cellIterator();
 
                 Cell cell = cellIterator.next();
+                brojIndeksa = cell.getStringCellValue();
+                cell = cellIterator.next();
+                brojPoena = Double.parseDouble(cell.getStringCellValue());
                 try {
-                    adminService.prijaviStudenta(cell.getStringCellValue(), selectedPredmet.getId(), year);
+
+                    logger.debug(cell.getStringCellValue());
+                    adminService.unesiRezultat(brojIndeksa, brojPoena, selectedActivity);
                 } catch (Exception e) {
                     logger.debug(cell.getStringCellValue());
                 }
@@ -137,42 +145,15 @@ public class UnosRezultata {
         List<Aktivnost> activities = adminService.getActivities(predmet.getId(), year);
         activitySelectModel = selectModelFactory.create(activities, "TipAktivnosti");
         return activityZone.getBody();
-        // Record the source in the activation parameters (AKA query parameters) so it is available in requests from the other zones.
-//        logger.debug(predmet.getName());
-//        choosenPredmet = predmet;
-//        logger.debug(choosenPredmet);
-//        logger.debug(selectedPredmet);
-//        logger.debug(selectedPredmet.getName());
-//        selectedPredmet = predmet;
-
-        // Refresh the makes and models.
-
-//        logger.debug(selectedPredmet.getName());
-
     }
 
-    /*void onValueChangedFromActivity(Aktivnost activity) {
-
-    }*/
-
-    void onValidateFromSearchCriteria() {
-        logger.debug(selectedPredmet);
+    void onValueChangedFromActivity(Aktivnost activity) {
+        logger.debug(activity);
+        logger.debug(selectedPredmet.toString());
+        this.selectedActivity = activity;
     }
-    /*public Object onValueChanged(Predmet predmet)
-    {
-        logger.debug(year);
-        logger.debug(predmet.getName());
-//        activities = adminService.getActivities();
-
-        return modelZone.getBody();
-    }*/
-
-    /*public List<Integer> getYears() {
-        return adminService.getYears();
-    }*/
 
     public void onSuccess() {
-        logger.debug("ttt");
         ucitajExcel();
     }
 

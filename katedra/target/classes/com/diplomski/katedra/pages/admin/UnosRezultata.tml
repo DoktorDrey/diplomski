@@ -23,29 +23,12 @@
     <t:zone t:id="activityZone" id="activityZone" style="display: inline;">
         <t:if test="selectedPredmet">
         <t:label for="activity"/>:
-        <select t:type="select" t:id="activity" value="selectedActivity" t:model="activitySelectModel" encoder="activityEncoder" t:zone="activityZone"
-                t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+        <select t:type="select" t:id="activity" value="selectedActivity" t:model="activitySelectModel" encoder="activityEncoder" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required" t:zone="activityZone"/>
+        <input t:type="upload" t:id="file" t:value="file" validate="required"/>
         </t:if>
     </t:zone>
     <input id="filterSubmit" type="submit" value="Ucitaj"/>
     <t:errors/>
 </form>
-<!--
-<t:form>
-    <t:errors/>
-    <select t:type="select" value="year" validate="required" model="years" onchange="document.getElementById('filterSubmit').click()"/>
-    <select t:type="select" value="selectedPredmet" validate="required" model="predmetSelectModel" encoder="predmetEncoder" zone="modelZone" onchange="document.getElementById('filterSubmit').click()"/>
-    <t:zone t:id="modelZone" id="modelZone">
-        <t:if test="selectedPredmet">
-            <select t:type="select" value="activity" validate="required" model="activities" />
-        </t:if>
-    </t:zone>
-    &lt;!&ndash;<t:select t:id="predmets" blankOption="never" value="selectedPredmet" model="PredmetSelectModel"/>&ndash;&gt;
-    &lt;!&ndash;<t:select t:id="years" blankOption="never" value="selectedYear" model="YearSelectModel"/>&ndash;&gt;
-    <input t:type="upload" t:id="file" t:value="file" validate="required"/>
-    <br/>
-    <input id="filterSubmit" type="submit" style="display:none"/>
-    <input type="submit" value="Ucitaj"/>
-</t:form>-->
 </body>
 </html>
