@@ -105,7 +105,7 @@ public class AdminServiceImpl implements AdminService {
     public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity) {
         Student student = studentDao.getByBrIndeks(brojIndeksa);
         StudentAktivnostAss saa = new StudentAktivnostAss();
-        saa.setAktivnost(selectedActivity.getId());
+        saa.setAktivnost(selectedActivity);
         saa.setBrojPoena(brojPoena);
         saa.setStudent(student);
     }

@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 public class StudentAktivnostAssPK implements Serializable {
     private Student student;
-    private Integer aktivnost;
+    private Aktivnost aktivnost;
 
     @Id
     @ManyToOne
@@ -24,13 +24,14 @@ public class StudentAktivnostAssPK implements Serializable {
         this.student = student;
     }
 
-    @Column(name = "aktivnost", nullable = false, insertable = true, updatable = true)
     @Id
-    public Integer getAktivnost() {
+    @ManyToOne
+    @JoinColumn(name = "aktivnost")
+    public Aktivnost getAktivnost() {
         return aktivnost;
     }
 
-    public void setAktivnost(Integer aktivnost) {
+    public void setAktivnost(Aktivnost aktivnost) {
         this.aktivnost = aktivnost;
     }
 

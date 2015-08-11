@@ -10,7 +10,7 @@ import javax.persistence.*;
 @IdClass(StudentAktivnostAssPK.class)
 public class StudentAktivnostAss {
     private Student student;
-    private Integer aktivnost;
+    private Aktivnost aktivnost;
     private Double brojPoena;
 
     @Id
@@ -25,12 +25,13 @@ public class StudentAktivnostAss {
     }
 
     @Id
-    @Column(name = "aktivnost", nullable = false, insertable = true, updatable = true)
-    public Integer getAktivnost() {
+    @ManyToOne
+    @JoinColumn(name = "aktivnost")
+    public Aktivnost getAktivnost() {
         return aktivnost;
     }
 
-    public void setAktivnost(Integer aktivnost) {
+    public void setAktivnost(Aktivnost aktivnost) {
         this.aktivnost = aktivnost;
     }
 
