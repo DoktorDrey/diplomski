@@ -4,8 +4,12 @@
  */
 package com.diplomski.katedra.services.app;
 
+import com.diplomski.katedra.db.dao.AktivnostDao;
+import com.diplomski.katedra.db.dao.StudentAktivnostDao;
 import com.diplomski.katedra.db.dao.StudentDao;
+import com.diplomski.katedra.db.model.Aktivnost;
 import com.diplomski.katedra.db.model.Student;
+import com.diplomski.katedra.db.model.StudentAktivnostAss;
 import com.diplomski.katedra.security.Crypto;
 import org.apache.log4j.Logger;
 import org.apache.tapestry5.ioc.Messages;
@@ -26,6 +30,12 @@ public class MainServiceImpl implements MainService {
     @Inject
     private Messages messages;
 
+    @Inject
+    private StudentAktivnostDao studentAktivnostDao;
+
+    @Inject
+    private AktivnostDao aktivnostDao;
+
     @Override
     public List<Student> getAllStudents() {
         List<Student> students = studentDao.list();
@@ -41,6 +51,20 @@ public class MainServiceImpl implements MainService {
         student.setActivated(true);
         studentDao.update(student);
         return true;
+    }
+
+    @Override
+    public List<StudentAktivnostAss> getStudentActivities(Student student) {
+        logger.debug("getStudentActivities");
+        logger.debug(student.getId());
+        List<StudentAktivnostAss> activities = studentAktivnostDao.findForStudent(student);
+        return activities;
+    }
+
+    @Override
+    public List<Aktivnost> getFutureActivities(Student student) {
+        List<Aktivnost> activities = aktivnostDao.list();
+        return activities;
     }
 
     public Student authenticate(String email, String password) throws Exception {

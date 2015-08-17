@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Program {
     private Integer id;
     private Integer godina;
-    private Integer idPredmeta;
+    private Predmet predmet;
     private Integer maxBrojPoena;
     private Integer bpPredavanja;
     private Integer bpVezbe;
@@ -35,14 +35,14 @@ public class Program {
         this.godina = godina;
     }
 
-    @Basic
-    @Column(name = "id_predmeta", nullable = false, insertable = true, updatable = true)
-    public Integer getIdPredmeta() {
-        return idPredmeta;
+    @ManyToOne
+    @JoinColumn(name = "id_predmeta")
+    public Predmet getPredmet() {
+        return predmet;
     }
 
-    public void setIdPredmeta(Integer idPredmeta) {
-        this.idPredmeta = idPredmeta;
+    public void setPredmet(Predmet predmet) {
+        this.predmet = predmet;
     }
 
     @Basic
@@ -87,7 +87,7 @@ public class Program {
         if (bpVezbe != null ? !bpVezbe.equals(program.bpVezbe) : program.bpVezbe != null) return false;
         if (godina != null ? !godina.equals(program.godina) : program.godina != null) return false;
         if (id != null ? !id.equals(program.id) : program.id != null) return false;
-        if (idPredmeta != null ? !idPredmeta.equals(program.idPredmeta) : program.idPredmeta != null) return false;
+        if (predmet != null ? !predmet.equals(program.predmet) : program.predmet != null) return false;
         if (maxBrojPoena != null ? !maxBrojPoena.equals(program.maxBrojPoena) : program.maxBrojPoena != null)
             return false;
 
@@ -98,7 +98,7 @@ public class Program {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (godina != null ? godina.hashCode() : 0);
-        result = 31 * result + (idPredmeta != null ? idPredmeta.hashCode() : 0);
+        result = 31 * result + (predmet != null ? predmet.hashCode() : 0);
         result = 31 * result + (maxBrojPoena != null ? maxBrojPoena.hashCode() : 0);
         result = 31 * result + (bpPredavanja != null ? bpPredavanja.hashCode() : 0);
         result = 31 * result + (bpVezbe != null ? bpVezbe.hashCode() : 0);

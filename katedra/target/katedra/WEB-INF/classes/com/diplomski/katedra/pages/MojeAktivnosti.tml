@@ -1,0 +1,31 @@
+<html t:type="commonLayout" title="About katedra"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+<body>
+<t:form t:id="filterForm" t:zone="activityZone,activityZone1">
+    <t:radiogroup t:value="aktStatus">
+        <input type="radio" t:type="radio" t:value="literal:Izvrsene"/>Izvrsene
+        <input type="radio" t:type="radio" t:value="literal:Neizvrsene"/>Neizvrsene
+    </t:radiogroup>
+    <input type="submit" value="Submit"/>
+</t:form>
+<t:zone t:id="activityZone" id="activityZone" style="display: inline;">
+    <t:if test="aktStatus">
+        <table t:type="jquery/datatable" t:id="activitiesdt" t:source="activities" t:row="activity"
+               t:rowsPerPage="5" t:add="datum" t:options="options">
+            <p:datumCell>${activity.aktivnost.datum}</p:datumCell>
+        </table>
+    </t:if>
+</t:zone>
+<t:zone t:id="activityZone1" id="activityZone1" style="display: inline;">
+    <t:if test="aktStatus">
+        <table t:type="jquery/datatable" t:id="activitiesdt1" t:source="activities1" t:row="activity1"
+               t:rowsPerPage="5" t:exclude="id,program,status,vrednost" t:add="predmet,aktivnost" t:reorder="predmet,aktivnost,datum" t:options="options">
+            <p:predmetCell>${activity1.program.predmet.name}</p:predmetCell>
+            <p:aktivnostCell>${activity1.tipAktivnosti.nazivAktivnosti}</p:aktivnostCell>
+        </table>
+    </t:if>
+</t:zone>
+</body>
+</html>

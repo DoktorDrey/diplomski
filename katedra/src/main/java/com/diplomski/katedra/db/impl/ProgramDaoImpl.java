@@ -18,7 +18,7 @@ public class ProgramDaoImpl extends HibernateDao<Program, Integer> implements Pr
 
     @Override
     public Program findProgram(int predmet, int year) {
-        Query query = currentSession().createQuery("from Program P where P.idPredmeta = "+predmet+" and P.godina="+year);
+        Query query = currentSession().createQuery("from Program P where P.predmet = "+predmet+" and P.godina="+year);
         logger.debug(query.getQueryString());
         List result = query.list();
         if(result.isEmpty())

@@ -4,7 +4,9 @@
  */
 package com.diplomski.katedra.services.app;
 
+import com.diplomski.katedra.db.model.Aktivnost;
 import com.diplomski.katedra.db.model.Student;
+import com.diplomski.katedra.db.model.StudentAktivnostAss;
 
 import java.util.List;
 
@@ -23,4 +25,8 @@ public interface MainService {
     public List<Student> getAllStudents();
 
     boolean activation(String token);
+
+    List<StudentAktivnostAss> getStudentActivities(Student student);
+
+    List<Aktivnost> getFutureActivities(Student student);
 }

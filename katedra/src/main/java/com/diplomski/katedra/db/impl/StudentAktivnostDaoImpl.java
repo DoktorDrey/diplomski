@@ -2,6 +2,7 @@ package com.diplomski.katedra.db.impl;
 
 import com.diplomski.katedra.db.dao.StudentAktivnostDao;
 import com.diplomski.katedra.db.model.Program;
+import com.diplomski.katedra.db.model.Student;
 import com.diplomski.katedra.db.model.StudentAktivnostAss;
 import com.diplomski.katedra.db.model.StudentAktivnostAssPK;
 import org.apache.log4j.Logger;
@@ -23,6 +24,14 @@ public class StudentAktivnostDaoImpl extends HibernateDao<StudentAktivnostAss,St
 //        logger.debug(q);
 //        Query query = currentSession().createSQLQuery(q);
         Query query = currentSession().createQuery("from StudentAktivnostAss S where S.aktivnost = "+program.getId());
+        List result = query.list();
+        return result;
+    }
+
+    @Override
+    public List<StudentAktivnostAss> findForStudent(Student student) {
+        Query query = currentSession().createQuery("from StudentAktivnostAss S where S.student = "+student.getId() + " and S.aktivnost.status=1");
+        logger.debug(query.getQueryString());
         List result = query.list();
         return result;
     }

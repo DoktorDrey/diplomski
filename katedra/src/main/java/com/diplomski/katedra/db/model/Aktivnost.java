@@ -13,9 +13,10 @@ import java.sql.Timestamp;
 public class Aktivnost {
     private int id;
     private TipAktivnosti tipAktivnosti;
-    private int program;
+    private Program program;
     private Timestamp datum;
     private Float vrednost;
+    private int status;
 
     @Id
     @GenericGenerator(name="gen",strategy="increment")
@@ -39,14 +40,25 @@ public class Aktivnost {
         this.tipAktivnosti = tipAktivnosti;
     }
 
-    @Basic
-    @Column(name = "program", nullable = false, insertable = true, updatable = true)
-    public int getProgram() {
+    @ManyToOne
+    @JoinColumn(name = "program")
+    public Program getProgram() {
         return program;
     }
 
-    public void setProgram(int program) {
+    public void setProgram(Program program) {
         this.program = program;
+    }
+
+
+    @Basic
+    @Column(name = "status", nullable = false, insertable = true, updatable = true)
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Override
@@ -66,7 +78,6 @@ public class Aktivnost {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + program;
         return result;
     }
 

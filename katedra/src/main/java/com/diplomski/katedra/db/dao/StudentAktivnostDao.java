@@ -1,6 +1,7 @@
 package com.diplomski.katedra.db.dao;
 
 import com.diplomski.katedra.db.model.Program;
+import com.diplomski.katedra.db.model.Student;
 import com.diplomski.katedra.db.model.StudentAktivnostAss;
 import com.diplomski.katedra.db.model.StudentAktivnostAssPK;
 
@@ -11,4 +12,5 @@ import java.util.List;
  */
 public interface StudentAktivnostDao extends GenericDao<StudentAktivnostAss, StudentAktivnostAssPK> {
     List<StudentAktivnostAss> findForProgram(Program program);
+    List<StudentAktivnostAss> findForStudent(Student student);
 }
