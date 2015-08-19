@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mysqlLokal
-Source Server Version : 50532
+Source Server         : LokalMysql
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : katedra
 
 Target Server Type    : MYSQL
-Target Server Version : 50532
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-08-10 15:41:36
+Date: 2015-08-19 23:00:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,14 +25,15 @@ CREATE TABLE `aktivnost` (
   `program` int(11) NOT NULL,
   `datum` datetime DEFAULT NULL,
   `vrednost` float(5,2) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of aktivnost
 -- ----------------------------
-INSERT INTO `aktivnost` VALUES ('1', '1', '1', '2015-08-06 13:20:33', '0.50');
-INSERT INTO `aktivnost` VALUES ('2', '2', '1', '2015-08-13 13:20:48', '0.50');
+INSERT INTO `aktivnost` VALUES ('1', '1', '1', '2015-08-06 13:20:33', '0.50', '1');
+INSERT INTO `aktivnost` VALUES ('2', '2', '1', '2015-08-13 13:20:48', '0.50', '0');
 
 -- ----------------------------
 -- Table structure for predavac
@@ -46,12 +47,15 @@ CREATE TABLE `predavac` (
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of predavac
 -- ----------------------------
-INSERT INTO `predavac` VALUES ('1', 'John', 'Smit', '1', 'admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
+INSERT INTO `predavac` VALUES ('1', 'Marko', 'Smiljkovic', '1', 'admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
+INSERT INTO `predavac` VALUES ('2', 'Miloje', 'Milojevic', '1', 'miloje', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
+INSERT INTO `predavac` VALUES ('3', 'Milenko', 'Petrovic', '2', 'milenko', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
+INSERT INTO `predavac` VALUES ('4', 'Stefan', 'Djordjevic', '2', 'stefan', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
 
 -- ----------------------------
 -- Table structure for predmet
@@ -61,13 +65,40 @@ CREATE TABLE `predmet` (
   `id` int(9) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of predmet
 -- ----------------------------
 INSERT INTO `predmet` VALUES ('1', 'Projektovanje softvera');
 INSERT INTO `predmet` VALUES ('2', 'Softverski paterni');
+INSERT INTO `predmet` VALUES ('3', 'Matematika 1');
+INSERT INTO `predmet` VALUES ('4', 'Matematika 2');
+INSERT INTO `predmet` VALUES ('5', 'Matematika 3');
+
+-- ----------------------------
+-- Table structure for predmet_predavac
+-- ----------------------------
+DROP TABLE IF EXISTS `predmet_predavac`;
+CREATE TABLE `predmet_predavac` (
+  `predmet` int(255) NOT NULL,
+  `predavac` int(255) NOT NULL,
+  PRIMARY KEY (`predmet`,`predavac`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of predmet_predavac
+-- ----------------------------
+INSERT INTO `predmet_predavac` VALUES ('1', '1');
+INSERT INTO `predmet_predavac` VALUES ('1', '3');
+INSERT INTO `predmet_predavac` VALUES ('2', '1');
+INSERT INTO `predmet_predavac` VALUES ('2', '3');
+INSERT INTO `predmet_predavac` VALUES ('3', '2');
+INSERT INTO `predmet_predavac` VALUES ('3', '4');
+INSERT INTO `predmet_predavac` VALUES ('4', '2');
+INSERT INTO `predmet_predavac` VALUES ('4', '4');
+INSERT INTO `predmet_predavac` VALUES ('5', '2');
+INSERT INTO `predmet_predavac` VALUES ('5', '4');
 
 -- ----------------------------
 -- Table structure for program
@@ -77,16 +108,13 @@ CREATE TABLE `program` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `godina` int(11) NOT NULL,
   `id_predmeta` int(11) NOT NULL,
-  `max_broj_poena` int(11) DEFAULT NULL,
-  `bp_predavanja` int(11) DEFAULT NULL,
-  `bp_vezbe` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of program
 -- ----------------------------
-INSERT INTO `program` VALUES ('1', '2015', '1', '100', '100', '100');
+INSERT INTO `program` VALUES ('1', '2015', '1');
 
 -- ----------------------------
 -- Table structure for student
@@ -103,17 +131,27 @@ CREATE TABLE `student` (
   `token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `broj_indeksa` (`broj_indeksa`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('1', 'andrija_ilic1987+1@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '123/07', 'Student', 'Student', '0', null);
-INSERT INTO `student` VALUES ('2', 'andrija_ilic1987@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '157/06', 'andrija', 'ilic', '1', null);
-INSERT INTO `student` VALUES ('3', 'andrija_ilic1987+2@yahoo.com', '937e8d5fbb48bd4949536cd65b8d35c426b80d2f830c5c308e2cdec422ae2244', '133/23', 'Test', 'Testic', '0', null);
-INSERT INTO `student` VALUES ('4', 'andrija_ilic1987+3@yahoo.com', '937e8d5fbb48bd4949536cd65b8d35c426b80d2f830c5c308e2cdec422ae2244', '122/04', 'test', 'test', '0', 'pdal3ao41mop41t089morkj8f6');
-INSERT INTO `student` VALUES ('5', 'andrija_ilic1987+4@yahoo.com', '6fec2a9601d5b3581c94f2150fc07fa3d6e45808079428354b868e412b76e6bb', '144/07', 'andrija', 'test', '1', 's8ot0e7q4jm0cdmv1qfd1ac5ok');
-INSERT INTO `student` VALUES ('6', 'andrija.ilic87@gmail.com', 'd5caf17539ee62962606429f421d196349b75e492af00d0f6d4ce0fd878c2841', '155/09', 'Andrija', 'Ilic', '0', 'bh4bdgefqekeunsjrn6suoqctt');
+INSERT INTO `student` VALUES ('1', 'andrija_ilic1987@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '123/07', 'Andrija', 'Ilic', '1', null);
+INSERT INTO `student` VALUES ('2', 'andrija_ilic1987+5@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '157/06', 'Petar', 'Petrovic', '1', null);
+INSERT INTO `student` VALUES ('3', 'andrija_ilic1987+2@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '133/23', 'Marko', 'Markovic', '1', null);
+INSERT INTO `student` VALUES ('4', 'andrija_ilic1987+3@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '122/04', 'Pavle', 'Pavlovic', '1', 'pdal3ao41mop41t089morkj8f6');
+INSERT INTO `student` VALUES ('5', 'andrija_ilic1987+4@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '144/07', 'Kosta', 'Kostic', '1', 's8ot0e7q4jm0cdmv1qfd1ac5ok');
+INSERT INTO `student` VALUES ('6', 'andrija.ilic87@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '155/09', 'Laza', 'Lazic', '1', 'bh4bdgefqekeunsjrn6suoqctt');
+INSERT INTO `student` VALUES ('7', 'andrija.ilic87+1@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '117/08', 'Ilija', 'Ilic', '1', 'j5qqsb9v96l9bl1nmqqrfr8h0c');
+INSERT INTO `student` VALUES ('8', 'andrija.ilic87+2@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '1/08', 'Srdjan', 'Popovic', '1', null);
+INSERT INTO `student` VALUES ('9', 'andrija.ilic87+3@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '2/08', 'Milos', 'Milosevic', '1', null);
+INSERT INTO `student` VALUES ('10', 'andrija.ilic87+4@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '3/08', 'Marija', 'Mitrovic', '1', null);
+INSERT INTO `student` VALUES ('11', 'andrija.ilic87+5@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '4/08', 'Jelena', 'Kostic', '1', null);
+INSERT INTO `student` VALUES ('12', 'andrija.ilic87+6@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '5/08', 'Slobodan', 'Mitic', '1', null);
+INSERT INTO `student` VALUES ('13', 'andrija.ilic87+7@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '6/08', 'Paja', 'Kovac', '1', null);
+INSERT INTO `student` VALUES ('14', 'andrija.ilic87+8@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '7/08', 'Marko', 'Mitrovic', '1', null);
+INSERT INTO `student` VALUES ('15', 'andrija.ilic87+9@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '8/08', 'Miki', 'Lazic', '1', null);
+INSERT INTO `student` VALUES ('16', 'andrija.ilic87+10@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '12/08', 'Sasa', 'Stanic', '1', null);
 
 -- ----------------------------
 -- Table structure for student_aktivnost_ass
@@ -130,6 +168,7 @@ CREATE TABLE `student_aktivnost_ass` (
 -- Records of student_aktivnost_ass
 -- ----------------------------
 INSERT INTO `student_aktivnost_ass` VALUES ('1', '1', '100.00');
+INSERT INTO `student_aktivnost_ass` VALUES ('1', '2', null);
 
 -- ----------------------------
 -- Table structure for student_predmet_ass
