@@ -1,24 +1,23 @@
 <html t:type="adminLayout" title="About katedra"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
-
-<head>
-    <h1>unos studenata</h1>
-</head>
 <body>
 <t:form>
     <t:errors/>
-    <select t:type="select" value="selectedPredmet"
-            validate="required"
-            model="predmetSelectModel" encoder="predmetEncoder"/>
-    <select t:type="select" value="year"
-            validate="required"
-            model="years"/>
-    <!--<t:select t:id="predmets" blankOption="never" value="selectedPredmet" model="PredmetSelectModel"/>-->
-    <!--<t:select t:id="years" blankOption="never" value="selectedYear" model="YearSelectModel"/>-->
-    <input t:type="upload" t:id="file" t:value="file" validate="required"/>
-    <br/>
-    <input type="submit" value="Ucitaj"/>
+    <div class="row">
+        <t:label for="predmet"/>:
+        <select t:type="select" t:id="predmet" value="selectedPredmet" model="predmetSelectModel" encoder="predmetEncoder" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+    </div>
+    <div class="row">
+        <t:label for="year"/>:
+        <select t:type="select" t:id="year" t:model="years" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+    </div>
+    <div class="row">
+        <input t:type="upload" t:id="file" t:value="file" validate="required"/>
+    </div>
+    <div class="row">
+        <input type="submit" value="Ucitaj"/>
+    </div>
 </t:form>
 </body>
 </html>

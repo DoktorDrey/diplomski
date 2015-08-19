@@ -15,6 +15,7 @@ public interface AdminService {
     public void prijaviStudenta(String brojIndeksa, int predmet, int year);
 
     public List<Predmet> findAllPredmets();
+    public List<Predmet> findAllPredmetsForPredavac(Predavac predavac);
     public List<Integer> getYears();
     public List<StudentPredmetAss> findAllStudentsInfo(int predmet, int year);
 

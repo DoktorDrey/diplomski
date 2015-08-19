@@ -2,9 +2,6 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter"
       xmlns:j="tapestry-library:jquery">
-<head>
-    <h1>prikaz studenata</h1>
-</head>
 <body>
 <t:form t:id="filterForm">
     <t:errors/>

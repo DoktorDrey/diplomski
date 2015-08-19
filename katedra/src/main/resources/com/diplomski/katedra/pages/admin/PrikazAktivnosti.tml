@@ -2,20 +2,25 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter"
       xmlns:j="tapestry-library:jquery">
-<head>
-    <h1>prikaz aktivnost</h1>
-</head>
 <body>
 <t:form t:id="filterForm" t:zone="activityZone">
     <t:errors/>
-    <select t:type="select" value="year" validate="required" model="years"/>
-    <select t:type="select" value="selectedPredmet" validate="required" model="predmetSelectModel" encoder="predmetEncoder"/>
-    <input type="submit" value="Prikazi"/>
+    <div class="row">
+        <t:label for="year"/>:
+        <select t:type="select" t:id="year" t:model="years" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+    </div>
+    <div class="row">
+        <t:label for="predmet"/>:
+        <select t:type="select" t:id="predmet" value="selectedPredmet" model="predmetSelectModel" encoder="predmetEncoder" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+    </div>
+    <div class="row">
+        <input type="submit" value="Prikazi"/>
+    </div>
 </t:form>
 <t:zone t:id="activityZone" id="activityZone" style="display: inline;">
     <t:if test="selectedPredmet">
     <table t:type="jquery/datatable" t:id="activitiesdt" t:source="activities" t:row="activity"
-       t:rowsPerPage="5" t:add="student, datum" t:options="options" t:zone="activityZone">
+       t:rowsPerPage="5" t:add="student, datum" t:reorder="student, datum, brojPoena" t:options="options" t:zone="activityZone">
 
     <!--<p:studentHeader>Student</p:studentHeader>-->
     <!--<p:studentHeader>Student</p:studentHeader>-->

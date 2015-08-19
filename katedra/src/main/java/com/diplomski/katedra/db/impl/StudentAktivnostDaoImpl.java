@@ -29,7 +29,7 @@ public class StudentAktivnostDaoImpl extends HibernateDao<StudentAktivnostAss,St
     }
 
     @Override
-    public List<StudentAktivnostAss> findForStudent(Student student) {
+     public List<StudentAktivnostAss> findForStudent(Student student) {
         Query query = currentSession().createQuery("from StudentAktivnostAss S where S.student = "+student.getId() + " and S.aktivnost.status=1");
         logger.debug(query.getQueryString());
         List result = query.list();

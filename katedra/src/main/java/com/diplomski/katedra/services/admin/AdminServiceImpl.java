@@ -67,6 +67,12 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public List<Predmet> findAllPredmetsForPredavac(Predavac predavac) {
+        return predmetDao.list();
+//        return predmetDao.vratiPredmeteZaPredavaca(predavac);
+    }
+
+    @Override
     public List<Integer> getYears() {
         Calendar now = Calendar.getInstance();
         int year = now.get(Calendar.YEAR);

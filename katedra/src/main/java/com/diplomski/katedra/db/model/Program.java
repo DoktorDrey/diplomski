@@ -11,9 +11,6 @@ public class Program {
     private Integer id;
     private Integer godina;
     private Predmet predmet;
-    private Integer maxBrojPoena;
-    private Integer bpPredavanja;
-    private Integer bpVezbe;
 
     @Id
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
@@ -45,36 +42,6 @@ public class Program {
         this.predmet = predmet;
     }
 
-    @Basic
-    @Column(name = "max_broj_poena", nullable = true, insertable = true, updatable = true)
-    public Integer getMaxBrojPoena() {
-        return maxBrojPoena;
-    }
-
-    public void setMaxBrojPoena(Integer maxBrojPoena) {
-        this.maxBrojPoena = maxBrojPoena;
-    }
-
-    @Basic
-    @Column(name = "bp_predavanja", nullable = true, insertable = true, updatable = true)
-    public Integer getBpPredavanja() {
-        return bpPredavanja;
-    }
-
-    public void setBpPredavanja(Integer bpPredavanja) {
-        this.bpPredavanja = bpPredavanja;
-    }
-
-    @Basic
-    @Column(name = "bp_vezbe", nullable = true, insertable = true, updatable = true)
-    public Integer getBpVezbe() {
-        return bpVezbe;
-    }
-
-    public void setBpVezbe(Integer bpVezbe) {
-        this.bpVezbe = bpVezbe;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,14 +49,9 @@ public class Program {
 
         Program program = (Program) o;
 
-        if (bpPredavanja != null ? !bpPredavanja.equals(program.bpPredavanja) : program.bpPredavanja != null)
-            return false;
-        if (bpVezbe != null ? !bpVezbe.equals(program.bpVezbe) : program.bpVezbe != null) return false;
         if (godina != null ? !godina.equals(program.godina) : program.godina != null) return false;
         if (id != null ? !id.equals(program.id) : program.id != null) return false;
         if (predmet != null ? !predmet.equals(program.predmet) : program.predmet != null) return false;
-        if (maxBrojPoena != null ? !maxBrojPoena.equals(program.maxBrojPoena) : program.maxBrojPoena != null)
-            return false;
 
         return true;
     }
@@ -99,9 +61,6 @@ public class Program {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (godina != null ? godina.hashCode() : 0);
         result = 31 * result + (predmet != null ? predmet.hashCode() : 0);
-        result = 31 * result + (maxBrojPoena != null ? maxBrojPoena.hashCode() : 0);
-        result = 31 * result + (bpPredavanja != null ? bpPredavanja.hashCode() : 0);
-        result = 31 * result + (bpVezbe != null ? bpVezbe.hashCode() : 0);
         return result;
     }
 }
