@@ -1856,6 +1856,7 @@
       <column name="program" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="datum" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="vrednost" sqlType="FLOAT" precision="5" scale="2" nullable="true" jdbcType="7"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="predavac" schema="" catalog="katedra" type="TABLE">
@@ -1872,13 +1873,15 @@
       <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
+    <table name="predmet_predavac" schema="" catalog="katedra" type="TABLE">
+      <column name="predmet" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="predavac" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="predmet,predavac"/>
+    </table>
     <table name="program" schema="" catalog="katedra" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="godina" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="id_predmeta" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="max_broj_poena" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="bp_predavanja" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="bp_vezbe" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="student" schema="" catalog="katedra" type="TABLE">
@@ -1889,6 +1892,7 @@
       <column name="ime" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
       <column name="prezime" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
       <column name="activated" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <column name="token" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
       <index name="broj_indeksa" unique="true" columns="broj_indeksa"/>
     </table>

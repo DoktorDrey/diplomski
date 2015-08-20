@@ -13,7 +13,9 @@
 <t:zone t:id="activityZone" id="activityZone" style="display: inline;">
     <t:if test="aktStatus">
         <table t:type="jquery/datatable" t:id="activitiesdt" t:source="activities" t:row="activity"
-               t:rowsPerPage="5" t:add="datum" t:options="options">
+               t:rowsPerPage="5" t:add="predmet,aktivnost,datum" t:reorder="predmet,aktivnost,datum,brojPoena" t:options="options">
+            <p:predmetCell>${activity.aktivnost.program.predmet.name}</p:predmetCell>
+            <p:aktivnostCell>${activity.aktivnost.tipAktivnosti.nazivAktivnosti}</p:aktivnostCell>
             <p:datumCell>${activity.aktivnost.datum}</p:datumCell>
         </table>
     </t:if>

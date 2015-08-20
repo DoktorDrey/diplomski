@@ -15,7 +15,7 @@
                 <t:label t:for="email">${message:email-label}</t:label>
             </td>
             <td>
-                <input type="text" t:type="TextField" t:id="email" disabled="true" t:value="student.email" t:validate="required,email"/>
+                <input type="text" t:type="TextField" t:id="email" t:value="student.email" t:validate="required,email"/>
             </td>
         </tr>
         <tr>
