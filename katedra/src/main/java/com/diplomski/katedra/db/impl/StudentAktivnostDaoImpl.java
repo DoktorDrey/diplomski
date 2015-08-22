@@ -23,7 +23,9 @@ public class StudentAktivnostDaoImpl extends HibernateDao<StudentAktivnostAss,St
 //        String q = "SELECT * from student_aktivnost_ass where aktivnost in (SELECT id from aktivnost where program="+program.getId() + ")";
 //        logger.debug(q);
 //        Query query = currentSession().createSQLQuery(q);
-        Query query = currentSession().createQuery("from StudentAktivnostAss S where S.aktivnost = "+program.getId());
+//        Query query = currentSession().createQuery("from StudentAktivnostAss S where S.aktivnost = "+program.getId());
+        Query query = currentSession().createQuery("from StudentAktivnostAss S where S.aktivnost in (SELECT A.id from Aktivnost A where A.program="+program.getId()+")");
+        logger.debug(query.getQueryString());
         List result = query.list();
         return result;
     }

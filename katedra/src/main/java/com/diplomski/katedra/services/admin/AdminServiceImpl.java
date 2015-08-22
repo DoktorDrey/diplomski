@@ -36,7 +36,7 @@ public class AdminServiceImpl implements AdminService {
     @Inject
     private StudentPredmetAssDao studentPredmetAssDao;
 
-    private static final int numOfLastYears = 10;
+    private static final int numOfLastYears = 3;
 
     @Override
     public Predavac authenticate(String username, String password) throws Exception {
@@ -103,7 +103,7 @@ public class AdminServiceImpl implements AdminService {
     public List<StudentAktivnostAss> getStudentActivities(int predmet, int year) {
         Program program = programDao.findProgram(predmet, year);
         logger.debug(program.getId());
-        List<StudentAktivnostAss> activities = studentAktivnostDao.list();
+        List<StudentAktivnostAss> activities = studentAktivnostDao.findForProgram(program);
         return activities;
     }
 

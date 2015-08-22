@@ -6,33 +6,38 @@
 <t:form t:id="filterForm" t:zone="activityZone">
     <t:errors/>
     <div class="row">
-        <t:label for="year"/>:
-        <select t:type="select" t:id="year" t:model="years" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+        <t:zone t:id="yearZone" id="yearZone" style="display: inline;">
+            <t:label for="year"/>:
+            <select t:type="select" t:id="year" t:model="years" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required" t:zone="activityZone"/>
+        </t:zone>
     </div>
     <div class="row">
-        <t:label for="predmet"/>:
-        <select t:type="select" t:id="predmet" value="selectedPredmet" model="predmetSelectModel" encoder="predmetEncoder" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+        <t:zone t:id="predmetZone" id="predmetZone" style="display: inline;">
+            <t:label for="predmet"/>:
+            <select t:type="select" t:id="predmet" value="selectedPredmet" model="predmetSelectModel" encoder="predmetEncoder" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required" t:zone="activityZone"/>
+        </t:zone>
     </div>
-    <div class="row">
+    <!--<div class="row">
         <input type="submit" value="Prikazi"/>
-    </div>
+    </div>-->
 </t:form>
 <t:zone t:id="activityZone" id="activityZone" style="display: inline;">
-    <t:if test="selectedPredmet">
-    <table t:type="jquery/datatable" t:id="activitiesdt" t:source="activities" t:row="activity"
-       t:rowsPerPage="5" t:add="student, datum" t:reorder="student, datum, brojPoena" t:options="options" t:zone="activityZone">
+    <p>${poruka}</p>
+    <t:if test="showActivities">
+        <table t:type="jquery/datatable" t:id="activitiesdt" t:source="activities" t:row="activity"
+           t:rowsPerPage="5" t:add="student, datum" t:reorder="student, datum, brojPoena" t:options="options" t:zone="activityZone">
 
-    <!--<p:studentHeader>Student</p:studentHeader>-->
-    <!--<p:studentHeader>Student</p:studentHeader>-->
+        <!--<p:studentHeader>Student</p:studentHeader>-->
+        <!--<p:studentHeader>Student</p:studentHeader>-->
 
-    <!--<p:firstNameFooter>Prenom Footer</p:firstNameFooter>-->
+        <!--<p:firstNameFooter>Prenom Footer</p:firstNameFooter>-->
 
-    <p:studentCell>${activity.student.brojIndeksa}</p:studentCell>
-    <p:datumCell>${activity.aktivnost.datum}</p:datumCell>
+        <p:studentCell>${activity.student.brojIndeksa}</p:studentCell>
+        <p:datumCell>${activity.aktivnost.datum}</p:datumCell>
 
-    <!--<p:linkCell><t:ActionLink t:zone="zone" t:mixins="jquery/tooltip" title="tooltup">${current?.lastName}</t:ActionLink></p:linkCell>-->
+        <!--<p:linkCell><t:ActionLink t:zone="zone" t:mixins="jquery/tooltip" title="tooltup">${current?.lastName}</t:ActionLink></p:linkCell>-->
 
-    </table>
+        </table>
     </t:if>
 </t:zone>
 </body>

@@ -1,6 +1,7 @@
 package com.diplomski.katedra.pages.admin;
 
 
+import com.diplomski.katedra.db.model.Aktivnost;
 import com.diplomski.katedra.db.model.Predavac;
 import com.diplomski.katedra.db.model.Predmet;
 import com.diplomski.katedra.db.model.StudentAktivnostAss;
@@ -35,6 +36,7 @@ public class PrikazAktivnosti {
     private SelectModel predmetSelectModel;
 
     @Property
+    @Persist
     private int year;
 
     @Inject
@@ -42,6 +44,7 @@ public class PrikazAktivnosti {
     private PredmetEncoder predmetEncoder;
 
     @Property
+    @Persist
     private Predmet selectedPredmet;
 
     @Inject
@@ -64,6 +67,10 @@ public class PrikazAktivnosti {
     @InjectComponent
     private Zone activityZone;
 
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private String poruka;
+
     void setupRender() {
         List<Predmet> predmets = adminService.findAllPredmets();
         predmetSelectModel = selectModelFactory.create(predmets, "name");
@@ -77,7 +84,42 @@ public class PrikazAktivnosti {
         return adminService.getYears();
     }
 
-    @SuppressWarnings("unchecked")
+
+    Object onValueChangedFromYear(int year) {
+        logger.debug(year);
+        logger.debug(this.year);
+        this.year = year;
+        logger.debug(this.selectedPredmet);
+        if(this.selectedPredmet != null) {
+            activities = adminService.getStudentActivities(selectedPredmet.getId(), year);
+            return activityZone.getBody();
+        }
+        return null;
+    }
+
+    Object onValueChangedFromPredmet(Predmet predmet) {
+        logger.debug(predmet);
+        logger.debug(year);
+        selectedPredmet = predmet;
+        logger.debug(selectedPredmet);
+        if(year != 0) {
+            activities = adminService.getStudentActivities(predmet.getId(), year);
+            logger.debug(activities.toString());
+            if(activities.isEmpty()) {
+                poruka = "Empty result";
+                return null;
+            }
+            logger.debug(activities.toString());
+            return activityZone.getBody();
+        }
+        return null;
+    }
+
+    public boolean isShowActivities() {
+        return year != 0 && selectedPredmet != null && !activities.isEmpty();
+    }
+
+   /* @SuppressWarnings("unchecked")
     @OnEvent(value="submit", component="filterForm")
     Object onSearchSubmit() throws Exception{
         logger.debug("tests");
@@ -89,7 +131,7 @@ public class PrikazAktivnosti {
         logger.debug(((StudentAktivnostAss) activities.get(0)).getStudent().getBrojIndeksa());
         return activityZone.getBody();
     }
-
+*/
     public JSONObject getOptions() {
 
         // The available options are documented at http://www.datatables.net/ref
