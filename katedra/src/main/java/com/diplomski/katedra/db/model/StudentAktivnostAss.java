@@ -1,6 +1,7 @@
 package com.diplomski.katedra.db.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by andrija on 8/6/15.
@@ -8,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "student_aktivnost_ass", schema = "", catalog = "katedra")
 @IdClass(StudentAktivnostAssPK.class)
-public class StudentAktivnostAss {
+public class StudentAktivnostAss implements Serializable{
     private Student student;
     private Aktivnost aktivnost;
     private Double brojPoena;

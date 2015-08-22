@@ -10,12 +10,20 @@
             <t:label for="year"/>:
             <select t:type="select" t:id="year" t:model="years" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required" t:zone="activityZone"/>
         </t:zone>
-    </div>
-    <div class="row">
         <t:zone t:id="predmetZone" id="predmetZone" style="display: inline;">
             <t:label for="predmet"/>:
             <select t:type="select" t:id="predmet" value="selectedPredmet" model="predmetSelectModel" encoder="predmetEncoder" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required" t:zone="activityZone"/>
         </t:zone>
+      <!--  <t:zone t:id="aktStatusZone" id="aktStatusZone" style="display: inline;">
+            <t:radiogroup t:id="aktStatus">
+                <label t:type="label" for="izvrsene"/>
+                <input t:type="radio" t:id="izvrsene"
+                       value="literal:Izvrsene"/>
+                <label t:type="label" for="neizvrsene"/>
+                <input t:type="radio" t:id="neizvrsene"
+                       value="literal:Neizvrsene"/>
+            </t:radiogroup>
+        </t:zone>-->
     </div>
     <!--<div class="row">
         <input type="submit" value="Prikazi"/>
@@ -23,7 +31,7 @@
 </t:form>
 <t:zone t:id="activityZone" id="activityZone" style="display: inline;">
     <p>${poruka}</p>
-    <t:if test="showActivities">
+    <t:if test="showActivities" t:zone="activityZone">
         <table t:type="jquery/datatable" t:id="activitiesdt" t:source="activities" t:row="activity"
            t:rowsPerPage="5" t:add="student, datum" t:reorder="student, datum, brojPoena" t:options="options" t:zone="activityZone">
 

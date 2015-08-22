@@ -24,7 +24,7 @@ import java.util.List;
  * Created by andrija on 8/10/15.
  */
 @Import(stylesheet = { "context:resources/css/jquerydatatables.css" })
-@ImportJQueryUI(theme = "context:resources/css/jquery-ui-1.8.23.custom.css")
+//@ImportJQueryUI(theme = "context:resources/css/jquery-ui-1.8.23.custom.css")
 public class PrikazAktivnosti {
 
     private static final Logger logger = Logger.getLogger(PrikazAktivnosti.class);
@@ -38,6 +38,10 @@ public class PrikazAktivnosti {
     @Property
     @Persist
     private int year;
+
+    @Property
+    @Persist
+    private String aktStatus;
 
     @Inject
     @Property
@@ -90,12 +94,35 @@ public class PrikazAktivnosti {
         logger.debug(this.year);
         this.year = year;
         logger.debug(this.selectedPredmet);
+        logger.debug(aktStatus);
         if(this.selectedPredmet != null) {
             activities = adminService.getStudentActivities(selectedPredmet.getId(), year);
+            poruka = "";
+            if(activities.isEmpty()) {
+                poruka = "Nema pronadjenih rezultata za zadati kriterijum";
+            }
             return activityZone.getBody();
         }
         return null;
     }
+
+
+
+    /*Object onValueChangedFromAktStatus(String aktStatus) {
+        logger.debug(aktStatus);
+        *//*logger.debug(this.year);
+        this.year = year;
+        logger.debug(this.selectedPredmet);
+        logger.debug(aktStatus);
+        if(this.selectedPredmet != null) {
+            activities = adminService.getStudentActivities(selectedPredmet.getId(), year);
+            poruka = "";
+            if(activities.isEmpty()) {
+            }
+            return activityZone.getBody();
+        }*//*
+        return null;
+    }*/
 
     Object onValueChangedFromPredmet(Predmet predmet) {
         logger.debug(predmet);
@@ -105,18 +132,17 @@ public class PrikazAktivnosti {
         if(year != 0) {
             activities = adminService.getStudentActivities(predmet.getId(), year);
             logger.debug(activities.toString());
+            poruka = "";
             if(activities.isEmpty()) {
-                poruka = "Empty result";
-                return null;
+                poruka = "Nema pronadjenih rezultata za zadati kriterijum";
             }
-            logger.debug(activities.toString());
             return activityZone.getBody();
         }
         return null;
     }
 
     public boolean isShowActivities() {
-        return year != 0 && selectedPredmet != null && !activities.isEmpty();
+        return year != 0 && selectedPredmet != null && activities != null && !activities.isEmpty();
     }
 
    /* @SuppressWarnings("unchecked")
