@@ -36,6 +36,9 @@ public class AdminServiceImpl implements AdminService {
     @Inject
     private StudentPredmetAssDao studentPredmetAssDao;
 
+    @Inject
+    private TipAktivnostiDao tipAktivnostiDao;
+
     private static final int numOfLastYears = 3;
 
     @Override
@@ -114,5 +117,10 @@ public class AdminServiceImpl implements AdminService {
         saa.setAktivnost(selectedActivity);
         saa.setBrojPoena(brojPoena);
         saa.setStudent(student);
+    }
+
+    @Override
+    public List<TipAktivnosti> findAllActivityTypes() {
+        return tipAktivnostiDao.list();
     }
 }

@@ -23,4 +23,6 @@ public interface AdminService {
     List<StudentAktivnostAss> getStudentActivities(int predmet, int year);
 
     public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity);
+
+    List<TipAktivnosti> findAllActivityTypes();
 }

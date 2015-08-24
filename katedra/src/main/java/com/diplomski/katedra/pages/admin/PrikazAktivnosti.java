@@ -1,7 +1,6 @@
 package com.diplomski.katedra.pages.admin;
 
 
-import com.diplomski.katedra.db.model.Aktivnost;
 import com.diplomski.katedra.db.model.Predavac;
 import com.diplomski.katedra.db.model.Predmet;
 import com.diplomski.katedra.db.model.StudentAktivnostAss;
@@ -16,7 +15,6 @@ import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.SelectModelFactory;
-import org.got5.tapestry5.jquery.ImportJQueryUI;
 
 import java.util.List;
 

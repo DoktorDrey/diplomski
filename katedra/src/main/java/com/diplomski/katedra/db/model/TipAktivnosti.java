@@ -11,6 +11,14 @@ public class TipAktivnosti {
     private int id;
     private String nazivAktivnosti;
 
+    public TipAktivnosti(int id, String nazivAktivnosti) {
+        this.nazivAktivnosti = nazivAktivnosti;
+        this.id = id;
+    }
+
+    public TipAktivnosti() {
+    }
+
     @Id
     @Column(name = "id")
     public int getId() {
