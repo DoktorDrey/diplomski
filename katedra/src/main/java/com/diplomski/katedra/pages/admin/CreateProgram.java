@@ -84,7 +84,7 @@ public class CreateProgram {
 
 
     void setupRender() {
-        List<Predmet> predmets = adminService.findAllPredmets();
+        List<Predmet> predmets = adminService.findAllPredmetsForPredavac(predavac);
         predmetSelectModel = selectModelFactory.create(predmets, "name");
         tipAktivnostis = adminService.findAllActivityTypes();
         logger.debug(tipAktivnostis);

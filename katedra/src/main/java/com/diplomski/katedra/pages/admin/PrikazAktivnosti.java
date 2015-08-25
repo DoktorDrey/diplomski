@@ -74,7 +74,7 @@ public class PrikazAktivnosti {
     private String poruka;
 
     void setupRender() {
-        List<Predmet> predmets = adminService.findAllPredmets();
+        List<Predmet> predmets = adminService.findAllPredmetsForPredavac(predavac);
         predmetSelectModel = selectModelFactory.create(predmets, "name");
 
         // Get all persons - ask business service to find them (from the database)

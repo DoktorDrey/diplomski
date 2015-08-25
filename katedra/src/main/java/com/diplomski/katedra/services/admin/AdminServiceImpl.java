@@ -75,8 +75,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<Predmet> findAllPredmetsForPredavac(Predavac predavac) {
-        return predmetDao.list();
-//        return predmetDao.vratiPredmeteZaPredavaca(predavac);
+//        return predmetDao.list();
+        return predmetDao.vratiPredmeteZaPredavaca(predavac);
     }
 
     @Override
@@ -106,7 +106,8 @@ public class AdminServiceImpl implements AdminService {
         String satnica;
         for (Aktivnost currentAktivity : aktivnosts)
         {
-            satnica = currentAktivity.getDatum().toString().split(" ")[1];
+            satnica = currentAktivity.getDatum().toString().split(" ")[1].toString();
+            satnica = satnica.split("\\.")[0];
             activities.add(new Activity(currentAktivity.getDatum(), currentAktivity, satnica));
         }
         return activities;

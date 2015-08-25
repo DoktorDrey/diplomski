@@ -18,7 +18,8 @@ public class PredmetDaoImpl extends HibernateDao<Predmet, Integer> implements Pr
 
     @Override
     public List<Predmet> vratiPredmeteZaPredavaca(Predavac predavac) {
-        Query query = currentSession().createQuery("from Predmet P where P.id in (SELECT predmet from predmet_predavac where predavac="+predavac.getId()+")");
+//        Query query = currentSession().createQuery("from Predmet P where P.id in (SELECT predmet from predmet_predavac where predavac="+predavac.getId()+")");
+        Query query = currentSession().createQuery("from Predmet P where P.id in (SELECT PP.predmet from PredmetPredavac PP where PP.predavac="+predavac.getId()+")");
         logger.debug(query.getQueryString());
         List result = query.list();
         return result;
