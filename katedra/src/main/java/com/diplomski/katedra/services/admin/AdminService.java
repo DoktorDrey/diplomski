@@ -19,10 +19,14 @@ public interface AdminService {
     public List<Integer> getYears();
     public List<StudentPredmetAss> findAllStudentsInfo(int predmet, int year);
 
-    List<Aktivnost> getActivities(int predmet, int year);
+    List<Activity> getActivities(Program program);
     List<StudentAktivnostAss> getStudentActivities(int predmet, int year);
 
     public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity);
 
     List<TipAktivnosti> findAllActivityTypes();
+
+    void setProgramActivities(List<Activity> activities, Program program);
+
+    Program findProgram(int predmet, int year);
 }

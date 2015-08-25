@@ -1,8 +1,6 @@
 package com.diplomski.katedra.pages.admin;
 
-import com.diplomski.katedra.db.model.Aktivnost;
-import com.diplomski.katedra.db.model.Predavac;
-import com.diplomski.katedra.db.model.Predmet;
+import com.diplomski.katedra.db.model.*;
 import com.diplomski.katedra.encoders.ActivityEncoder;
 import com.diplomski.katedra.encoders.PredmetEncoder;
 import com.diplomski.katedra.services.admin.AdminService;
@@ -142,7 +140,8 @@ public class UnosRezultata {
         logger.debug(year);
         logger.debug(selectedPredmet);
         selectedPredmet = predmet;
-        List<Aktivnost> activities = adminService.getActivities(predmet.getId(), year);
+        Program program = adminService.findProgram(predmet.getId(), year);
+        List<Activity> activities = adminService.getActivities(program);
         activitySelectModel = selectModelFactory.create(activities, "TipAktivnosti");
         return activityZone.getBody();
     }

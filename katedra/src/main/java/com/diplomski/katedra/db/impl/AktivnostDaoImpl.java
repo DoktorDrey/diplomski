@@ -3,6 +3,7 @@ package com.diplomski.katedra.db.impl;
 import com.diplomski.katedra.db.dao.AktivnostDao;
 import com.diplomski.katedra.db.model.Aktivnost;
 import com.diplomski.katedra.db.model.Program;
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
@@ -13,10 +14,19 @@ import java.util.List;
  */
 @Repository("AktivnostDao")
 public class AktivnostDaoImpl extends HibernateDao<Aktivnost, Integer> implements AktivnostDao {
+    private static final Logger logger = Logger.getLogger(AktivnostDaoImpl.class);
     @Override
     public List<Aktivnost> findForProgram(Program program) {
         Query query = currentSession().createQuery("from Aktivnost A where A.program = "+program.getId());
         List result = query.list();
         return result;
+    }
+
+    @Override
+    public void removeActivitiesForProgram(Program program) {
+        logger.debug(program.getId());
+        Query query = currentSession().createQuery("DELETE from Aktivnost A where A.program = "+program.getId());
+        logger.debug(query.getQueryString());
+        query.executeUpdate();
     }
 }

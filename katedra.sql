@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : LokalMysql
-Source Server Version : 50624
+Source Server         : mysqlLokal
+Source Server Version : 50532
 Source Host           : localhost:3306
 Source Database       : katedra
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50532
 File Encoding         : 65001
 
-Date: 2015-08-19 23:00:02
+Date: 2015-08-25 15:02:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,13 +27,13 @@ CREATE TABLE `aktivnost` (
   `vrednost` float(5,2) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of aktivnost
 -- ----------------------------
-INSERT INTO `aktivnost` VALUES ('1', '1', '1', '2015-08-06 13:20:33', '0.50', '1');
-INSERT INTO `aktivnost` VALUES ('2', '2', '1', '2015-08-13 13:20:48', '0.50', '0');
+INSERT INTO `aktivnost` VALUES ('5', '1', '1', '2015-08-25 11:00:00', '0.50', '0');
+INSERT INTO `aktivnost` VALUES ('6', '2', '1', '2015-08-25 09:00:00', '0.50', '0');
 
 -- ----------------------------
 -- Table structure for predavac
@@ -109,12 +109,26 @@ CREATE TABLE `program` (
   `godina` int(11) NOT NULL,
   `id_predmeta` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of program
 -- ----------------------------
 INSERT INTO `program` VALUES ('1', '2015', '1');
+INSERT INTO `program` VALUES ('2', '2014', '1');
+INSERT INTO `program` VALUES ('3', '2013', '1');
+INSERT INTO `program` VALUES ('4', '2015', '2');
+INSERT INTO `program` VALUES ('5', '2014', '2');
+INSERT INTO `program` VALUES ('6', '2013', '2');
+INSERT INTO `program` VALUES ('7', '2015', '3');
+INSERT INTO `program` VALUES ('8', '2014', '3');
+INSERT INTO `program` VALUES ('9', '2013', '3');
+INSERT INTO `program` VALUES ('10', '2015', '4');
+INSERT INTO `program` VALUES ('11', '2014', '4');
+INSERT INTO `program` VALUES ('12', '2013', '4');
+INSERT INTO `program` VALUES ('13', '2015', '5');
+INSERT INTO `program` VALUES ('14', '2014', '5');
+INSERT INTO `program` VALUES ('15', '2013', '5');
 
 -- ----------------------------
 -- Table structure for student

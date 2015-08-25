@@ -24,10 +24,11 @@
             <h2>Program</h2>
             <!--<t:beaneditor t:id="activity"/>--><h3>Aktivnosti</h3>
             <div t:type="ajaxformloop" t:id="activities" source="activities"
-                 value="activity">
-                <t:select t:id="type" t:model="activityTipSelectModel" t:source="tipAktivnostis" encoder="activityEncoder" value="activity.tipAktivnosti"/>
-                <t:textfield t:id="number" value="activity.vrednost"/>
-                <t:datefield t:id="date" value="activity.datum"/>|
+                 value="activity" encoder="activity1Encoder">
+                <t:select t:id="type" t:model="activityTipSelectModel" t:source="tipAktivnostis" encoder="activityEncoder" value="activity.aktivnost.tipAktivnosti"/>
+                <t:textfield t:id="vrednost" value="activity.aktivnost.vrednost"/>
+                <t:datefield t:id="datum" value="activity.datum"/>
+                <t:textfield t:id="satnica" value="activity.satnica"/>|
                 <t:removerowlink>
                     remove
                 </t:removerowlink>

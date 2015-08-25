@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface AktivnostDao extends GenericDao<Aktivnost, Integer> {
     List<Aktivnost> findForProgram(Program program);
+
+    void removeActivitiesForProgram(Program program);
 }

@@ -6,8 +6,12 @@ import com.diplomski.katedra.security.Crypto;
 import org.apache.log4j.Logger;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -95,11 +99,17 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<Aktivnost> getActivities(int predmet, int year) {
-        Program program = programDao.findProgram(predmet, year);
+    public List<Activity> getActivities(Program program) {
         logger.debug(program.getId());
         List<Aktivnost> aktivnosts = aktivnostDao.findForProgram(program);
-        return aktivnosts;
+        List<Activity> activities = new ArrayList<Activity>();
+        String satnica;
+        for (Aktivnost currentAktivity : aktivnosts)
+        {
+            satnica = currentAktivity.getDatum().toString().split(" ")[1];
+            activities.add(new Activity(currentAktivity.getDatum(), currentAktivity, satnica));
+        }
+        return activities;
     }
 
     @Override
@@ -122,5 +132,36 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<TipAktivnosti> findAllActivityTypes() {
         return tipAktivnostiDao.list();
+    }
+
+    @Override
+    public void setProgramActivities(List<Activity> activities, Program program) {
+        aktivnostDao.removeActivitiesForProgram(program);
+        for (Activity currentAktivity : activities)
+        {
+
+            try {
+                Date datum = currentAktivity.getDatum();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+                Date parsedDate = dateFormat1.parse(dateFormat.format(datum)+" "+currentAktivity.getSatnica());
+                logger.debug(dateFormat.format(parsedDate));
+//                datum = dateFormat.parse(dateFormat.format(datum));
+//                logger.debug(datum.toString());
+//                dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+//                logger.debug(dateFormat.format(datum)+" "+currentAktivity.getSatnica());
+                Timestamp datum1 = new Timestamp(parsedDate.getTime());
+                logger.debug(datum1.toString());
+                currentAktivity.getAktivnost().setDatum(datum1);
+                aktivnostDao.add(currentAktivity.getAktivnost());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public Program findProgram(int predmet, int year) {
+        return programDao.findProgram(predmet, year);
     }
 }

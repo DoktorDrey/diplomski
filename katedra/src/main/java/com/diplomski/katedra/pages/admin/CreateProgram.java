@@ -54,12 +54,12 @@ public class CreateProgram {
     SelectModelFactory selectModelFactory;
 
     @Property
-    @Persist(PersistenceConstants.FLASH)
-    private List<Aktivnost> activities;
+    @Persist
+    private List<Activity> activities;
 
     @Property
     @Persist
-    private Aktivnost activity;
+    private Activity activity;
 
     @Inject
     private Messages messages;
@@ -101,7 +101,8 @@ public class CreateProgram {
         logger.debug(this.year);
         this.year = year;
         if(this.selectedPredmet != null) {
-            activities = adminService.getActivities(selectedPredmet.getId(), year);
+            program = adminService.findProgram(selectedPredmet.getId(), year);
+            activities = adminService.getActivities(program);
             poruka = "";
             if(activities.isEmpty()) {
                 poruka = "Nema pronadjenih rezultata za zadati kriterijum";
@@ -117,7 +118,8 @@ public class CreateProgram {
         selectedPredmet = predmet;
         logger.debug(selectedPredmet);
         if(year != 0) {
-            activities = adminService.getActivities(selectedPredmet.getId(), year);
+            program = adminService.findProgram(selectedPredmet.getId(), year);
+            activities = adminService.getActivities(program);
             logger.debug(activities.toString());
             poruka = "";
             if(activities.isEmpty()) {
@@ -162,19 +164,46 @@ public class CreateProgram {
         };
     }
 
+    public ValueEncoder<Activity> getActivity1Encoder()
+    {
+        return new ValueEncoder<Activity>()
+        {
+            public String toClient(Activity value)
+            {
+                return String.valueOf(value.getAktivnost().getId());
+            }
+
+            public Activity toValue(String clientValue)
+            {
+                logger.debug("toValue");
+                logger.debug(clientValue);
+                for (Activity currentAktivity : activities)
+                {
+                    logger.debug(currentAktivity.getDatum());
+                    logger.debug(currentAktivity.getAktivnost().getId());
+                    if (Integer.parseInt(clientValue) == currentAktivity.getAktivnost().getId())
+                        return currentAktivity;
+                }
+
+                return null;
+            }
+        };
+    }
+
     @OnEvent(value=EventConstants.ADD_ROW, component="activities")
     public Object onAddRowFromActivities()
     {
         Aktivnost aktivnost = new Aktivnost();
 
-        activities.add(aktivnost);
         aktivnost.setProgram(program);
         aktivnost.setTipAktivnosti(new TipAktivnosti(3, "kolokvijum"));
-        return aktivnost;
+        Activity activity1 = new Activity(new Date(), aktivnost, "09:00:00");
+        activities.add(activity1);
+        return activity1;
     }
 
     @OnEvent(value=EventConstants.REMOVE_ROW, component="activities")
-    void onRemoveRowFromActivities(Aktivnost aktivnostToDelete)
+    void onRemoveRowFromActivities(Activity aktivnostToDelete)
     {
         activities.remove(aktivnostToDelete);
     }
@@ -183,6 +212,8 @@ public class CreateProgram {
     public Object onSuccess()
     {
         logger.debug("onSuccess");
+        logger.debug(program);
+        adminService.setProgramActivities(activities, program);
         return this;
     }
 
