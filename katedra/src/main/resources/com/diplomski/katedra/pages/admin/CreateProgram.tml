@@ -22,10 +22,10 @@
         <t:errors/>
         <div class="t-beaneditor">
             <h2>Program</h2>
-            <t:beaneditor t:id="activity"/><h3>Aktivnosti</h3>
+            <!--<t:beaneditor t:id="activity"/>--><h3>Aktivnosti</h3>
             <div t:type="ajaxformloop" t:id="activities" source="activities"
                  value="activity">
-                <t:select t:id="type" t:model="activityTipSelectModel" t:source="tipAktivnostis" encoder="activityEncoder" value="activityTip"/>
+                <t:select t:id="type" t:model="activityTipSelectModel" t:source="tipAktivnostis" encoder="activityEncoder" value="activity.tipAktivnosti"/>
                 <t:textfield t:id="number" value="activity.vrednost"/>
                 <t:datefield t:id="date" value="activity.datum"/>|
                 <t:removerowlink>

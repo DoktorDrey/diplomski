@@ -151,6 +151,7 @@ public class CreateProgram {
                 logger.debug(clientValue);
                 for (TipAktivnosti currentAktivity : tipAktivnostis)
                 {
+                    logger.debug(currentAktivity.getNazivAktivnosti());
                     if (currentAktivity.getNazivAktivnosti() != null &&
                             clientValue.equals(currentAktivity.getNazivAktivnosti()))
                         return currentAktivity;
