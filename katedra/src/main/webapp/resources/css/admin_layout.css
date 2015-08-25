@@ -373,3 +373,10 @@ div.footer .legal a {
     width: 1300px;
     margin-top: 30px;
 }
+.column {
+    float:left;
+    display: block;
+}
+.long_form .column {
+    width: 10%;
+}
