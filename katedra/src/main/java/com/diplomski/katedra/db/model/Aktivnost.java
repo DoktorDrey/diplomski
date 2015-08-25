@@ -16,6 +16,8 @@ public class Aktivnost {
     private Program program;
     private Timestamp datum;
     private Float vrednost;
+    private int minPoints;
+    private int maxPoints;
     private int status;
 
     @Id
@@ -99,5 +101,24 @@ public class Aktivnost {
 
     public void setVrednost(Float vrednost) {
         this.vrednost = vrednost;
+    }
+    @Basic
+    @Column(name = "min_points", nullable = false, insertable = true, updatable = true)
+    public int getMinPoints() {
+        return minPoints;
+    }
+
+    public void setMinPoints(int minPoints) {
+        this.minPoints = minPoints;
+    }
+
+    @Basic
+    @Column(name = "max_points", nullable = false, insertable = true, updatable = true)
+    public int getMaxPoints() {
+        return maxPoints;
+    }
+
+    public void setMaxPoints(int maxPoints) {
+        this.maxPoints = maxPoints;
     }
 }

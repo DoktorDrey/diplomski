@@ -197,6 +197,8 @@ public class CreateProgram {
 
         aktivnost.setProgram(program);
         aktivnost.setTipAktivnosti(new TipAktivnosti(3, "kolokvijum"));
+        aktivnost.setMaxPoints(100);
+        aktivnost.setMinPoints(50);
         Activity activity1 = new Activity(new Date(), aktivnost, "09:00:00");
         activities.add(activity1);
         return activity1;

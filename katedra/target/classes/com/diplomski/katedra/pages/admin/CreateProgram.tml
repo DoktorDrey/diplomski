@@ -18,17 +18,27 @@
 </t:form>
 <t:zone t:id="programZone" id="programZone" style="display: inline;">
     <t:if test="showProgramZone" t:zone="programZone">
-        <t:form t:id="form">
+        <t:form class="long_form" t:id="form">
         <t:errors/>
         <div class="t-beaneditor">
             <h2>Program</h2>
             <!--<t:beaneditor t:id="activity"/>--><h3>Aktivnosti</h3>
+            <div class="row">
+                <div class="column">Tip aktivnosti</div>
+                <div class="column">Udeo</div>
+                <div class="column">Datum</div>
+                <div class="column">Vreme</div>
+                <div class="column">Minimalan broj poena</div>
+                <div class="column">Maksimalan broj poena</div>
+            </div>
             <div t:type="ajaxformloop" t:id="activities" source="activities"
                  value="activity" encoder="activity1Encoder">
                 <t:select t:id="type" t:model="activityTipSelectModel" t:source="tipAktivnostis" encoder="activityEncoder" value="activity.aktivnost.tipAktivnosti"/>
                 <t:textfield t:id="vrednost" value="activity.aktivnost.vrednost"/>
                 <t:datefield t:id="datum" value="activity.datum"/>
-                <t:textfield t:id="satnica" value="activity.satnica"/>|
+                <t:textfield t:id="satnica" value="activity.satnica"/>
+                <t:textfield t:id="minPoints" value="activity.aktivnost.minPoints"/>
+                <t:textfield t:id="maxPoints" value="activity.aktivnost.maxPoints"/>|
                 <t:removerowlink>
                     remove
                 </t:removerowlink>

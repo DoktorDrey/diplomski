@@ -144,7 +144,7 @@ public class AdminServiceImpl implements AdminService {
             try {
                 Date datum = currentAktivity.getDatum();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+                SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 Date parsedDate = dateFormat1.parse(dateFormat.format(datum)+" "+currentAktivity.getSatnica());
                 logger.debug(dateFormat.format(parsedDate));
 //                datum = dateFormat.parse(dateFormat.format(datum));

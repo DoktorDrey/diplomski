@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mysqlLokal
-Source Server Version : 50532
+Source Server         : LokalMysql
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : katedra
 
 Target Server Type    : MYSQL
-Target Server Version : 50532
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-08-25 15:02:32
+Date: 2015-08-25 22:24:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,14 +26,17 @@ CREATE TABLE `aktivnost` (
   `datum` datetime DEFAULT NULL,
   `vrednost` float(5,2) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
+  `min_points` int(11) DEFAULT NULL,
+  `max_points` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of aktivnost
 -- ----------------------------
-INSERT INTO `aktivnost` VALUES ('5', '1', '1', '2015-08-25 11:00:00', '0.50', '0');
-INSERT INTO `aktivnost` VALUES ('6', '2', '1', '2015-08-25 09:00:00', '0.50', '0');
+INSERT INTO `aktivnost` VALUES ('1', '1', '1', '2015-08-31 09:00:00', '0.50', '0', '50', '100');
+INSERT INTO `aktivnost` VALUES ('2', '2', '1', '2015-08-31 09:00:00', '0.50', '0', '50', '100');
+INSERT INTO `aktivnost` VALUES ('3', '1', '4', '2015-08-25 09:00:00', '0.50', '0', '50', '100');
 
 -- ----------------------------
 -- Table structure for predavac
