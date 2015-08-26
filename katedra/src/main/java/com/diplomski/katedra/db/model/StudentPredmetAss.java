@@ -11,7 +11,7 @@ import java.io.Serializable;
 @IdClass(StudentPredmetAssPK.class)
 public class StudentPredmetAss implements Serializable{
     private Student studentId;
-    private Integer programId;
+    private Program programId;
     private Integer konacnaOcena;
     private Float brojBodova;
 
@@ -28,12 +28,13 @@ public class StudentPredmetAss implements Serializable{
     }
 
     @Id
-    @Column(name = "program_id", nullable = false, insertable = true, updatable = true)
-    public Integer getProgramId() {
+    @ManyToOne
+    @JoinColumn(name = "program_id")
+    public Program getProgramId() {
         return programId;
     }
 
-    public void setProgramId(Integer programId) {
+    public void setProgramId(Program programId) {
         this.programId = programId;
     }
 

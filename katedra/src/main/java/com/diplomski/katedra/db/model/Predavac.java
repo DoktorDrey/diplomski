@@ -11,7 +11,7 @@ public class Predavac {
     private int id;
     private String ime;
     private String prezime;
-    private Integer titula;
+    private TipPredavaca titula;
     private String username;
     private String password;
 
@@ -45,13 +45,13 @@ public class Predavac {
         this.prezime = prezime;
     }
 
-    @Basic
-    @Column(name = "titula")
-    public Integer getTitula() {
+    @ManyToOne
+    @JoinColumn(name = "titula")
+    public TipPredavaca getTitula() {
         return titula;
     }
 
-    public void setTitula(Integer titula) {
+    public void setTitula(TipPredavaca titula) {
         this.titula = titula;
     }
 
