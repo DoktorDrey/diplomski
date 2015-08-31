@@ -1,6 +1,8 @@
 package com.diplomski.katedra.pages.admin;
 
-import com.diplomski.katedra.db.model.*;
+import com.diplomski.katedra.db.model.Aktivnost;
+import com.diplomski.katedra.db.model.Predavac;
+import com.diplomski.katedra.db.model.Predmet;
 import com.diplomski.katedra.encoders.ActivityEncoder;
 import com.diplomski.katedra.encoders.PredmetEncoder;
 import com.diplomski.katedra.services.admin.AdminService;
@@ -122,7 +124,7 @@ public class UnosRezultata {
 
     void setupRender() {
         // invoke my service to find all colors, e.g. in the database
-        List<Predmet> predmets = adminService.findAllPredmetsForPredavac(predavac);
+        List<Predmet> predmets = adminService.findAllPredmets();
         // create a SelectModel from my list of colors
         predmetSelectModel = selectModelFactory.create(predmets, "name");
         years = adminService.getYears();
@@ -140,8 +142,7 @@ public class UnosRezultata {
         logger.debug(year);
         logger.debug(selectedPredmet);
         selectedPredmet = predmet;
-        Program program = adminService.findProgram(predmet.getId(), year);
-        List<Activity> activities = adminService.getActivities(program);
+        List<Aktivnost> activities = adminService.vratiAktivnosti(adminService.findProgram(selectedPredmet.getId(), year));
         activitySelectModel = selectModelFactory.create(activities, "TipAktivnosti");
         return activityZone.getBody();
     }

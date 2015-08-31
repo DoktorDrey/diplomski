@@ -20,6 +20,7 @@ public interface AdminService {
     public List<StudentPredmetAss> findAllStudentsInfo(int predmet, int year);
 
     List<Activity> getActivities(Program program);
+    List<Aktivnost> vratiAktivnosti(Program program);
     List<StudentAktivnostAss> getStudentActivities(int predmet, int year);
 
     public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity);

@@ -1,9 +1,11 @@
 package com.diplomski.katedra.encoders;
 
 import com.diplomski.katedra.db.model.Aktivnost;
+import com.diplomski.katedra.db.model.Predmet;
 import org.apache.log4j.Logger;
 import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.services.ValueEncoderFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**

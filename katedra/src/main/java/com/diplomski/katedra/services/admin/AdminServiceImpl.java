@@ -110,7 +110,14 @@ public class AdminServiceImpl implements AdminService {
             satnica = satnica.split("\\.")[0];
             activities.add(new Activity(currentAktivity.getDatum(), currentAktivity, satnica));
         }
+        logger.debug(activities.toString());
         return activities;
+    }
+
+    @Override
+    public List<Aktivnost> vratiAktivnosti(Program program) {
+        logger.debug(program.getId());
+        return aktivnostDao.findForProgram(program);
     }
 
     @Override

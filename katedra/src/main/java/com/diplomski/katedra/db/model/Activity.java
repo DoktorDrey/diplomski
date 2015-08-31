@@ -46,4 +46,8 @@ public class Activity implements Serializable{
         this.aktivnost = aktivnost;
         this.satnica = satnica;
     }
+    public Activity() {
+
+    }
+
 }
