@@ -1,4 +1,4 @@
-<html t:type="adminLayout" title="About katedra"
+<html t:type="adminLayout" title="Unos rezultata"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
 <body>

@@ -1,0 +1,46 @@
+<html t:type="adminLayout" title="Kreiraj program"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter"
+      xmlns:j="tapestry-library:jquery">
+<body>
+<t:form t:id="filterForm" t:zone="programZone">
+    <t:errors/>
+    <div class="row">
+        <t:zone t:id="yearZone" id="yearZone" style="display: inline;">
+            <t:label for="year"/>:
+            <select t:type="select" t:id="year" t:model="years" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required" t:zone="programZone"/>
+        </t:zone>
+        <t:zone t:id="predmetZone" id="predmetZone" style="display: inline;">
+            <t:label for="predmet"/>:
+            <select t:type="select" t:id="predmet" value="selectedPredmet" model="predmetSelectModel" encoder="predmetEncoder" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required" t:zone="programZone"/>
+        </t:zone>
+    </div>
+</t:form>
+<t:zone t:id="programZone" id="programZone" style="display: inline;">
+    <t:if test="showProgramZone" t:zone="programZone">
+        <t:form class="long_form" t:id="form">
+        <t:errors/>
+        <div class="t-beaneditor">
+            <h2>Program</h2>
+            <!--<t:beaneditor t:id="activity"/>--><h3>Aktivnosti</h3>
+            <div t:type="ajaxformloop" t:id="activities" source="activities"
+                 value="activity" encoder="activity1Encoder">
+                <t:select t:id="type" t:model="activityTipSelectModel" t:source="tipAktivnostis" encoder="activityEncoder" value="activity.aktivnost.tipAktivnosti"/>
+                <t:textfield t:id="vrednost" value="activity.aktivnost.vrednost"/>
+                <t:datefield t:id="datum" value="activity.datum"/>
+                <t:textfield t:id="satnica" value="activity.satnica"/>
+                <t:textfield t:id="minPoints" value="activity.aktivnost.minPoints"/>
+                <t:textfield t:id="maxPoints" value="activity.aktivnost.maxPoints"/>|
+                <t:removerowlink>
+                    remove
+                </t:removerowlink>
+            </div>
+            <p>
+                <input type="submit" value="Update"/>
+            </p>
+        </div>
+    </t:form>
+    </t:if>
+</t:zone>
+</body>
+</html>

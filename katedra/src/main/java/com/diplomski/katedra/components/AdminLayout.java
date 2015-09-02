@@ -52,7 +52,7 @@ public class AdminLayout {
         if(predavac == null)
             return new String[]{};
         else
-            return new String[]{"CreateProgram","PrijavaStudentaPredmet","PrikazStudenata","UnosRezultata","PrikazAktivnosti","Logout"};
+            return new String[]{"KreirajProgram","PrijavaStudentaPredmet","PrikazStudenata","UnosRezultata","PrikazAktivnosti","Odjava"};
     }
 
 }

@@ -61,7 +61,7 @@ public class CommonLayout
         if(student == null) {
             return new String[]{"Index","Contact"};
         } else {
-            return new String[]{"MyProfile", "MojeAktivnosti", "Logout"};
+            return new String[]{"EditovanjePodataka", "MojeAktivnosti", "Logout"};
         }
     }
 }
