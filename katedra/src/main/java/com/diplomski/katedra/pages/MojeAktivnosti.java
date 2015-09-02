@@ -55,20 +55,42 @@ public class MojeAktivnosti {
     @InjectComponent
     private Zone activityZone1;
 
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private String poruka;
+
+    @Property
+    private boolean showAct;
+
+    @Property
+    private boolean showFAct;
 
     @SuppressWarnings("unchecked")
     @OnEvent(value="submit", component="filterForm")
     Object onSearchSubmit() throws Exception{
         if(aktStatus.equals("Izvrsene")) {
             activities = mainService.getStudentActivities(student);
-            if(activities != null)
-                return activityZone.getBody();
+            logger.debug(activities.toString());
+            if(activities.isEmpty()) {
+                poruka = "Nema pronadjenih rezultata za zadati kriterijum";
+            } else {
+                poruka = "";
+                showAct = true;
+            }
+            return activityZone.getBody();
+
         } else if(aktStatus.equals("Neizvrsene")) {
             activities1 = mainService.getFutureActivities(student);
             Aktivnost aktivnost = activities1.get(0);
             logger.debug(aktivnost.getProgram());
-            if(activities1 != null)
-                return activityZone1.getBody();
+            logger.debug(activities1);
+            if(activities1.isEmpty()) {
+                poruka = "Nema pronadjenih rezultata za zadati kriterijum";
+            } else {
+                poruka = "";
+                showFAct = true;
+            }
+            return activityZone1.getBody();
         }
         return null;
     }
