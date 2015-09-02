@@ -19,6 +19,7 @@ public class Student implements Serializable{
     private String prezime;
     private boolean activated;
     private String token;
+    private String imageName;
 
     @Id
     @GenericGenerator(name="gen",strategy="increment")
@@ -101,6 +102,16 @@ public class Student implements Serializable{
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    @Basic
+    @Column(name = "image_name")
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     @Override

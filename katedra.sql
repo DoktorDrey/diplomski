@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mysqlLokal
-Source Server Version : 50532
+Source Server         : LokalMysql
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : katedra
 
 Target Server Type    : MYSQL
-Target Server Version : 50532
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-08-26 16:02:37
+Date: 2015-09-02 22:31:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,9 +34,11 @@ CREATE TABLE `aktivnost` (
 -- ----------------------------
 -- Records of aktivnost
 -- ----------------------------
-INSERT INTO `aktivnost` VALUES ('1', '1', '1', '2015-08-31 09:00:00', '0.50', '0', '50', '100');
-INSERT INTO `aktivnost` VALUES ('2', '2', '1', '2015-08-31 09:00:00', '0.50', '0', '50', '100');
-INSERT INTO `aktivnost` VALUES ('3', '1', '4', '2015-08-25 09:00:00', '0.50', '0', '50', '100');
+INSERT INTO `aktivnost` VALUES ('1', '1', '1', '2015-09-01 09:00:00', '0.30', '0', '50', '100');
+INSERT INTO `aktivnost` VALUES ('2', '1', '4', '2015-08-25 09:00:00', '0.50', '0', '50', '100');
+INSERT INTO `aktivnost` VALUES ('4', '1', '1', '2015-08-31 09:00:00', '0.50', '0', '50', '100');
+INSERT INTO `aktivnost` VALUES ('5', '2', '1', '2015-08-31 09:00:00', '0.50', '0', '50', '100');
+INSERT INTO `aktivnost` VALUES ('6', '3', '1', '2015-09-01 09:00:00', '0.30', '0', '50', '100');
 
 -- ----------------------------
 -- Table structure for predavac
@@ -146,6 +148,7 @@ CREATE TABLE `student` (
   `prezime` varchar(30) DEFAULT NULL,
   `activated` tinyint(1) DEFAULT NULL,
   `token` varchar(255) DEFAULT NULL,
+  `image_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `broj_indeksa` (`broj_indeksa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
@@ -153,22 +156,22 @@ CREATE TABLE `student` (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('1', 'andrija_ilic1987@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '123/07', 'Andrija', 'Ilic', '1', null);
-INSERT INTO `student` VALUES ('2', 'andrija_ilic1987+5@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '157/06', 'Petar', 'Petrovic', '1', null);
-INSERT INTO `student` VALUES ('3', 'andrija_ilic1987+2@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '133/23', 'Marko', 'Markovic', '1', null);
-INSERT INTO `student` VALUES ('4', 'andrija_ilic1987+3@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '122/04', 'Pavle', 'Pavlovic', '1', 'pdal3ao41mop41t089morkj8f6');
-INSERT INTO `student` VALUES ('5', 'andrija_ilic1987+4@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '144/07', 'Kosta', 'Kostic', '1', 's8ot0e7q4jm0cdmv1qfd1ac5ok');
-INSERT INTO `student` VALUES ('6', 'andrija.ilic87@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '155/09', 'Laza', 'Lazic', '1', 'bh4bdgefqekeunsjrn6suoqctt');
-INSERT INTO `student` VALUES ('7', 'andrija.ilic87+1@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '117/08', 'Ilija', 'Ilic', '1', 'j5qqsb9v96l9bl1nmqqrfr8h0c');
-INSERT INTO `student` VALUES ('8', 'andrija.ilic87+2@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '1/08', 'Srdjan', 'Popovic', '1', null);
-INSERT INTO `student` VALUES ('9', 'andrija.ilic87+3@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '2/08', 'Milos', 'Milosevic', '1', null);
-INSERT INTO `student` VALUES ('10', 'andrija.ilic87+4@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '3/08', 'Marija', 'Mitrovic', '1', null);
-INSERT INTO `student` VALUES ('11', 'andrija.ilic87+5@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '4/08', 'Jelena', 'Kostic', '1', null);
-INSERT INTO `student` VALUES ('12', 'andrija.ilic87+6@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '5/08', 'Slobodan', 'Mitic', '1', null);
-INSERT INTO `student` VALUES ('13', 'andrija.ilic87+7@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '6/08', 'Paja', 'Kovac', '1', null);
-INSERT INTO `student` VALUES ('14', 'andrija.ilic87+8@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '7/08', 'Marko', 'Mitrovic', '1', null);
-INSERT INTO `student` VALUES ('15', 'andrija.ilic87+9@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '8/08', 'Miki', 'Lazic', '1', null);
-INSERT INTO `student` VALUES ('16', 'andrija.ilic87+10@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '12/08', 'Sasa', 'Stanic', '1', null);
+INSERT INTO `student` VALUES ('1', 'andrija_ilic1987@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '123/07', 'Andrija', 'Ilic', '1', null, 'DSC_0034.jpg');
+INSERT INTO `student` VALUES ('2', 'andrija_ilic1987+5@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '157/06', 'Petar', 'Petrovic', '1', null, 'superman.jpg');
+INSERT INTO `student` VALUES ('3', 'andrija_ilic1987+2@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '133/23', 'Marko', 'Markovic', '1', null, 'superman.jpg');
+INSERT INTO `student` VALUES ('4', 'andrija_ilic1987+3@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '122/04', 'Pavle', 'Pavlovic', '1', 'pdal3ao41mop41t089morkj8f6', 'superman.jpg');
+INSERT INTO `student` VALUES ('5', 'andrija_ilic1987+4@yahoo.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '144/07', 'Kosta', 'Kostic', '1', 's8ot0e7q4jm0cdmv1qfd1ac5ok', 'superman.jpg');
+INSERT INTO `student` VALUES ('6', 'andrija.ilic87@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '155/09', 'Laza', 'Lazic', '1', 'bh4bdgefqekeunsjrn6suoqctt', 'superman.jpg');
+INSERT INTO `student` VALUES ('7', 'andrija.ilic87+1@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '117/08', 'Ilija', 'Ilic', '1', 'j5qqsb9v96l9bl1nmqqrfr8h0c', 'superman.jpg');
+INSERT INTO `student` VALUES ('8', 'andrija.ilic87+2@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '1/08', 'Srdjan', 'Popovic', '1', null, 'superman.jpg');
+INSERT INTO `student` VALUES ('9', 'andrija.ilic87+3@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '2/08', 'Milos', 'Milosevic', '1', null, 'superman.jpg');
+INSERT INTO `student` VALUES ('10', 'andrija.ilic87+4@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '3/08', 'Marija', 'Mitrovic', '1', null, 'superman.jpg');
+INSERT INTO `student` VALUES ('11', 'andrija.ilic87+5@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '4/08', 'Jelena', 'Kostic', '1', null, 'superman.jpg');
+INSERT INTO `student` VALUES ('12', 'andrija.ilic87+6@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '5/08', 'Slobodan', 'Mitic', '1', null, 'superman.jpg');
+INSERT INTO `student` VALUES ('13', 'andrija.ilic87+7@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '6/08', 'Paja', 'Kovac', '1', null, 'superman.jpg');
+INSERT INTO `student` VALUES ('14', 'andrija.ilic87+8@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '7/08', 'Marko', 'Mitrovic', '1', null, 'superman.jpg');
+INSERT INTO `student` VALUES ('15', 'andrija.ilic87+9@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '8/08', 'Miki', 'Lazic', '1', null, 'superman.jpg');
+INSERT INTO `student` VALUES ('16', 'andrija.ilic87+10@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '12/08', 'Sasa', 'Stanic', '1', null, 'superman.jpg');
 
 -- ----------------------------
 -- Table structure for student_aktivnost_ass
@@ -185,7 +188,12 @@ CREATE TABLE `student_aktivnost_ass` (
 -- Records of student_aktivnost_ass
 -- ----------------------------
 INSERT INTO `student_aktivnost_ass` VALUES ('1', '1', '100.00');
-INSERT INTO `student_aktivnost_ass` VALUES ('1', '2', null);
+INSERT INTO `student_aktivnost_ass` VALUES ('1', '2', '56.00');
+INSERT INTO `student_aktivnost_ass` VALUES ('2', '1', '66.00');
+INSERT INTO `student_aktivnost_ass` VALUES ('3', '1', '88.00');
+INSERT INTO `student_aktivnost_ass` VALUES ('4', '1', '90.00');
+INSERT INTO `student_aktivnost_ass` VALUES ('5', '1', '44.00');
+INSERT INTO `student_aktivnost_ass` VALUES ('6', '1', '13.00');
 
 -- ----------------------------
 -- Table structure for student_predmet_ass
@@ -203,7 +211,13 @@ CREATE TABLE `student_predmet_ass` (
 -- Records of student_predmet_ass
 -- ----------------------------
 INSERT INTO `student_predmet_ass` VALUES ('1', '1', null, null);
+INSERT INTO `student_predmet_ass` VALUES ('1', '5', null, null);
+INSERT INTO `student_predmet_ass` VALUES ('1', '7', null, null);
+INSERT INTO `student_predmet_ass` VALUES ('1', '10', null, null);
 INSERT INTO `student_predmet_ass` VALUES ('2', '1', null, null);
+INSERT INTO `student_predmet_ass` VALUES ('2', '5', null, null);
+INSERT INTO `student_predmet_ass` VALUES ('2', '7', null, null);
+INSERT INTO `student_predmet_ass` VALUES ('2', '10', null, null);
 
 -- ----------------------------
 -- Table structure for tip_aktivnosti
