@@ -8,10 +8,8 @@ import com.diplomski.katedra.services.admin.AdminService;
 import org.apache.log4j.Logger;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.SelectModel;
-import org.apache.tapestry5.annotations.OnEvent;
-import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SessionState;
+import org.apache.tapestry5.annotations.*;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.SelectModelFactory;
 
@@ -31,6 +29,7 @@ public class PrikazStudenata {
     private SelectModel predmetSelectModel;
 
     @Property
+    @Persist
     private int year;
 
     @Inject
@@ -38,6 +37,7 @@ public class PrikazStudenata {
     private PredmetEncoder predmetEncoder;
 
     @Property
+    @Persist
     private Predmet selectedPredmet;
 
     @Property
@@ -53,6 +53,13 @@ public class PrikazStudenata {
     @Inject
     private AdminService adminService;
 
+    @InjectComponent
+    private Zone studentZone;
+
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private String poruka;
+
     public List<Integer> getYears() {
         return adminService.getYears();
     }
@@ -62,7 +69,43 @@ public class PrikazStudenata {
         predmetSelectModel = selectModelFactory.create(predmets, "name");
     }
 
-    @SuppressWarnings("unchecked")
+    Object onValueChangedFromYear(int year) {
+        logger.debug(year);
+        logger.debug(this.year);
+        this.year = year;
+        logger.debug(this.selectedPredmet);
+        if(this.selectedPredmet != null) {
+            students = adminService.findAllStudentsInfo(selectedPredmet.getId(), year);
+            poruka = "";
+            if(students.isEmpty()) {
+                poruka = "Nema pronadjenih rezultata za zadati kriterijum";
+            }
+            return studentZone.getBody();
+        }
+        return null;
+    }
+
+    Object onValueChangedFromPredmet(Predmet predmet) {
+        logger.debug(predmet);
+        logger.debug(year);
+        selectedPredmet = predmet;
+        logger.debug(selectedPredmet);
+        if(year != 0) {
+            students = adminService.findAllStudentsInfo(selectedPredmet.getId(), year);
+            poruka = "";
+            if(students.isEmpty()) {
+                poruka = "Nema pronadjenih rezultata za zadati kriterijum";
+            }
+            return studentZone.getBody();
+        }
+        return null;
+    }
+    public boolean isShowStudents() {
+        return year != 0 && selectedPredmet != null && students != null && !students.isEmpty();
+    }
+
+
+    /*@SuppressWarnings("unchecked")
     @OnEvent(value="submit", component="filterForm")
     void onSearchSubmit() throws Exception{
         logger.debug("tests");
@@ -70,7 +113,7 @@ public class PrikazStudenata {
         logger.debug(year);
         students = adminService.findAllStudentsInfo(selectedPredmet.getId(), year);
     }
-
+*/
     Object onActivate() {
         if(predavac != null)
             return null;

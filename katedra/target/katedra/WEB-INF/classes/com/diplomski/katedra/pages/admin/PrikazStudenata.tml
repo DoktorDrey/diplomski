@@ -3,19 +3,38 @@
       xmlns:p="tapestry:parameter"
       xmlns:j="tapestry-library:jquery">
 <body>
-<t:form t:id="filterForm">
+<!--<t:form t:id="filterForm">
     <t:errors/>
     <select t:type="select" value="year" validate="required" model="years"/>
     <select t:type="select" value="selectedPredmet" validate="required" model="predmetSelectModel" encoder="predmetEncoder"/>
     <input type="submit" value="Prikazi"/>
-</t:form>
-<t:grid t:source="students" exclude="programId" row="currentStudent" t:add="student" rowsPerPage="10" reorder="student,brojBodova,konacnaOcena">
-    <p:studentCell>${currentStudent.studentId.brojIndeksa}</p:studentCell>
-    <!--<p:actionCell>
-        <t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="detailZone"
-                                 t:context="${currentUser.lastName}" >Detail</t:jquery.dialogajaxlink>
-    </p:actionCell>-->
-</t:grid>
+</t:form>-->
+    <t:form t:id="filterForm" t:zone="activityZone">
+        <t:errors/>
+        <div class="row">
+            <t:zone t:id="yearZone" id="yearZone" style="display: inline;">
+                <t:label for="year"/>:
+                <select t:type="select" t:id="year" t:model="years" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required" t:zone="studentZone"/>
+            </t:zone>
+            <t:zone t:id="predmetZone" id="predmetZone" style="display: inline;">
+                <t:label for="predmet"/>:
+                <select t:type="select" t:id="predmet" value="selectedPredmet" model="predmetSelectModel" encoder="predmetEncoder" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required" t:zone="studentZone"/>
+            </t:zone>
+        </div>
+    </t:form>
+    <t:zone t:id="studentZone" id="studentZone" style="display: inline;">
+        <p>${poruka}</p>
+        <t:if test="showStudents" t:zone="studentZone">
+            <t:grid t:source="students" exclude="programId" row="currentStudent" t:add="brojIndeksa,imePrezime" rowsPerPage="10" reorder="brojIndeksa,imeIPrezime,brojBodova,konacnaOcena">
+                <p:brojIndeksaCell>${currentStudent.studentId.brojIndeksa}</p:brojIndeksaCell>
+                <p:imePrezimeCell>${currentStudent.studentId.ime} ${currentStudent.studentId.prezime}</p:imePrezimeCell>
+                <!--<p:actionCell>
+                    <t:jquery.dialogajaxlink t:dialog="myDialog" t:zone="detailZone"
+                                             t:context="${currentUser.lastName}" >Detail</t:jquery.dialogajaxlink>
+                </p:actionCell>-->
+            </t:grid>
+        </t:if>
+    </t:zone>
    <!-- <t:grid source="users" t:row="currentUser" t:model="myModel" t:inplace="true"
             t:rowIndex="currentIndex" t:rowsPerPage="10">
 

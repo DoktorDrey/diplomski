@@ -92,13 +92,20 @@ public class KreirajProgram {
     }
 
     public List<Integer> getYears() {
-        return adminService.getYears();
+        List<Integer> godine = adminService.getYears();
+        year = godine.get(0);
+        return godine;
     }
 
     Object onValueChangedFromYear(int year) {
         logger.debug(year);
         logger.debug(this.year);
+
         this.year = year;
+        if(this.year == 0) {
+            poruka = "Molimo vas odaberite godinu";
+            return programZone.getBody();
+        }
         if(this.selectedPredmet != null) {
             program = adminService.findProgram(selectedPredmet.getId(), year);
             activities = adminService.getActivities(program);
@@ -116,6 +123,10 @@ public class KreirajProgram {
         logger.debug(year);
         selectedPredmet = predmet;
         logger.debug(selectedPredmet);
+        if(this.selectedPredmet == null) {
+            poruka = "Molimo vas odaberite predmet";
+            return programZone.getBody();
+        }
         if(year != 0) {
             program = adminService.findProgram(selectedPredmet.getId(), year);
             activities = adminService.getActivities(program);

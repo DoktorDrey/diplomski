@@ -145,9 +145,9 @@ div.page {
 
 /* Content */
 
-div.content {
+/*div.content {
     margin-right: 340px;
-}
+}*/
 
 .post {
     margin-bottom: 10px;
@@ -370,13 +370,38 @@ div.footer .legal a {
     margin-top:10px;
 }
 .long_form {
-    width: 1300px;
+    width: 100%;
     margin-top: 30px;
 }
 .column {
     float:left;
     display: block;
 }
+.long_form .tapestry-formfragment, .long_form .tapestry-forminjector {
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+}
 .long_form .column {
     width: 10%;
+}
+.long_form .pselect{
+    margin-left: 20px;
+    float: left;
+    height: 30px;
+}
+.long_form .pinput{
+    margin-left: 100px;
+    float: left;
+    margin-right: 10px
+}
+.long_form .satnica {
+    margin-left: 20px;
+}
+.long_form button {
+    float: left;
+    margin-left: -10px;
+}
+.long_form .premove{
+    margin-left: 10px;
 }
