@@ -107,10 +107,10 @@ public class UnosRezultata {
                 Cell cell = cellIterator.next();
                 brojIndeksa = cell.getStringCellValue();
                 cell = cellIterator.next();
-                brojPoena = Double.parseDouble(cell.getStringCellValue());
+                brojPoena = Double.parseDouble(String.valueOf(cell.getNumericCellValue()));
                 try {
-
-                    logger.debug(cell.getStringCellValue());
+                    logger.debug(brojIndeksa);
+                    logger.debug(brojPoena);
                     adminService.unesiRezultat(brojIndeksa, brojPoena, selectedActivity);
                 } catch (Exception e) {
                     logger.debug(cell.getStringCellValue());

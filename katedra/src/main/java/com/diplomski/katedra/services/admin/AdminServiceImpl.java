@@ -135,6 +135,7 @@ public class AdminServiceImpl implements AdminService {
         saa.setAktivnost(selectedActivity);
         saa.setBrojPoena(brojPoena);
         saa.setStudent(student);
+        studentAktivnostDao.add(saa);
     }
 
     @Override
