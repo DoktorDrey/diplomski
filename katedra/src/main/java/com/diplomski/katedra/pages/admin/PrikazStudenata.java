@@ -165,7 +165,7 @@ public class PrikazStudenata {
     public JSONObject getDialogParam()
     {
         JSONObject param = new JSONObject();
-        param.put("width", 400);
+        param.put("width", 600);
         return param;
     }
 

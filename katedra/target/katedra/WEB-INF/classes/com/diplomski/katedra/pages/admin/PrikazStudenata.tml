@@ -40,7 +40,7 @@
         <t:zone t:id="detailZone">
             <div>
                 <t:if t:test="currentStudent">
-                    <t:beandisplay object="currentStudent.studentId" exclude="id,password,activated,token,imageName" add="slika">
+                    <t:beandisplay object="currentStudent.studentId" exclude="id,password,activated,token,imageName" add="slika" reorder="slika">
                         <p:slika>
                             <img width="100px" height="100px" src="${imageUrl}" />
                         </p:slika>
