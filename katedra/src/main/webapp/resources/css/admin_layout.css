@@ -391,7 +391,7 @@ div.footer .legal a {
     height: 30px;
 }
 .long_form .pinput{
-    margin-left: 100px;
+    margin-left: 40px;
     float: left;
     margin-right: 10px
 }
@@ -404,4 +404,31 @@ div.footer .legal a {
 }
 .long_form .premove{
     margin-left: 10px;
+}
+.ocene {
+    width: 100%;
+    float: left;
+}
+.labels {
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.labels > label {
+    width: 20%;
+    float: left;
+    text-align: center;
+}
+.labels > .aktivnost {
+    width: 8%;
+}
+.labels > .bigger {
+    width: 32%;
+}
+.labels > .maxP {
+    width: 15%;
+}
+.labels > .va {
+    width: 17%;
 }

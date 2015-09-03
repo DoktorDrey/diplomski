@@ -48,6 +48,7 @@
     <bean id="tipAktivnostDao" class="com.diplomski.katedra.db.impl.TipAktivnostiDaoImpl" p:sessionFactory-ref="sessionFactory"/>
     <bean id="studentPredmetAssDao" class="com.diplomski.katedra.db.impl.StudentPredmetAssDaoImpl" p:sessionFactory-ref="sessionFactory"/>
     <bean id="studentAktivnostDao" class="com.diplomski.katedra.db.impl.StudentAktivnostDaoImpl" p:sessionFactory-ref="sessionFactory"/>
+    <bean id="programOceneDao" class="com.diplomski.katedra.db.impl.ProgramOceneDaoImpl" p:sessionFactory-ref="sessionFactory"/>
     <bean id="predmetEncoder" class="com.diplomski.katedra.encoders.PredmetEncoder"/>
     <bean id="activityEncoder" class="com.diplomski.katedra.encoders.ActivityEncoder"/>
     <bean id="activitySource" class="com.diplomski.katedra.data.ActivitySource"/>

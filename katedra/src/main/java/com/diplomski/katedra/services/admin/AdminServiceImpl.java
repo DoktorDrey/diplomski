@@ -43,6 +43,9 @@ public class AdminServiceImpl implements AdminService {
     @Inject
     private TipAktivnostiDao tipAktivnostiDao;
 
+    @Inject
+    private ProgramOceneDao programOceneDao;
+
     private static final int numOfLastYears = 3;
 
     @Override
@@ -144,21 +147,18 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void setProgramActivities(List<Activity> activities, Program program) {
-        aktivnostDao.removeActivitiesForProgram(program);
+    public void setProgramActivities(List<Activity> activities, ProgramOcene programOcene) {
+        aktivnostDao.removeActivitiesForProgram(programOcene.getProgramId());
+        programOceneDao.remove(programOcene);
+        programOceneDao.add(programOcene);
         for (Activity currentAktivity : activities)
         {
-
             try {
                 Date datum = currentAktivity.getDatum();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 Date parsedDate = dateFormat1.parse(dateFormat.format(datum)+" "+currentAktivity.getSatnica());
                 logger.debug(dateFormat.format(parsedDate));
-//                datum = dateFormat.parse(dateFormat.format(datum));
-//                logger.debug(datum.toString());
-//                dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-//                logger.debug(dateFormat.format(datum)+" "+currentAktivity.getSatnica());
                 Timestamp datum1 = new Timestamp(parsedDate.getTime());
                 logger.debug(datum1.toString());
                 currentAktivity.getAktivnost().setDatum(datum1);

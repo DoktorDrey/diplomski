@@ -23,6 +23,13 @@
         <div class="t-beaneditor">
             <h2>Program</h2>
             <!--<t:beaneditor t:id="activity"/>--><h3>Aktivnosti</h3>
+            <div class="labels">
+                <label class="aktivnost">Aktivnost</label>
+                <label class="va">Vrednost aktivnosti</label>
+                <label class="bigger">Datum odrzavanja</label>
+                <label>Minimalan broj poena</label>
+                <label class="maxP">Maksimalan broj poena</label>
+            </div>
             <div class="program_details" t:type="ajaxformloop" t:id="activities" source="activities"
                  value="activity" encoder="activity1Encoder">
                 <t:select class="pselect" t:id="type" t:model="activityTipSelectModel" t:source="tipAktivnostis" encoder="activityEncoder" value="activity.aktivnost.tipAktivnosti" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
@@ -34,6 +41,9 @@
                 <t:removerowlink class="premove">
                     remove
                 </t:removerowlink>
+            </div>
+            <div class="ocene">
+                <t:beaneditor t:id="programOcene" exclude="id"/>
             </div>
             <p>
                 <input type="submit" value="Update"/>

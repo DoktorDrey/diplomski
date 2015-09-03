@@ -27,7 +27,7 @@ public interface AdminService {
 
     List<TipAktivnosti> findAllActivityTypes();
 
-    void setProgramActivities(List<Activity> activities, Program program);
+    void setProgramActivities(List<Activity> activities, ProgramOcene programOcene);
 
     Program findProgram(int predmet, int year);
 }

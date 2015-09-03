@@ -81,6 +81,10 @@ public class KreirajProgram {
     @Persist
     TipAktivnosti activityTip;
 
+    @Property
+    @Persist
+    private ProgramOcene programOcene;
+
 
     void setupRender() {
         List<Predmet> predmets = adminService.findAllPredmetsForPredavac(predavac);
@@ -109,6 +113,7 @@ public class KreirajProgram {
         if(this.selectedPredmet != null) {
             program = adminService.findProgram(selectedPredmet.getId(), year);
             activities = adminService.getActivities(program);
+            programOcene = ProgramOcene.getDefault(program);
             poruka = "";
             if(activities.isEmpty()) {
                 poruka = "Nema pronadjenih rezultata za zadati kriterijum";
@@ -130,6 +135,7 @@ public class KreirajProgram {
         if(year != 0) {
             program = adminService.findProgram(selectedPredmet.getId(), year);
             activities = adminService.getActivities(program);
+            programOcene = ProgramOcene.getDefault(program);
             logger.debug(activities.toString());
             poruka = "";
             if(activities.isEmpty()) {
@@ -225,7 +231,9 @@ public class KreirajProgram {
     {
         logger.debug("onSuccess");
         logger.debug(program);
-        adminService.setProgramActivities(activities, program);
+        logger.debug(programOcene.getProgramId().getPredmet().getName());
+        logger.debug(programOcene.getSest());
+        adminService.setProgramActivities(activities, programOcene);
         return this;
     }
 
