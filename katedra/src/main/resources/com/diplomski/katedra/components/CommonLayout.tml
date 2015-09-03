@@ -20,13 +20,13 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
     <body>
         <!-- start header -->
         <div class="header">
-            <div class="logo">
+            <!--<div class="logo">
                 <h1>
                     <t:pagelink page="index">com.diplomski:katedra</t:pagelink>
                     &nbsp;
                     version ${appVersion}
                 </h1>
-            </div>
+            </div>-->
             <div class="menu">
                 <ul>
                     <li t:type="loop" source="pageNames" value="pageName" class="prop:classForPageName">
@@ -39,7 +39,7 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
         <!-- start pages -->
         <div class="page">
             <!-- start sidebar -->
-            <div class="sidebar">
+            <!--<div class="sidebar">
                 <ul>
                     <li class="search" style="background: none;">
                     </li>
@@ -54,7 +54,7 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
                         </div>
                     </li>
                 </ul>
-            </div>
+            </div>-->
             <!-- end sidebar -->
             <!-- start content -->
             <div class="content">

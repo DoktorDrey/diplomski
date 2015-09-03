@@ -6,13 +6,21 @@ import com.diplomski.katedra.db.model.StudentPredmetAss;
 import com.diplomski.katedra.encoders.PredmetEncoder;
 import com.diplomski.katedra.services.admin.AdminService;
 import org.apache.log4j.Logger;
+import org.apache.tapestry5.Asset;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.SelectModel;
 import org.apache.tapestry5.annotations.*;
+import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.AssetSource;
+import org.apache.tapestry5.services.BeanModelSource;
+import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.SelectModelFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,7 +55,7 @@ public class PrikazStudenata {
     SelectModelFactory selectModelFactory;
 
     @Property
-    @Persist(PersistenceConstants.FLASH)
+    @Persist
     private List<StudentPredmetAss> students;
 
     @Inject
@@ -56,9 +64,33 @@ public class PrikazStudenata {
     @InjectComponent
     private Zone studentZone;
 
+    @Component
+    private Zone detailZone;
+
     @Property
     @Persist(PersistenceConstants.FLASH)
     private String poruka;
+
+    @Inject
+    private Request request;
+
+    @Property
+    private int currentIndex;
+
+
+    @SuppressWarnings("unchecked")
+    @Property
+    @Retain
+    private BeanModel _myModel;
+
+    @Inject
+    private AssetSource assetSource;
+
+    @Inject
+    private BeanModelSource _beanModelSource;
+
+    @Inject
+    private ComponentResources _componentResources;
 
     public List<Integer> getYears() {
         return adminService.getYears();
@@ -79,6 +111,14 @@ public class PrikazStudenata {
             poruka = "";
             if(students.isEmpty()) {
                 poruka = "Nema pronadjenih rezultata za zadati kriterijum";
+            } else {
+                if (_myModel == null) {
+                    _myModel = _beanModelSource.createDisplayModel(StudentPredmetAss.class, _componentResources.getMessages());
+                    _myModel.add("action", null);
+                    /*_myModel.include("firstName", "lastName", "action");
+                    _myModel.get("firstName").sortable(false);
+                    _myModel.get("lastName").label("Surname");*/
+                }
             }
             return studentZone.getBody();
         }
@@ -95,6 +135,14 @@ public class PrikazStudenata {
             poruka = "";
             if(students.isEmpty()) {
                 poruka = "Nema pronadjenih rezultata za zadati kriterijum";
+            }else {
+                if (_myModel == null) {
+                    _myModel = _beanModelSource.createDisplayModel(StudentPredmetAss.class, _componentResources.getMessages());
+                    _myModel.add("action", null);
+                    /*_myModel.include("firstName", "lastName", "action");
+                    _myModel.get("firstName").sortable(false);
+                    _myModel.get("lastName").label("Surname");*/
+                }
             }
             return studentZone.getBody();
         }
@@ -104,6 +152,30 @@ public class PrikazStudenata {
         return year != 0 && selectedPredmet != null && students != null && !students.isEmpty();
     }
 
+    @OnEvent(value = "action")
+    Object showDetail(int index)
+    {
+        logger.debug(index);
+        logger.debug(students.toString());
+        if (!request.isXHR()) { return this; }
+            currentStudent= (StudentPredmetAss)students.get(index);
+        return detailZone;
+    }
+
+    public JSONObject getDialogParam()
+    {
+        JSONObject param = new JSONObject();
+        param.put("width", 400);
+        return param;
+    }
+
+
+    private StudentPredmetAss createCurrentStudent(int i)
+    {
+        StudentPredmetAss u = new StudentPredmetAss();
+        logger.debug(i);
+        return u;
+    }
 
     /*@SuppressWarnings("unchecked")
     @OnEvent(value="submit", component="filterForm")
@@ -114,6 +186,12 @@ public class PrikazStudenata {
         students = adminService.findAllStudentsInfo(selectedPredmet.getId(), year);
     }
 */
+    public Asset getImageURL() {
+        logger.debug(assetSource.getClass().getResource("./"));
+        final String path = "/layout/images/" + currentStudent.getStudentId().getImageName();
+        return assetSource.getContextAsset(path, null);
+    }
+
     Object onActivate() {
         if(predavac != null)
             return null;

@@ -1,7 +1,7 @@
-<html t:type="adminLayout" title="About katedra"
+<html t:type="adminLayout" title="Dobrodosli"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
 
-<p>About katedra application ...</p>
+<p>Izaberite zeljenu akciju ...</p>
 
 </html>
