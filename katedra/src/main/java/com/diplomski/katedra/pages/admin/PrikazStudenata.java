@@ -49,6 +49,7 @@ public class PrikazStudenata {
     private Predmet selectedPredmet;
 
     @Property
+    @Persist
     private StudentPredmetAss currentStudent;
 
     @Inject
@@ -77,20 +78,8 @@ public class PrikazStudenata {
     @Property
     private int currentIndex;
 
-
-    @SuppressWarnings("unchecked")
-    @Property
-    @Retain
-    private BeanModel _myModel;
-
     @Inject
     private AssetSource assetSource;
-
-    @Inject
-    private BeanModelSource _beanModelSource;
-
-    @Inject
-    private ComponentResources _componentResources;
 
     public List<Integer> getYears() {
         return adminService.getYears();
@@ -111,14 +100,6 @@ public class PrikazStudenata {
             poruka = "";
             if(students.isEmpty()) {
                 poruka = "Nema pronadjenih rezultata za zadati kriterijum";
-            } else {
-                if (_myModel == null) {
-                    _myModel = _beanModelSource.createDisplayModel(StudentPredmetAss.class, _componentResources.getMessages());
-                    _myModel.add("action", null);
-                    /*_myModel.include("firstName", "lastName", "action");
-                    _myModel.get("firstName").sortable(false);
-                    _myModel.get("lastName").label("Surname");*/
-                }
             }
             return studentZone.getBody();
         }
@@ -135,20 +116,16 @@ public class PrikazStudenata {
             poruka = "";
             if(students.isEmpty()) {
                 poruka = "Nema pronadjenih rezultata za zadati kriterijum";
-            }else {
-                if (_myModel == null) {
-                    _myModel = _beanModelSource.createDisplayModel(StudentPredmetAss.class, _componentResources.getMessages());
-                    _myModel.add("action", null);
-                    /*_myModel.include("firstName", "lastName", "action");
-                    _myModel.get("firstName").sortable(false);
-                    _myModel.get("lastName").label("Surname");*/
-                }
             }
             return studentZone.getBody();
         }
         return null;
     }
     public boolean isShowStudents() {
+        logger.debug(year);
+        logger.debug(year);
+        logger.debug(year != 0 && selectedPredmet != null && students != null && !students.isEmpty());
+        logger.debug(currentStudent);
         return year != 0 && selectedPredmet != null && students != null && !students.isEmpty();
     }
 
@@ -167,14 +144,6 @@ public class PrikazStudenata {
         JSONObject param = new JSONObject();
         param.put("width", 600);
         return param;
-    }
-
-
-    private StudentPredmetAss createCurrentStudent(int i)
-    {
-        StudentPredmetAss u = new StudentPredmetAss();
-        logger.debug(i);
-        return u;
     }
 
     /*@SuppressWarnings("unchecked")

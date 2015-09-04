@@ -25,7 +25,7 @@
     <t:zone t:id="studentZone" id="studentZone" style="display: inline;">
         <p>${poruka}</p>
         <t:if test="showStudents" t:zone="studentZone">
-            <t:grid t:source="students" exclude="programId" model="myModel" row="currentStudent" t:add="brojIndeksa,imePrezime" rowsPerPage="10" reorder="brojIndeksa,imePrezime,brojBodova,konacnaOcena,action" rowIndex="currentIndex">
+            <t:grid t:source="students" exclude="programId" row="currentStudent" t:add="brojIndeksa,imePrezime,action" rowsPerPage="10" reorder="brojIndeksa,imePrezime,brojBodova,konacnaOcena,action" rowIndex="currentIndex">
                 <p:brojIndeksaCell>${currentStudent.studentId.brojIndeksa}</p:brojIndeksaCell>
                 <p:imePrezimeCell>${currentStudent.studentId.ime} ${currentStudent.studentId.prezime}</p:imePrezimeCell>
                 <p:actionCell>
@@ -42,7 +42,7 @@
                 <t:if t:test="currentStudent">
                     <t:beandisplay object="currentStudent.studentId" exclude="id,password,activated,token,imageName" add="slika" reorder="slika">
                         <p:slika>
-                            <img width="100px" height="100px" src="${imageUrl}" />
+                            <img width="150px" height="100px" src="${imageUrl}" />
                         </p:slika>
                     </t:beandisplay>
                 </t:if>
