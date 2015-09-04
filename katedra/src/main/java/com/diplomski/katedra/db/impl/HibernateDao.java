@@ -35,7 +35,7 @@ public class HibernateDao<E, K extends Serializable> implements GenericDao<E, K>
 
     @Override
     public void add(E entity) {
-        currentSession().save(entity);
+        currentSession().saveOrUpdate(entity);
     }
 
     @Override

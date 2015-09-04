@@ -149,7 +149,8 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void setProgramActivities(List<Activity> activities, ProgramOcene programOcene) {
         aktivnostDao.removeActivitiesForProgram(programOcene.getProgramId());
-        programOceneDao.remove(programOcene);
+        logger.debug(programOcene.getProgramId().getId());
+        logger.debug(programOcene.getDevet());
         programOceneDao.add(programOcene);
         for (Activity currentAktivity : activities)
         {

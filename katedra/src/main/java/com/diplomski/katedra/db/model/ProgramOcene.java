@@ -33,7 +33,7 @@ public class ProgramOcene implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "program_id")
+    @JoinColumn(name = "program")
     public Program getProgramId() {
         return programId;
     }
