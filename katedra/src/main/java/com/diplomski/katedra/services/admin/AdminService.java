@@ -30,4 +30,6 @@ public interface AdminService {
     void setProgramActivities(List<Activity> activities, ProgramOcene programOcene);
 
     Program findProgram(int predmet, int year);
+
+    void addActivity(Aktivnost aktivnost);
 }

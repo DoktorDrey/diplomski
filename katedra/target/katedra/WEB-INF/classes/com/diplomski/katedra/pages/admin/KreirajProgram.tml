@@ -19,37 +19,37 @@
 <t:zone t:id="programZone" id="programZone" style="display: inline;">
     <t:if test="showProgramZone" t:zone="programZone">
         <t:form class="long_form" t:id="form">
-        <t:errors/>
-        <div class="t-beaneditor">
-            <h2>Program</h2>
-            <!--<t:beaneditor t:id="activity"/>--><h3>Aktivnosti</h3>
-            <div class="labels">
-                <label class="aktivnost">Aktivnost</label>
-                <label class="va">Vrednost aktivnosti</label>
-                <label class="bigger">Datum odrzavanja</label>
-                <label>Minimalan broj poena</label>
-                <label class="maxP">Maksimalan broj poena</label>
+            <t:errors/>
+            <div class="t-beaneditor">
+                <h2>Program</h2>
+                <!--<t:beaneditor t:id="activity"/>--><h3>Aktivnosti</h3>
+                <div class="labels">
+                    <label class="aktivnost">Aktivnost</label>
+                    <label class="va">Vrednost aktivnosti</label>
+                    <label class="bigger">Datum odrzavanja</label>
+                    <label>Minimalan broj poena</label>
+                    <label class="maxP">Maksimalan broj poena</label>
+                </div>
+                <div class="program_details" t:type="ajaxformloop" t:id="activities" source="activities"
+                     row="activity" value="activity" encoder="activity1Encoder">
+                    <t:select class="pselect" t:id="type" t:model="activityTipSelectModel" t:source="tipAktivnostis" encoder="activityEncoder" value="activity.aktivnost.tipAktivnosti" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
+                    <t:textfield class="pinput" t:id="vrednost" value="activity.aktivnost.vrednost" validate="required"/>
+                    <t:datefield class="pinput" t:id="datum" value="activity.datum" validate="required"/>
+                    <t:textfield class="pinput satnica" t:id="satnica" value="activity.satnica" validate="required"/>
+                    <t:textfield class="pinput" t:id="minPoints" value="activity.aktivnost.minPoints"/>
+                    <t:textfield class="pinput" t:id="maxPoints" value="activity.aktivnost.maxPoints"/>|
+                    <t:removerowlink class="premove">
+                        remove
+                    </t:removerowlink>
+                </div>
+                <div class="ocene">
+                    <t:beaneditor t:id="programOcene" exclude="id"/>
+                </div>
+                <p>
+                    <input type="submit" value="Update"/>
+                </p>
             </div>
-            <div class="program_details" t:type="ajaxformloop" t:id="activities" source="activities"
-                 value="activity" encoder="activity1Encoder">
-                <t:select class="pselect" t:id="type" t:model="activityTipSelectModel" t:source="tipAktivnostis" encoder="activityEncoder" value="activity.aktivnost.tipAktivnosti" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>
-                <t:textfield class="pinput" t:id="vrednost" value="activity.aktivnost.vrednost" validate="required"/>
-                <t:datefield class="pinput" t:id="datum" value="activity.datum" validate="required"/>
-                <t:textfield class="pinput satnica" t:id="satnica" value="activity.satnica" validate="required"/>
-                <t:textfield class="pinput" t:id="minPoints" value="activity.aktivnost.minPoints"/>
-                <t:textfield class="pinput" t:id="maxPoints" value="activity.aktivnost.maxPoints"/>|
-                <t:removerowlink class="premove">
-                    remove
-                </t:removerowlink>
-            </div>
-            <div class="ocene">
-                <t:beaneditor t:id="programOcene" exclude="id"/>
-            </div>
-            <p>
-                <input type="submit" value="Update"/>
-            </p>
-        </div>
-    </t:form>
+        </t:form>
     </t:if>
 </t:zone>
 </body>

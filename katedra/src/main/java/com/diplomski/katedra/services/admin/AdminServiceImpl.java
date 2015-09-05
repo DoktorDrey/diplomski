@@ -148,10 +148,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void setProgramActivities(List<Activity> activities, ProgramOcene programOcene) {
-        aktivnostDao.removeActivitiesForProgram(programOcene.getProgramId());
+//        aktivnostDao.removeActivitiesForProgram(programOcene.getProgramId());
         logger.debug(programOcene.getProgramId().getId());
         logger.debug(programOcene.getDevet());
-        programOceneDao.add(programOcene);
+        programOceneDao.addOrUpdate(programOcene);
         for (Activity currentAktivity : activities)
         {
             try {
@@ -173,5 +173,10 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Program findProgram(int predmet, int year) {
         return programDao.findProgram(predmet, year);
+    }
+
+    @Override
+    public void addActivity(Aktivnost aktivnost) {
+        aktivnostDao.add(aktivnost);
     }
 }

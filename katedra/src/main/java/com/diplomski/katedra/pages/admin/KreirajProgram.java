@@ -9,6 +9,7 @@ import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.SelectModel;
 import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.annotations.*;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -57,7 +58,6 @@ public class KreirajProgram {
     private List<Activity> activities;
 
     @Property
-    @Persist
     private Activity activity;
 
     @Inject
@@ -78,13 +78,11 @@ public class KreirajProgram {
     List<TipAktivnosti> tipAktivnostis;
 
     @Property
-    @Persist
     TipAktivnosti activityTip;
 
     @Property
     @Persist
     private ProgramOcene programOcene;
-
 
     void setupRender() {
         List<Predmet> predmets = adminService.findAllPredmetsForPredavac(predavac);
@@ -215,6 +213,7 @@ public class KreirajProgram {
         aktivnost.setTipAktivnosti(new TipAktivnosti(3, "kolokvijum"));
         aktivnost.setMaxPoints(100);
         aktivnost.setMinPoints(50);
+        adminService.addActivity(aktivnost);
         Activity activity1 = new Activity(new Date(), aktivnost, "09:00:00");
         activities.add(activity1);
         return activity1;

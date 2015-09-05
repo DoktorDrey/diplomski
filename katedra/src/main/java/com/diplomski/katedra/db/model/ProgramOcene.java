@@ -101,6 +101,9 @@ public class ProgramOcene implements Serializable {
         this.programId = program;
     }
 
+    public ProgramOcene() {
+    }
+
     public static ProgramOcene getDefault(Program program) {
         return new ProgramOcene(51,61,71,81,91, program);
     }
