@@ -132,13 +132,59 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity) {
+    public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity, Predavac predavac) {
         Student student = studentDao.getByBrIndeks(brojIndeksa);
         StudentAktivnostAss saa = new StudentAktivnostAss();
         saa.setAktivnost(selectedActivity);
         saa.setBrojPoena(brojPoena);
         saa.setStudent(student);
+        logger.debug(predavac.getId());
+        logger.debug(selectedActivity.getId());
+        selectedActivity = aktivnostDao.find(selectedActivity.getId());
+        logger.debug(selectedActivity.getProgram());
+        saa.setPregledao(predavac.getId());
+        StudentAktivnostAss old = studentAktivnostDao.findActivity(student, selectedActivity);
+       double finalBrojPoena = brojPoena*selectedActivity.getVrednost();
+        logger.debug(finalBrojPoena);
+        if(old != null) {
+            finalBrojPoena -= old.getBrojPoena() * old.getAktivnost().getVrednost();
+            studentAktivnostDao.remove(old);
+        }
+        logger.debug(finalBrojPoena);
         studentAktivnostDao.add(saa);
+        if(brojPoena >= selectedActivity.getMinPoints()) {
+            StudentPredmetAss spa = studentPredmetAssDao.getProgramForStudent(selectedActivity.getProgram(),student);
+            logger.debug("test");
+            logger.debug(spa.getBrojBodova());
+            finalBrojPoena += spa.getBrojBodova();
+            spa.setBrojBodova(finalBrojPoena);
+            logger.debug(spa.getBrojBodova());
+            logger.debug(spa.getKonacnaOcena());
+            spa.setKonacnaOcena(proveriKonacnuOcenu(finalBrojPoena, spa.getProgramId()));
+            logger.debug(spa.getKonacnaOcena());
+            logger.debug(spa.getBrojBodova());
+            studentPredmetAssDao.update(spa);
+        }
+    }
+
+    private int proveriKonacnuOcenu(double brojPoena, Program programId) {
+        ProgramOcene programOcene = programOceneDao.getOcene(programId);
+        if(brojPoena >= programOcene.getDeset()) {
+            return 10;
+        }
+        if(brojPoena >= programOcene.getDevet()) {
+            return 9;
+        }
+        if(brojPoena >= programOcene.getOsam()) {
+            return 8;
+        }
+        if(brojPoena >= programOcene.getSedam()) {
+            return 7;
+        }
+        if(brojPoena >= programOcene.getSest()) {
+            return 6;
+        }
+        return 5;
     }
 
     @Override

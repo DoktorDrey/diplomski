@@ -1,6 +1,7 @@
 package com.diplomski.katedra.db.impl;
 
 import com.diplomski.katedra.db.dao.ProgramOceneDao;
+import com.diplomski.katedra.db.model.Program;
 import com.diplomski.katedra.db.model.ProgramOcene;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
@@ -27,5 +28,14 @@ public class ProgramOceneDaoImpl extends HibernateDao<ProgramOcene, Integer> imp
             programOcene1.setSest(programOcene.getSest());
             update(programOcene1);
         }
+    }
+
+    @Override
+    public ProgramOcene getOcene(Program program) {
+        Query query = currentSession().createQuery("from ProgramOcene PO where PO.programId = "+program.getId());
+        List result = query.list();
+        if(result.isEmpty())
+            return null;
+        return (ProgramOcene) result.get(0);
     }
 }

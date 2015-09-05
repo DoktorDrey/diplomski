@@ -10,7 +10,7 @@
             <t:label for="year"/>:
             <select t:type="select" t:id="year" t:model="years" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required" t:zone="activityZone"/>
         </t:zone>
-        <t:zone t:id="predmetZone" id="predmetZone" style="display: inline;">
+        <t:zone t:id="predmetZone" id="predmetZone" style="display: inline; margin-left: 30px;">
             <t:label for="predmet"/>:
             <select t:type="select" t:id="predmet" value="selectedPredmet" model="predmetSelectModel" encoder="predmetEncoder" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required" t:zone="activityZone"/>
         </t:zone>

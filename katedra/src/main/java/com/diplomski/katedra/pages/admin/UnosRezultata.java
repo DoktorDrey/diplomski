@@ -37,6 +37,7 @@ public class UnosRezultata {
     private Predavac predavac;
 
     @Property
+    @Persist(PersistenceConstants.FLASH)
     private UploadedFile file;
 
     @Property
@@ -111,7 +112,7 @@ public class UnosRezultata {
                 try {
                     logger.debug(brojIndeksa);
                     logger.debug(brojPoena);
-                    adminService.unesiRezultat(brojIndeksa, brojPoena, selectedActivity);
+                    adminService.unesiRezultat(brojIndeksa, brojPoena, selectedActivity,predavac);
                 } catch (Exception e) {
                     logger.debug(cell.getStringCellValue());
                 }

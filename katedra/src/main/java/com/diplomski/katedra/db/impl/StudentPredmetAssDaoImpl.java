@@ -2,6 +2,7 @@ package com.diplomski.katedra.db.impl;
 
 import com.diplomski.katedra.db.dao.StudentPredmetAssDao;
 import com.diplomski.katedra.db.model.Program;
+import com.diplomski.katedra.db.model.Student;
 import com.diplomski.katedra.db.model.StudentPredmetAss;
 import com.diplomski.katedra.db.model.StudentPredmetAssPK;
 import org.apache.log4j.Logger;
@@ -23,5 +24,15 @@ public class StudentPredmetAssDaoImpl extends HibernateDao<StudentPredmetAss,Stu
         logger.debug(query.getQueryString());
         List result = query.list();
         return result;
+    }
+
+    @Override
+    public StudentPredmetAss getProgramForStudent(Program program, Student student) {
+        Query query = currentSession().createQuery("from StudentPredmetAss S where S.programId = "+program.getId()+" and S.studentId="+student.getId());
+        logger.debug(query.getQueryString());
+        List result = query.list();
+        if(result.isEmpty())
+            return null;
+        return (StudentPredmetAss) result.get(0);
     }
 }

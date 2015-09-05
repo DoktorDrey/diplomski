@@ -1,10 +1,7 @@
 package com.diplomski.katedra.db.impl;
 
 import com.diplomski.katedra.db.dao.StudentAktivnostDao;
-import com.diplomski.katedra.db.model.Program;
-import com.diplomski.katedra.db.model.Student;
-import com.diplomski.katedra.db.model.StudentAktivnostAss;
-import com.diplomski.katedra.db.model.StudentAktivnostAssPK;
+import com.diplomski.katedra.db.model.*;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
@@ -36,5 +33,15 @@ public class StudentAktivnostDaoImpl extends HibernateDao<StudentAktivnostAss,St
         logger.debug(query.getQueryString());
         List result = query.list();
         return result;
+    }
+
+    @Override
+    public StudentAktivnostAss findActivity(Student student, Aktivnost selectedActivity) {
+        Query query = currentSession().createQuery("from StudentAktivnostAss S where S.aktivnost = "+selectedActivity.getId()+" and S.student="+student.getId());
+        logger.debug(query.getQueryString());
+        List result = query.list();
+        if(result.isEmpty())
+            return null;
+        return (StudentAktivnostAss) result.get(0);
     }
 }

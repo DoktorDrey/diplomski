@@ -13,6 +13,7 @@ public class StudentAktivnostAss implements Serializable{
     private Student student;
     private Aktivnost aktivnost;
     private Double brojPoena;
+    private int pregledao;
 
     @Id
     @ManyToOne
@@ -44,6 +45,16 @@ public class StudentAktivnostAss implements Serializable{
 
     public void setBrojPoena(Double brojPoena) {
         this.brojPoena = brojPoena;
+    }
+
+    @Basic
+    @Column(name = "pregledao", nullable = true, insertable = true, updatable = true, precision = 2)
+    public int getPregledao() {
+        return pregledao;
+    }
+
+    public void setPregledao(int pregledao) {
+        this.pregledao = pregledao;
     }
 
     @Override

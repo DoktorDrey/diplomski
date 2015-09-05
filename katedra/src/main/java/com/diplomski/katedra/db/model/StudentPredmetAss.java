@@ -13,7 +13,7 @@ public class StudentPredmetAss implements Serializable{
     private Student studentId;
     private Program programId;
     private Integer konacnaOcena;
-    private Float brojBodova;
+    private Double brojBodova;
 
     @Id
 //    @Column(name = "student_id", nullable = false, insertable = true, updatable = true)
@@ -50,11 +50,11 @@ public class StudentPredmetAss implements Serializable{
 
     @Basic
     @Column(name = "broj_bodova", nullable = true, insertable = true, updatable = true, precision = 2)
-    public Float getBrojBodova() {
+    public Double getBrojBodova() {
         return brojBodova;
     }
 
-    public void setBrojBodova(Float brojBodova) {
+    public void setBrojBodova(Double brojBodova) {
         this.brojBodova = brojBodova;
     }
 

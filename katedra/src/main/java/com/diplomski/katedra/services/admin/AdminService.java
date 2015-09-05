@@ -23,7 +23,7 @@ public interface AdminService {
     List<Aktivnost> vratiAktivnosti(Program program);
     List<StudentAktivnostAss> getStudentActivities(int predmet, int year);
 
-    public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity);
+    public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity,Predavac predavac);
 
     List<TipAktivnosti> findAllActivityTypes();
 

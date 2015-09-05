@@ -1,5 +1,6 @@
 package com.diplomski.katedra.db.dao;
 
+import com.diplomski.katedra.db.model.Program;
 import com.diplomski.katedra.db.model.ProgramOcene;
 
 /**
@@ -7,4 +8,6 @@ import com.diplomski.katedra.db.model.ProgramOcene;
  */
 public interface ProgramOceneDao extends GenericDao<ProgramOcene, Integer> {
     void addOrUpdate(ProgramOcene programOcene);
+
+    ProgramOcene getOcene(Program programId);
 }
