@@ -125,7 +125,7 @@ public class UnosRezultata {
 
     void setupRender() {
         // invoke my service to find all colors, e.g. in the database
-        List<Predmet> predmets = adminService.findAllPredmets();
+        List<Predmet> predmets = adminService.findAllPredmetsForPredavac(predavac);
         // create a SelectModel from my list of colors
         predmetSelectModel = selectModelFactory.create(predmets, "name");
         years = adminService.getYears();
