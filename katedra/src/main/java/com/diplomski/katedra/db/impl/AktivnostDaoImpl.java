@@ -32,6 +32,14 @@ public class AktivnostDaoImpl extends HibernateDao<Aktivnost, Integer> implement
     }
 
     @Override
+    public List<Aktivnost> findFuture(Student student) {
+        Query query = currentSession().createQuery("from Aktivnost A where A.id  not in (SELECT S.aktivnost from StudentAktivnostAss S where S.student = "+student.getId() + " and S.brojPoena>0) and A.program in (SELECT SP.programId from StudentPredmetAss SP where SP.studentId="+student.getId()+")");
+        logger.debug(query.getQueryString());
+        List result = query.list();
+        return result;
+    }
+
+    @Override
     public void add(Aktivnost entity) {
         if(entity.getId() == 0) {
             logger.debug(entity);

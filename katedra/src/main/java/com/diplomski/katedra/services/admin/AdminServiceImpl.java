@@ -142,7 +142,7 @@ public class AdminServiceImpl implements AdminService {
         logger.debug(selectedActivity.getId());
         selectedActivity = aktivnostDao.find(selectedActivity.getId());
         logger.debug(selectedActivity.getProgram());
-        saa.setPregledao(predavac.getId());
+        saa.setPregledao(predavac);
         StudentAktivnostAss old = studentAktivnostDao.findActivity(student, selectedActivity);
        double finalBrojPoena = brojPoena*selectedActivity.getVrednost();
         logger.debug(finalBrojPoena);

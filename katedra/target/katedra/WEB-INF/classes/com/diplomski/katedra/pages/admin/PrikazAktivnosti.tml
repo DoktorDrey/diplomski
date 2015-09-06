@@ -33,16 +33,18 @@
     <p>${poruka}</p>
     <t:if test="showActivities" t:zone="activityZone">
         <table t:type="jquery/datatable" t:id="activitiesdt" t:source="activities" t:row="activity"
-           t:rowsPerPage="5" t:add="student, datum,aktivnost" t:reorder="student, datum, brojPoena" t:options="options" t:zone="activityZone">
+           t:rowsPerPage="5" t:add="brojIndeksa,imePrezime,datum,aktivnost,pregledao" t:reorder="brojIndeksa,imePrezime, datum, brojPoena,pregledao" t:options="options" t:zone="activityZone">
 
         <!--<p:studentHeader>Student</p:studentHeader>-->
         <!--<p:studentHeader>Student</p:studentHeader>-->
 
         <!--<p:firstNameFooter>Prenom Footer</p:firstNameFooter>-->
 
-        <p:studentCell>${activity.student.brojIndeksa}</p:studentCell>
+        <p:brojIndeksaCell>${activity.student.brojIndeksa}</p:brojIndeksaCell>
+        <p:imePrezimeCell>${activity.student.ime} ${activity.student.prezime}</p:imePrezimeCell>
         <p:datumCell>${activity.aktivnost.datum}</p:datumCell>
         <p:aktivnostCell>${activity.aktivnost.tipAktivnosti.nazivAktivnosti}</p:aktivnostCell>
+        <p:pregledaoCell>${activity.pregledao.ime} ${activity.pregledao.prezime}</p:pregledaoCell>
 
         <!--<p:linkCell><t:ActionLink t:zone="zone" t:mixins="jquery/tooltip" title="tooltup">${current?.lastName}</t:ActionLink></p:linkCell>-->
 

@@ -3,6 +3,9 @@
       xmlns:p="tapestry:parameter">
 <body>
 <form t:type="form" t:id="searchCriteria">
+    <div class="row" style="color:green;">
+        ${message}
+    </div>
     <div class="row">
         <t:zone t:id="yearZone" id="yearZone" style="display: inline;">
             <t:label for="year"/>:
@@ -24,7 +27,7 @@
                 <select t:type="select" t:id="activity" value="selectedActivity" t:model="activitySelectModel" encoder="activityEncoder" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required" t:zone="activityZone"/>
             </div>
             <div class="row">
-                <input t:type="upload" t:id="file" t:value="file" validate="required"/>
+                <input t:type="upload" t:id="file" t:value="file" validate="required" t:zone="activityZone"/>
             </div>
         </t:if>
     </t:zone>

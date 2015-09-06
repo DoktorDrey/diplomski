@@ -12,4 +12,5 @@ public interface StudentAktivnostDao extends GenericDao<StudentAktivnostAss, Stu
     List<StudentAktivnostAss> findForStudent(Student student);
 
     StudentAktivnostAss findActivity(Student student, Aktivnost selectedActivity);
+
 }

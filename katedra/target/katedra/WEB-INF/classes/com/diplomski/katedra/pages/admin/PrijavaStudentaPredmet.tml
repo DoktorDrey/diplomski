@@ -4,6 +4,9 @@
 <body>
 <t:form>
     <t:errors/>
+    <div class="row" style="color:green;">
+        ${message}
+    </div>
     <div class="row">
         <t:label for="predmet"/>:
         <select t:type="select" t:id="predmet" value="selectedPredmet" model="predmetSelectModel" encoder="predmetEncoder" t:blankOption="ALWAYS" t:blankLabel="Izaberi..." t:validate="required"/>

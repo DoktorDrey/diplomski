@@ -60,6 +60,7 @@ public class PrijavaStudentaPredmet {
 
     public void ucitajExcel() {
         try {
+            message = "";
             InputStream fileInputStream = file.getStream();
             //Create Workbook instance holding reference to .xlsx file
             XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
@@ -81,8 +82,14 @@ public class PrijavaStudentaPredmet {
                 try {
                     adminService.prijaviStudenta(cell.getStringCellValue(), selectedPredmet.getId(), year);
                 } catch (Exception e) {
+                    logger.debug(e.getMessage());
                     logger.debug(cell.getStringCellValue());
+                    if(message.equals(""))
+                        message = "Sledeci studente nisu prijavljeni na program:</br> ";
+                    message += cell.getStringCellValue() + ", ";
                 }
+                if(message.equals(""))
+                    message = "Studenti su uspesno prijavljeni";
                 /*Student s = new Student();
                 s.setBrojIndeksa(cell.getStringCellValue());
                 cell = cellIterator.next();

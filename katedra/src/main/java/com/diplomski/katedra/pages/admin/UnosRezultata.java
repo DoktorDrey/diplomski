@@ -23,6 +23,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.SelectModelFactory;
 import org.apache.tapestry5.upload.services.UploadedFile;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.List;
@@ -37,7 +38,6 @@ public class UnosRezultata {
     private Predavac predavac;
 
     @Property
-    @Persist(PersistenceConstants.FLASH)
     private UploadedFile file;
 
     @Property
@@ -86,6 +86,7 @@ public class UnosRezultata {
 
     public void ucitajExcel() {
         try {
+            message = "";
             InputStream fileInputStream = file.getStream();
             //Create Workbook instance holding reference to .xlsx file
             XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
@@ -113,9 +114,15 @@ public class UnosRezultata {
                     logger.debug(brojIndeksa);
                     logger.debug(brojPoena);
                     adminService.unesiRezultat(brojIndeksa, brojPoena, selectedActivity,predavac);
+
                 } catch (Exception e) {
+                    if(message.equals(""))
+                        message = "Za sledece studente nisu uneseni rezultati:</br> ";
+                    message += brojIndeksa + ", ";
                     logger.debug(cell.getStringCellValue());
                 }
+                if(message.equals(""))
+                    message = "Rezultati su uspesno dodati";
             }
             fileInputStream.close();
         } catch (Exception e) {
@@ -133,12 +140,14 @@ public class UnosRezultata {
     }
 
     void onValueChangedFromYear(int year) {
+        message = "";
         logger.debug(year);
         logger.debug(this.year);
         this.year = year;
     }
 
     Object onValueChangedFromPredmet(Predmet predmet) {
+        message = "";
         logger.debug(predmet);
         logger.debug(year);
         logger.debug(selectedPredmet);
@@ -155,7 +164,6 @@ public class UnosRezultata {
     }
 
     public void onSuccess() {
-
         ucitajExcel();
     }
 

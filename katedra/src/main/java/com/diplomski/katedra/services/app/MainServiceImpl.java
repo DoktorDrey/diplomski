@@ -63,7 +63,7 @@ public class MainServiceImpl implements MainService {
 
     @Override
     public List<Aktivnost> getFutureActivities(Student student) {
-        List<Aktivnost> activities = aktivnostDao.list();
+        List<Aktivnost> activities = aktivnostDao.findFuture(student);
         return activities;
     }
 
