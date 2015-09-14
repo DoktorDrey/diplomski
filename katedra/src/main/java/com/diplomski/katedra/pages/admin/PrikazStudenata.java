@@ -107,10 +107,7 @@ public class PrikazStudenata {
     }
 
     Object onValueChangedFromPredmet(Predmet predmet) {
-        logger.debug(predmet);
-        logger.debug(year);
         selectedPredmet = predmet;
-        logger.debug(selectedPredmet);
         if(year != 0) {
             students = adminService.findAllStudentsInfo(selectedPredmet.getId(), year);
             poruka = "";
