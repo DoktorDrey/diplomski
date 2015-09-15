@@ -1,12 +1,9 @@
-<html t:type="commonLayout" title="Editovanje podataka"
+<html t:type="commonLayout" title=""
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
 
-<head>
-    <title>My Profile</title>
-</head>
 <body>
-<h1>My Profile</h1>
+<h1>Editovanje podataka</h1>
 <t:form t:id="myProfileForm">
     <t:errors/>
     <table>
