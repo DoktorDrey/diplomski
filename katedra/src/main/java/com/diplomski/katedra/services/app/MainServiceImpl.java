@@ -38,23 +38,23 @@ public class MainServiceImpl implements MainService {
 
     @Override
     public List<Student> getAllStudents() {
-        List<Student> students = studentDao.list();
+        List<Student> students = studentDao.izlistaj();
         return students;
     }
 
     @Override
-    public boolean activation(String token) {
+    public boolean aktivacijaKorisnika(String token) {
         Student student = studentDao.getByToken(token);
         if(student == null) {
             return false;
         }
         student.setActivated(true);
-        studentDao.update(student);
+        studentDao.sacuvaj(student);
         return true;
     }
 
     @Override
-    public List<StudentAktivnostAss> getStudentActivities(Student student) {
+    public List<StudentAktivnostAss> pronadjiAktivnostiKorisnika(Student student) {
         logger.debug("getStudentActivities");
         logger.debug(student.getId());
         List<StudentAktivnostAss> activities = studentAktivnostDao.findForStudent(student);
@@ -78,38 +78,16 @@ public class MainServiceImpl implements MainService {
     }
 
 
-    /*@Deprecated
-    public boolean registerStudent(Student student) throws Exception {
-        Student s = studentDao.getByBrIndeks(student.getBrojIndeksa());
-        logger.debug(s);
-        logger.debug(s.getBrojIndeksa());
-        student.setId(s.getId());
-
-
-        if(s == null) {
-            throw new Exception("err_student_not_exist");
-        } else {
-            if(s.getEmail() == null){
-                student.setPassword(Crypto.hash(student.getPassword()));
-                studentDao.update(student);
-            }
-
-            else
-                throw new Exception(messages.get("err_student_reg"));
-        }
-        return true;
-    }*/
-
-    public void registerStudent(Student student) throws Exception {
+    public void registracijaKorisnika(Student student) throws Exception {
         student.setPassword(Crypto.hash(student.getPassword()));
         student.setToken(Crypto.generateToken());
-        studentDao.add(student);
+        studentDao.dodaj(student);
     }
 
 
-    public void updateStudent(Student student) {
+    public void izmenaKorisnika(Student student) {
         logger.debug(student.getBrojIndeksa());
-        studentDao.update(student);
+        studentDao.sacuvaj(student);
     }
   
 

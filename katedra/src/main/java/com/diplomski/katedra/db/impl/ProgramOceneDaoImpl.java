@@ -18,7 +18,7 @@ public class ProgramOceneDaoImpl extends HibernateDao<ProgramOcene, Integer> imp
         Query query = currentSession().createQuery("from ProgramOcene PO where PO.programId = "+programOcene.getProgramId().getId()+"");
         List result = query.list();
         if(result.isEmpty()) {
-            add(programOcene);
+            dodaj(programOcene);
         } else {
             ProgramOcene programOcene1 = (ProgramOcene) result.get(0);
             programOcene1.setDeset(programOcene.getDeset());
@@ -26,7 +26,7 @@ public class ProgramOceneDaoImpl extends HibernateDao<ProgramOcene, Integer> imp
             programOcene1.setOsam(programOcene.getOsam());
             programOcene1.setSedam(programOcene.getSedam());
             programOcene1.setSest(programOcene.getSest());
-            update(programOcene1);
+            sacuvaj(programOcene1);
         }
     }
 

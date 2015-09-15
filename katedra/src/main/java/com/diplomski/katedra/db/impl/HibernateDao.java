@@ -34,26 +34,26 @@ public class HibernateDao<E, K extends Serializable> implements GenericDao<E, K>
     }
 
     @Override
-    public void add(E entity) {
+    public void dodaj(E entity) {
         currentSession().saveOrUpdate(entity);
     }
     @Override
-    public void update(E entity) {
+    public void sacuvaj(E entity) {
         currentSession().update(entity);
     }
 
     @Override
-    public void remove(E entity) {
+    public void obrisi(E entity) {
         currentSession().delete(entity);
     }
 
     @Override
-    public E find(K key) {
+    public E promeni(K key) {
         return (E) currentSession().get(daoType, key);
     }
 
     @Override
-    public List<E> list() {
+    public List<E> izlistaj() {
         return currentSession().createCriteria(daoType).list();
     }
 }

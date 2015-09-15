@@ -105,10 +105,10 @@ public class PrijavaStudentaPredmet {
     }
 
     void setupRender() {
-        // invoke my service to find all colors, e.g. in the database
+        // invoke my service to promeni all colors, e.g. in the database
         List<Predmet> predmets = adminService.findAllPredmetsForPredavac(predavac);
 
-        // create a SelectModel from my list of colors
+        // create a SelectModel from my izlistaj of colors
         predmetSelectModel = selectModelFactory.create(predmets, "name");
     }
 

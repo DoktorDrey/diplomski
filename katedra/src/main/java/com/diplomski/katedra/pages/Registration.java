@@ -57,7 +57,7 @@ public class Registration {
         logger.debug(student.getBrojIndeksa());
         Class nextPage = null;
         try {
-            mainService.registerStudent(student);
+            mainService.registracijaKorisnika(student);
         } catch (Exception e) {
             e.printStackTrace();
             registrationForm.recordError(messages.get("student-not-exist"));

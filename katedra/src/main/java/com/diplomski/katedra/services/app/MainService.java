@@ -18,15 +18,15 @@ public interface MainService {
 
     public Student authenticate(String email, String password) throws Exception;
 
-    public void updateStudent(Student student);
+    public void izmenaKorisnika(Student student);
 
-    public void registerStudent(Student student) throws Exception;
+    public void registracijaKorisnika(Student student) throws Exception;
 
     public List<Student> getAllStudents();
 
-    boolean activation(String token);
+    boolean aktivacijaKorisnika(String token);
 
-    List<StudentAktivnostAss> getStudentActivities(Student student);
+    List<StudentAktivnostAss> pronadjiAktivnostiKorisnika(Student student);
 
     List<Aktivnost> getFutureActivities(Student student);
 }

@@ -17,13 +17,13 @@ public interface AdminService {
     public List<Predmet> findAllPredmets();
     public List<Predmet> findAllPredmetsForPredavac(Predavac predavac);
     public List<Integer> getYears();
-    public List<StudentPredmetAss> findAllStudentsInfo(int predmet, int year);
+    public List<StudentPredmetAss> pronadjiStudente(int predmet, int year);
 
-    List<Activity> getActivities(Program program);
+    List<Activity> vratiProgramSaAktivnostima(Program program);
     List<Aktivnost> vratiAktivnosti(Program program);
-    List<StudentAktivnostAss> getStudentActivities(int predmet, int year);
+    List<StudentAktivnostAss> pronadjiAktivnostiZaProgram(int predmet, int year);
 
-    public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity,Predavac predavac);
+    public void sacuvajAktivnost(String brojIndeksa, double brojPoena, Aktivnost selectedActivity,Predavac predavac);
 
     List<TipAktivnosti> findAllActivityTypes();
 

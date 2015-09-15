@@ -84,7 +84,7 @@ public class EditovanjePodataka {
         logger.debug(student.getBrojIndeksa());
         Class nextPage = null;
         try {
-            mainService.updateStudent(student);
+            mainService.izmenaKorisnika(student);
         } catch (Exception e) {
             e.printStackTrace();
             myProfileForm.recordError(messages.get("student-not-exist"));

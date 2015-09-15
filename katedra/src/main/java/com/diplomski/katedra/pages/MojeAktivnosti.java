@@ -69,7 +69,7 @@ public class MojeAktivnosti {
     @OnEvent(value="submit", component="filterForm")
     Object onSearchSubmit() throws Exception{
         if(aktStatus.equals("Izvrsene")) {
-            activities = mainService.getStudentActivities(student);
+            activities = mainService.pronadjiAktivnostiKorisnika(student);
             logger.debug(activities.toString());
             if(activities.isEmpty()) {
                 poruka = "Nema pronadjenih rezultata za zadati kriterijum";

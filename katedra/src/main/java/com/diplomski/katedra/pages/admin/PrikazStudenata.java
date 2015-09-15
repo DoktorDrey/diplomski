@@ -96,7 +96,7 @@ public class PrikazStudenata {
         this.year = year;
         logger.debug(this.selectedPredmet);
         if(this.selectedPredmet != null) {
-            students = adminService.findAllStudentsInfo(selectedPredmet.getId(), year);
+            students = adminService.pronadjiStudente(selectedPredmet.getId(), year);
             poruka = "";
             if(students.isEmpty()) {
                 poruka = "Nema pronadjenih rezultata za zadati kriterijum";
@@ -109,7 +109,7 @@ public class PrikazStudenata {
     Object onValueChangedFromPredmet(Predmet predmet) {
         selectedPredmet = predmet;
         if(year != 0) {
-            students = adminService.findAllStudentsInfo(selectedPredmet.getId(), year);
+            students = adminService.pronadjiStudente(selectedPredmet.getId(), year);
             poruka = "";
             if(students.isEmpty()) {
                 poruka = "Nema pronadjenih rezultata za zadati kriterijum";

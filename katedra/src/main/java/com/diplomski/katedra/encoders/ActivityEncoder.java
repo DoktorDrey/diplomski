@@ -42,7 +42,7 @@ public class ActivityEncoder implements ValueEncoder<Aktivnost>, ValueEncoderFac
     public Predmet toValue(String s) {
         Predmet predmet = new Predmet();
         predmet.setId(Integer.parseInt(s));
-//        return predmetDao.find(Integer.parseInt(s));
+//        return predmetDao.promeni(Integer.parseInt(s));
         return predmet;
     }
 

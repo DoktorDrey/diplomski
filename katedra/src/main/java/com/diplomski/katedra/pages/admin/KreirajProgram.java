@@ -110,7 +110,7 @@ public class KreirajProgram {
         }
         if(this.selectedPredmet != null) {
             program = adminService.findProgram(selectedPredmet.getId(), year);
-            activities = adminService.getActivities(program);
+            activities = adminService.vratiProgramSaAktivnostima(program);
             programOcene = ProgramOcene.getDefault(program);
             poruka = "";
             if(activities.isEmpty()) {
@@ -132,7 +132,7 @@ public class KreirajProgram {
         }
         if(year != 0) {
             program = adminService.findProgram(selectedPredmet.getId(), year);
-            activities = adminService.getActivities(program);
+            activities = adminService.vratiProgramSaAktivnostima(program);
             programOcene = ProgramOcene.getDefault(program);
             logger.debug(activities.toString());
             poruka = "";

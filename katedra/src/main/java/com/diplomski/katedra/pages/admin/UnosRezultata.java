@@ -113,7 +113,7 @@ public class UnosRezultata {
                 try {
                     logger.debug(brojIndeksa);
                     logger.debug(brojPoena);
-                    adminService.unesiRezultat(brojIndeksa, brojPoena, selectedActivity,predavac);
+                    adminService.sacuvajAktivnost(brojIndeksa, brojPoena, selectedActivity,predavac);
 
                 } catch (Exception e) {
                     if(message.equals(""))
@@ -131,9 +131,9 @@ public class UnosRezultata {
     }
 
     void setupRender() {
-        // invoke my service to find all colors, e.g. in the database
+        // invoke my service to promeni all colors, e.g. in the database
         List<Predmet> predmets = adminService.findAllPredmetsForPredavac(predavac);
-        // create a SelectModel from my list of colors
+        // create a SelectModel from my izlistaj of colors
         predmetSelectModel = selectModelFactory.create(predmets, "name");
         years = adminService.getYears();
 //        List<Aktivnost> activities = adminService.getActivities(1, 2015);

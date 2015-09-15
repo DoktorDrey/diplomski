@@ -15,7 +15,7 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public List<Student> getAllStudents() {
-        List<Student> students = studentDao.list();
+        List<Student> students = studentDao.izlistaj();
         return students;
     }
 }

@@ -40,13 +40,13 @@ public class AktivnostDaoImpl extends HibernateDao<Aktivnost, Integer> implement
     }
 
     @Override
-    public void add(Aktivnost entity) {
+    public void dodaj(Aktivnost entity) {
         if(entity.getId() == 0) {
             logger.debug(entity);
-            super.add(entity);
+            super.dodaj(entity);
             return;
         }
         logger.debug(entity);
-        super.update(entity);
+        super.sacuvaj(entity);
     }
 }

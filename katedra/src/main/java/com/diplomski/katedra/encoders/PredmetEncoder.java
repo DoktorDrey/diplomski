@@ -25,7 +25,7 @@ public class PredmetEncoder implements ValueEncoder<Predmet>, ValueEncoderFactor
     public Predmet toValue(String s) {
         Predmet predmet = new Predmet();
         predmet.setId(Integer.parseInt(s));
-//        return predmetDao.find(Integer.parseInt(s));
+//        return predmetDao.promeni(Integer.parseInt(s));
         return predmet;
     }
 

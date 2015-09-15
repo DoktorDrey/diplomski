@@ -61,7 +61,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void saveStudent(Student s) {
-        studentDao.add(s);
+        studentDao.dodaj(s);
     }
 
     @Override
@@ -73,12 +73,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<Predmet> findAllPredmets() {
-        return predmetDao.list();
+        return predmetDao.izlistaj();
     }
 
     @Override
     public List<Predmet> findAllPredmetsForPredavac(Predavac predavac) {
-//        return predmetDao.list();
+//        return predmetDao.izlistaj();
         return predmetDao.vratiPredmeteZaPredavaca(predavac);
     }
 
@@ -94,7 +94,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<StudentPredmetAss> findAllStudentsInfo(int predmet, int year) {
+    public List<StudentPredmetAss> pronadjiStudente(int predmet, int year) {
         Program program = programDao.findProgram(predmet, year);
         List<StudentPredmetAss> students = studentPredmetAssDao.getStudentsByProgram(program);
         logger.debug(students.toString());
@@ -102,7 +102,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<Activity> getActivities(Program program) {
+    public List<Activity> vratiProgramSaAktivnostima(Program program) {
         logger.debug(program.getId());
         List<Aktivnost> aktivnosts = aktivnostDao.findForProgram(program);
         List<Activity> activities = new ArrayList<Activity>();
@@ -124,7 +124,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<StudentAktivnostAss> getStudentActivities(int predmet, int year) {
+    public List<StudentAktivnostAss> pronadjiAktivnostiZaProgram(int predmet, int year) {
         Program program = programDao.findProgram(predmet, year);
         logger.debug(program.getId());
         List<StudentAktivnostAss> activities = studentAktivnostDao.findForProgram(program);
@@ -132,7 +132,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void unesiRezultat(String brojIndeksa, double brojPoena, Aktivnost selectedActivity, Predavac predavac) {
+    public void sacuvajAktivnost(String brojIndeksa, double brojPoena, Aktivnost selectedActivity, Predavac predavac) {
         Student student = studentDao.getByBrIndeks(brojIndeksa);
         StudentAktivnostAss saa = new StudentAktivnostAss();
         saa.setAktivnost(selectedActivity);
@@ -140,7 +140,7 @@ public class AdminServiceImpl implements AdminService {
         saa.setStudent(student);
         logger.debug(predavac.getId());
         logger.debug(selectedActivity.getId());
-        selectedActivity = aktivnostDao.find(selectedActivity.getId());
+        selectedActivity = aktivnostDao.promeni(selectedActivity.getId());
         logger.debug(selectedActivity.getProgram());
         saa.setPregledao(predavac);
         StudentAktivnostAss old = studentAktivnostDao.findActivity(student, selectedActivity);
@@ -148,10 +148,10 @@ public class AdminServiceImpl implements AdminService {
         logger.debug(finalBrojPoena);
         if(old != null) {
             finalBrojPoena -= old.getBrojPoena() * old.getAktivnost().getVrednost();
-            studentAktivnostDao.remove(old);
+            studentAktivnostDao.obrisi(old);
         }
         logger.debug(finalBrojPoena);
-        studentAktivnostDao.add(saa);
+        studentAktivnostDao.dodaj(saa);
         if(brojPoena >= selectedActivity.getMinPoints()) {
             StudentPredmetAss spa = studentPredmetAssDao.getProgramForStudent(selectedActivity.getProgram(),student);
             logger.debug("test");
@@ -163,7 +163,7 @@ public class AdminServiceImpl implements AdminService {
             spa.setKonacnaOcena(proveriKonacnuOcenu(finalBrojPoena, spa.getProgramId()));
             logger.debug(spa.getKonacnaOcena());
             logger.debug(spa.getBrojBodova());
-            studentPredmetAssDao.update(spa);
+            studentPredmetAssDao.sacuvaj(spa);
         }
     }
 
@@ -189,7 +189,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<TipAktivnosti> findAllActivityTypes() {
-        return tipAktivnostiDao.list();
+        return tipAktivnostiDao.izlistaj();
     }
 
     @Override
@@ -209,7 +209,7 @@ public class AdminServiceImpl implements AdminService {
                 Timestamp datum1 = new Timestamp(parsedDate.getTime());
                 logger.debug(datum1.toString());
                 currentAktivity.getAktivnost().setDatum(datum1);
-                aktivnostDao.add(currentAktivity.getAktivnost());
+                aktivnostDao.dodaj(currentAktivity.getAktivnost());
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -223,6 +223,6 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void addActivity(Aktivnost aktivnost) {
-        aktivnostDao.add(aktivnost);
+        aktivnostDao.dodaj(aktivnost);
     }
 }

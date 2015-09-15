@@ -7,13 +7,13 @@ import java.util.List;
  */
 public interface GenericDao<E, K> {
 
-    void add(E entity);
+    void dodaj(E entity);
 
-    void update(E entity);
+    void sacuvaj(E entity);
 
-    void remove(E entity);
+    void obrisi(E entity);
 
-    E find(K key);
+    E promeni(K key);
 
-    List<E> list();
+    List<E> izlistaj();
 }

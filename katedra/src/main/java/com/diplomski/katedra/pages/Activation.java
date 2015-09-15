@@ -27,7 +27,7 @@ public class Activation {
     Object onActivate() {
         logger.debug(token);
 
-        if (mainService.activation(token))
+        if (mainService.aktivacijaKorisnika(token))
             poruka = "Uspesno ste se aktivirali.";
         else
             poruka = "Link nije validan";

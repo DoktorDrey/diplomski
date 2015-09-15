@@ -77,7 +77,7 @@ public class PrikazAktivnosti {
         List<Predmet> predmets = adminService.findAllPredmetsForPredavac(predavac);
         predmetSelectModel = selectModelFactory.create(predmets, "name");
 
-        // Get all persons - ask business service to find them (from the database)
+        // Get all persons - ask business service to promeni them (from the database)
 //        logger.debug(activities.get(0).getBrojPoena());
 //        logger.debug(activities.get(0).getStudent());
     }
@@ -94,7 +94,7 @@ public class PrikazAktivnosti {
         logger.debug(this.selectedPredmet);
         logger.debug(aktStatus);
         if(this.selectedPredmet != null) {
-            activities = adminService.getStudentActivities(selectedPredmet.getId(), year);
+            activities = adminService.pronadjiAktivnostiZaProgram(selectedPredmet.getId(), year);
             poruka = "";
             if(activities.isEmpty()) {
                 poruka = "Nema pronadjenih rezultata za zadati kriterijum";
@@ -128,7 +128,7 @@ public class PrikazAktivnosti {
         selectedPredmet = predmet;
         logger.debug(selectedPredmet);
         if(year != 0) {
-            activities = adminService.getStudentActivities(predmet.getId(), year);
+            activities = adminService.pronadjiAktivnostiZaProgram(predmet.getId(), year);
             logger.debug(activities.toString());
             poruka = "";
             if(activities.isEmpty()) {
